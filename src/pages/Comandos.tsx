@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Search, Package, Image, PiggyBank, Send, SquarePercent, Trophy, Shield } from 'lucide-react'; // Importando ícones válidos
+import { ArrowLeft, Settings, Search, Package, Image, PiggyBank, Send } from 'lucide-react'; // Importando ícones válidos
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -254,7 +254,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Package className="w-6 h-6" />,
+      icon: <PiggyBank className="w-6 h-6" />,
       name: '/chutar',
       description: '🎲 Aposte 30 coins no número de 1 a 10. Se acertar, ganha 150 coins!',
       usage: '/chutar [número de 1 a 10]',
@@ -332,7 +332,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Trophy className="w-6 h-6" />,
+      icon: <PiggyBank className="w-6 h-6" />,
       name: '/top',
       description: '🏆 Veja o top 5 usuários com mais coins acumulados. Será que você está no pódio?',
       usage: '/top',
@@ -345,7 +345,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Shield className="w-6 h-6" />,
+      icon: <PiggyBank className="w-6 h-6" />,
       name: '/escudo',
       description: '🛡️ Compre escudos que protegem você de roubos. Cada escudo custa 20 coins.',
       usage: '/escudo',
@@ -455,4 +455,4 @@ function Comandos() {
 }
 
 export default Comandos;
-      
+        

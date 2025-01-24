@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Search, Package, Image, PiggyBank } from 'lucide-react'; // Importando ícones válidos
+import { ArrowLeft, Settings, Search, Package, Image, PiggyBank, Send, SquarePercent, Trophy } from 'lucide-react'; // Importando ícones válidos
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -280,7 +280,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Package className="w-6 h-6" />,
+      icon: <PiggyBank className="w-6 h-6" />,
       name: '/coins',
       description: '💰 Veja quantas coins você tem acumuladas. Use este comando sempre que quiser conferir seu saldo.',
       usage: '/coins',
@@ -293,7 +293,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Package className="w-6 h-6" />,
+      icon: <PiggyBank className="w-6 h-6" />,
       name: '/roletarussa',
       description: '💥 Jogue na roleta russa com 2% de chance de ganhar. Se ganhar, seu saldo é multiplicado por 20. Se perder, seu saldo é zerado.',
       usage: '/roletarussa',
@@ -306,7 +306,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Package className="w-6 h-6" />,
+      icon: <Send className="w-6 h-6" />,
       name: '/roubar',
       description: '💸 Tente roubar coins de outro usuário! Se tiver sucesso, você pega 1/4 do saldo dele. Se falhar, perde 1/5 do seu saldo. Cuidado, se ele tiver escudo, você perde 2/5.',
       usage: '/roubar [@usuario]',
@@ -319,7 +319,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Package className="w-6 h-6" />,
+      icon: <Send className="w-6 h-6" />,
       name: '/transferir',
       description: '💵 Transfira coins para outro usuário. O valor mínimo da transferência é 50 coins.',
       usage: '/transferir @usuario [quantidade]',
@@ -332,7 +332,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Package className="w-6 h-6" />,
+      icon: <Trophy className="w-6 h-6" />,
       name: '/top',
       description: '🏆 Veja o top 5 usuários com mais coins acumulados. Será que você está no pódio?',
       usage: '/top',
@@ -345,7 +345,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Package className="w-6 h-6" />,
+      icon: <Shield className="w-6 h-6" />,
       name: '/escudo',
       description: '🛡️ Compre escudos que protegem você de roubos. Cada escudo custa 20 coins.',
       usage: '/escudo',
@@ -358,7 +358,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Package className="w-6 h-6" />,
+      icon: <SquarePercent className="w-6 h-6" />,
       name: '/dado',
       description: '🎲 Jogue o dado! Se acertar o número, ganha 100 coins. Se errar, perde 30 coins.',
       usage: '/dado [número de 1 a 6]',
@@ -455,4 +455,4 @@ function Comandos() {
 }
 
 export default Comandos;
-      
+          

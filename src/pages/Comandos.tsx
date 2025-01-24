@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Search, Package, Image, Money, Coin } from 'lucide-react'; // Importando ícones válidos
+import { ArrowLeft, Settings, Search, Package, Image, Money } from 'lucide-react'; // Importando ícones válidos
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -241,7 +241,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Coin className="w-6 h-6" />,
+      icon: <Package className="w-6 h-6" />,
       name: '/caraoucoroa',
       description: '🪙 Jogue cara ou coroa e tente acertar para ganhar 1x o valor apostado!',
       usage: '/caraoucoroa',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Command, Bot, ArrowLeft, Settings, Search, Users, Bell, Calendar, FileText, HelpCircle, Package, Emoji, Image } from 'lucide-react';
+import { ArrowLeft, Settings, Search, Package, Image } from 'lucide-react'; // Importando ícones válidos
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -18,20 +18,6 @@ function Comandos() {
   const [comandoSelecionado, setComandoSelecionado] = useState<Comando | null>(null);
 
   const comandos: Comando[] = [
-    {
-      icon: <Emoji className="w-6 h-6" />,
-      name: '/emojimix',
-      description: '🤝 Combina dois emojis para criar uma figurinha única. Funciona melhor com emojis de rosto, onde a mistura gera resultados mais visuais e divertidos.',
-      usage: '/emojimix (emoji1+emoji2)',
-      examples: [
-        '/emojimix 😮‍💨+🤓',
-        '/emojimix 😍+😎'
-      ],
-      type: {
-        name: 'Sticker',
-        color: 'bg-green-500'
-      }
-    },
     {
       icon: <Search className="w-6 h-6" />,
       name: '/ly',
@@ -75,7 +61,7 @@ function Comandos() {
     {
       icon: <Image className="w-6 h-6" />,
       name: '/s',
-      description: '🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs. Esse comando é ideal para criar figurinhas impactantes que ocupam toda a área visível.',
+      description: '🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs.',
       usage: '/s (responda a uma mídia)',
       examples: [
         '/s',
@@ -87,23 +73,9 @@ function Comandos() {
       }
     },
     {
-      icon: <Image className="w-6 h-6" />,
-      name: '/f',
-      description: '🖼️ Cria figurinhas a partir de imagens ou vídeos sem esticar a mídia, ao contrário do comando /s.',
-      usage: '/f (responda a uma mídia)',
-      examples: [
-        '/f',
-        '/f'
-      ],
-      type: {
-        name: 'Sticker',
-        color: 'bg-green-500'
-      }
-    },
-    {
       icon: <Settings className="w-6 h-6" />,
       name: '/setname',
-      description: '🖊️ Define um nome para todas as figurinhas enviadas pelo bot. Esse nome será aplicado em "propriedades" das figurinhas, nos comandos como /s, /f, /ly e outros.',
+      description: '🖊️ Define um nome para todas as figurinhas enviadas pelo bot.',
       usage: '/setname (nome desejado)',
       examples: [
         '/setname MinhasFigurinhas'
@@ -116,7 +88,7 @@ function Comandos() {
     {
       icon: <Image className="w-6 h-6" />,
       name: '/toimg',
-      description: '🖼️ Converte figurinhas estáticas ou animadas em imagens no formato JPG. Útil para salvar ou reutilizar o conteúdo original da figurinha.',
+      description: '🖼️ Converte figurinhas estáticas ou animadas em imagens no formato JPG.',
       usage: '/toimg (responda a uma figurinha)',
       examples: [
         '/toimg'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Search, Package, Image, PiggyBank, Send, SquarePercent, Trophy } from 'lucide-react'; // Importando ícones válidos
+import { ArrowLeft, Settings, Search, Package, Image, PiggyBank, Send, SquarePercent, Trophy, Shield } from 'lucide-react'; // Importando ícones válidos
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -455,4 +455,4 @@ function Comandos() {
 }
 
 export default Comandos;
-          
+      

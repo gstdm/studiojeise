@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App.tsx';
 import Comandos from './pages/Comandos.tsx';
 import './index.css';

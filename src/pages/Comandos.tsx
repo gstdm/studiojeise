@@ -20,14 +20,62 @@ function Comandos() {
   const [expandedComando, setExpandedComando] = useState<string | null>(null);
 
   const comandos: Comando[] = [
-    {
-      icon: <Search className="w-6 h-6" />,
-      name: '/ly',
-      description: '🔍 Realiza uma busca no *Sticker.ly* utilizando uma palavra-chave e envia 3 figurinhas relacionadas.',
-      usage: '/ly (palavra-chave)',
-      examples: ['/ly amor', '/ly memes'],
-      type: { name: 'Figurinhas', color: 'bg-green-500' }
-    },
+{
+  "icon": "<Search className=\"w-6 h-6\" />",
+  "name": "/ly",
+  "description": "🔍 Realiza uma busca no *Sticker.ly* utilizando uma palavra-chave e envia 3 figurinhas relacionadas. Caso repita o mesmo termo, o bot buscará novas figurinhas.",
+  "usage": "/ly (palavra-chave)",
+  "examples": ["/ly amor", "/ly memes"],
+  "type": { "name": "Figurinhas", "color": "bg-green-500" }
+},
+{
+  "icon": "<Package className=\"w-6 h-6\" />",
+  "name": "/pack",
+  "description": "📦 Baixa as 10 primeiras figurinhas de um pacote no *Sticker.ly* utilizando o ID do pacote. Ideal para obter pacotes completos rapidamente.",
+  "usage": "/pack (ID do pack)",
+  "examples": ["/pack MI28jK"],
+  "type": { "name": "Figurinhas", "color": "bg-green-500" }
+},
+{
+  "icon": "<Settings className=\"w-6 h-6\" />",
+  "name": "/resetname",
+  "description": "🖊️ Remove o nome personalizado previamente definido para as figurinhas, retornando ao padrão do bot.",
+  "usage": "/resetname",
+  "examples": ["/resetname"],
+  "type": { "name": "Figurinhas", "color": "bg-green-500" }
+},
+{
+  "icon": "<Image className=\"w-6 h-6\" />",
+  "name": "/s",
+  "description": "🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs.",
+  "usage": "/s (responda a uma mídia)",
+  "examples": ["/s"],
+  "type": { "name": "Figurinhas", "color": "bg-green-500" }
+},
+{
+  "icon": "<Image className=\"w-6 h-6\" />",
+  "name": "/f",
+  "description": "🖼️ Cria figurinhas no formato original, sem esticar. A partir de imagens, vídeos (até 10 segundos) ou GIFs.",
+  "usage": "/f (responda a uma mídia)",
+  "examples": ["/f"],
+  "type": { "name": "Figurinhas", "color": "bg-green-500" }
+},
+{
+  "icon": "<Settings className=\"w-6 h-6\" />",
+  "name": "/setname",
+  "description": "🖊️ Define um nome para todas as figurinhas enviadas pelo bot.",
+  "usage": "/setname (nome desejado)",
+  "examples": ["/setname MinhasFigurinhas"],
+  "type": { "name": "Figurinhas", "color": "bg-green-500" }
+},
+{
+  "icon": "<Image className=\"w-6 h-6\" />",
+  "name": "/toimg",
+  "description": "🖼️ Converte figurinhas estáticas ou animadas em imagens no formato JPG.",
+  "usage": "/toimg (responda a uma figurinha)",
+  "examples": ["/toimg"],
+  "type": { "name": "Figurinhas", "color": "bg-green-500" }
+},
     {
       icon: <Package className="w-6 h-6" />,
       name: '/ytvideo',
@@ -144,3 +192,4 @@ function Comandos() {
 }
 
 export default Comandos;
+                    

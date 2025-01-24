@@ -28,7 +28,7 @@ function Comandos() {
         '/ly memes'
       ],
       type: {
-        name: 'Sticker',
+        name: 'Figurinhas',
         color: 'bg-green-500'
       }
     },
@@ -41,7 +41,7 @@ function Comandos() {
         '/pack 1234567890'
       ],
       type: {
-        name: 'Sticker',
+        name: 'Figurinhas',
         color: 'bg-green-500'
       }
     },
@@ -54,7 +54,7 @@ function Comandos() {
         '/resetname'
       ],
       type: {
-        name: 'Sticker',
+        name: 'Figurinhas',
         color: 'bg-green-500'
       }
     },
@@ -64,11 +64,23 @@ function Comandos() {
       description: '🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs.',
       usage: '/s (responda a uma mídia)',
       examples: [
-        '/s',
         '/s'
       ],
       type: {
-        name: 'Sticker',
+        name: 'Figurinhas',
+        color: 'bg-green-500'
+      }
+    },
+    {
+      icon: <Image className="w-6 h-6" />,
+      name: '/f',
+      description: '🖼️ Cria figurinhas no formato original, sem esticar. a partir de imagens, vídeos (até 10 segundos) ou GIFs.',
+      usage: '/f (responda a uma mídia)',
+      examples: [
+        '/s'
+      ],
+      type: {
+        name: 'Figurinhas',
         color: 'bg-green-500'
       }
     },
@@ -81,7 +93,7 @@ function Comandos() {
         '/setname MinhasFigurinhas'
       ],
       type: {
-        name: 'Sticker',
+        name: 'Figurinhas',
         color: 'bg-green-500'
       }
     },
@@ -94,7 +106,7 @@ function Comandos() {
         '/toimg'
       ],
       type: {
-        name: 'Sticker',
+        name: 'Figurinhas',
         color: 'bg-green-500'
       }
     }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Search, Package, Image } from 'lucide-react'; // Importando ícones válidos
+import { MessageCircle, Command, Bot, ArrowLeft, Settings, Search, Users, Bell, Calendar, FileText, HelpCircle, Image, Package, Emoji } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -18,6 +18,20 @@ function Comandos() {
   const [comandoSelecionado, setComandoSelecionado] = useState<Comando | null>(null);
 
   const comandos: Comando[] = [
+    {
+      icon: <Emoji className="w-6 h-6" />,
+      name: '/emojimix',
+      description: '🤝 Combina dois emojis para criar uma figurinha única. Funciona melhor com emojis de rosto, onde a mistura gera resultados mais visuais e divertidos.',
+      usage: '/emojimix (emoji1+emoji2)',
+      examples: [
+        '/emojimix 😮‍💨+🤓',
+        '/emojimix 😍+😎'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    },
     {
       icon: <Search className="w-6 h-6" />,
       name: '/ly',
@@ -61,7 +75,7 @@ function Comandos() {
     {
       icon: <Image className="w-6 h-6" />,
       name: '/s',
-      description: '🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs.',
+      description: '🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs. Esse comando é ideal para criar figurinhas impactantes que ocupam toda a área visível.',
       usage: '/s (responda a uma mídia)',
       examples: [
         '/s',
@@ -75,7 +89,7 @@ function Comandos() {
     {
       icon: <Settings className="w-6 h-6" />,
       name: '/setname',
-      description: '🖊️ Define um nome para todas as figurinhas enviadas pelo bot.',
+      description: '🖊️ Define um nome para todas as figurinhas enviadas pelo bot. Esse nome será aplicado em "propriedades" das figurinhas, nos comandos como /s, /f, /ly e outros.',
       usage: '/setname (nome desejado)',
       examples: [
         '/setname MinhasFigurinhas'
@@ -88,10 +102,24 @@ function Comandos() {
     {
       icon: <Image className="w-6 h-6" />,
       name: '/toimg',
-      description: '🖼️ Converte figurinhas estáticas ou animadas em imagens no formato JPG.',
+      description: '🖼️ Converte figurinhas estáticas ou animadas em imagens no formato JPG. Útil para salvar ou reutilizar o conteúdo original da figurinha.',
       usage: '/toimg (responda a uma figurinha)',
       examples: [
         '/toimg'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    },
+    {
+      icon: <Command className="w-6 h-6" />,
+      name: '/f',
+      description: '🎉 Cria figurinhas animadas a partir de textos. Ideal para criar figurinhas personalizadas com frases ou palavras.',
+      usage: '/f (texto)',
+      examples: [
+        '/f Olá!',
+        '/f Eu amo programação'
       ],
       type: {
         name: 'Sticker',
@@ -112,7 +140,7 @@ function Comandos() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {comandos.map((comando, index) => (
+          {comandos.sort((a, b) => a.name.localeCompare(b.name)).map((comando, index) => (
             <button
               key={index}
               onClick={() => setComandoSelecionado(comando)}

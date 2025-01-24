@@ -358,7 +358,7 @@ function Comandos() {
       }
     },
     {
-      icon: <SquarePercent className="w-6 h-6" />,
+      icon: PiggyBank className="w-6 h-6" />,
       name: '/dado',
       description: '🎲 Jogue o dado! Se acertar o número, ganha 100 coins. Se errar, perde 30 coins.',
       usage: '/dado [número de 1 a 6]',

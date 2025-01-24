@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Search, Package, Image, Money } from 'lucide-react'; // Importando ícones válidos
+import { ArrowLeft, Settings, Search, Package, Image, PiggyBank } from 'lucide-react'; // Importando ícones válidos
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -228,7 +228,7 @@ function Comandos() {
       }
     },
     {
-      icon: <Money className="w-6 h-6" />,
+      icon: <PiggyBank className="w-6 h-6" />,
       name: '/apostar',
       description: '🎰 Aposte uma quantia e tente acertar 3 frutas iguais para ganhar 8x o que apostou. Emoção de cassino direto no WhatsApp!',
       usage: '/apostar [quantia]',

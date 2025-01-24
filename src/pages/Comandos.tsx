@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Command, Bot, ArrowLeft, Settings, Search, Users, Bell, Calendar, FileText, HelpCircle } from 'lucide-react';
+import { ArrowLeft, Settings, Search, Package, Image } from 'lucide-react'; // Importando ícones válidos
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -18,101 +18,87 @@ function Comandos() {
   const [comandoSelecionado, setComandoSelecionado] = useState<Comando | null>(null);
 
   const comandos: Comando[] = [
-{
-  icon: <Emoji className="w-6 h-6" />,
-  name: '/emojimix',
-  description: '🤝 Combina dois emojis para criar uma figurinha única. Funciona melhor com emojis de rosto, onde a mistura gera resultados mais visuais e divertidos.',
-  usage: '/emojimix (emoji1+emoji2)',
-  examples: [
-    '/emojimix 😮‍💨+🤓',
-    '/emojimix 😍+😎'
-  ],
-  type: {
-    name: 'Sticker',
-    color: 'bg-green-500'
-  }
-},
-{
-  icon: <Search className="w-6 h-6" />,
-  name: '/ly',
-  description: '🔍 Realiza uma busca no *Sticker.ly* utilizando uma palavra-chave e envia 3 figurinhas relacionadas. Caso repita o mesmo termo, o bot buscará novas figurinhas.',
-  usage: '/ly (palavra-chave)',
-  examples: [
-    '/ly amor',
-    '/ly memes'
-  ],
-  type: {
-    name: 'Sticker',
-    color: 'bg-green-500'
-  }
-},
-{
-  icon: <Package className="w-6 h-6" />,
-  name: '/pack',
-  description: '📦 Baixa as 10 primeiras figurinhas de um pacote no *Sticker.ly* utilizando o ID do pacote. Ideal para obter pacotes completos rapidamente.',
-  usage: '/pack (ID do pack)',
-  examples: [
-    '/pack 1234567890'
-  ],
-  type: {
-    name: 'Sticker',
-    color: 'bg-green-500'
-  }
-},
-{
-  icon: <Settings className="w-6 h-6" />,
-  name: '/resetname',
-  description: '🖊️ Remove o nome personalizado previamente definido para as figurinhas, retornando ao padrão do bot.',
-  usage: '/resetname',
-  examples: [
-    '/resetname'
-  ],
-  type: {
-    name: 'Sticker',
-    color: 'bg-green-500'
-  }
-},
-{
-  icon: <Image className="w-6 h-6" />,
-  name: '/s',
-  description: '🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs. Esse comando é ideal para criar figurinhas impactantes que ocupam toda a área visível.',
-  usage: '/s (responda a uma mídia)',
-  examples: [
-    '/s',
-    '/s'
-  ],
-  type: {
-    name: 'Sticker',
-    color: 'bg-green-500'
-  }
-},
-{
-  icon: <Settings className="w-6 h-6" />,
-  name: '/setname',
-  description: '🖊️ Define um nome para todas as figurinhas enviadas pelo bot. Esse nome será aplicado em "propriedades" das figurinhas, nos comandos como /s, /f, /ly e outros.',
-  usage: '/setname (nome desejado)',
-  examples: [
-    '/setname MinhasFigurinhas'
-  ],
-  type: {
-    name: 'Sticker',
-    color: 'bg-green-500'
-  }
-},
-{
-  icon: <Image className="w-6 h-6" />,
-  name: '/toimg',
-  description: '🖼️ Converte figurinhas estáticas ou animadas em imagens no formato JPG. Útil para salvar ou reutilizar o conteúdo original da figurinha.',
-  usage: '/toimg (responda a uma figurinha)',
-  examples: [
-    '/toimg'
-  ],
-  type: {
-    name: 'Sticker',
-    color: 'bg-green-500'
-  }
-}
-];
+    {
+      icon: <Search className="w-6 h-6" />,
+      name: '/ly',
+      description: '🔍 Realiza uma busca no *Sticker.ly* utilizando uma palavra-chave e envia 3 figurinhas relacionadas. Caso repita o mesmo termo, o bot buscará novas figurinhas.',
+      usage: '/ly (palavra-chave)',
+      examples: [
+        '/ly amor',
+        '/ly memes'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    },
+    {
+      icon: <Package className="w-6 h-6" />,
+      name: '/pack',
+      description: '📦 Baixa as 10 primeiras figurinhas de um pacote no *Sticker.ly* utilizando o ID do pacote. Ideal para obter pacotes completos rapidamente.',
+      usage: '/pack (ID do pack)',
+      examples: [
+        '/pack 1234567890'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    },
+    {
+      icon: <Settings className="w-6 h-6" />,
+      name: '/resetname',
+      description: '🖊️ Remove o nome personalizado previamente definido para as figurinhas, retornando ao padrão do bot.',
+      usage: '/resetname',
+      examples: [
+        '/resetname'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    },
+    {
+      icon: <Image className="w-6 h-6" />,
+      name: '/s',
+      description: '🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs.',
+      usage: '/s (responda a uma mídia)',
+      examples: [
+        '/s',
+        '/s'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    },
+    {
+      icon: <Settings className="w-6 h-6" />,
+      name: '/setname',
+      description: '🖊️ Define um nome para todas as figurinhas enviadas pelo bot.',
+      usage: '/setname (nome desejado)',
+      examples: [
+        '/setname MinhasFigurinhas'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    },
+    {
+      icon: <Image className="w-6 h-6" />,
+      name: '/toimg',
+      description: '🖼️ Converte figurinhas estáticas ou animadas em imagens no formato JPG.',
+      usage: '/toimg (responda a uma figurinha)',
+      examples: [
+        '/toimg'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">

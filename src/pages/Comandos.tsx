@@ -21,7 +21,7 @@ function Comandos() {
 
   const comandos: Comando[] = [
 {
-  "icon": <Search className=\"w-6 h-6\" />,
+  "icon": <Search className="w-6 h-6" />,
   "name": "/ly",
   "description": "🔍 Realiza uma busca no *Sticker.ly* utilizando uma palavra-chave e envia 3 figurinhas relacionadas. Caso repita o mesmo termo, o bot buscará novas figurinhas.",
   "usage": "/ly (palavra-chave)",
@@ -29,7 +29,7 @@ function Comandos() {
   "type": { "name": "Figurinhas", "color": "bg-green-500" }
 },
 {
-  "icon": <Package className=\"w-6 h-6\" />,
+  "icon": <Package className="w-6 h-6" />,
   "name": "/pack",
   "description": "📦 Baixa as 10 primeiras figurinhas de um pacote no *Sticker.ly* utilizando o ID do pacote. Ideal para obter pacotes completos rapidamente.",
   "usage": "/pack (ID do pack)",
@@ -37,7 +37,7 @@ function Comandos() {
   "type": { "name": "Figurinhas", "color": "bg-green-500" }
 },
 {
-  "icon": <Settings className=\"w-6 h-6\" />,
+  "icon": <Settings className="w-6 h-6" />,
   "name": "/resetname",
   "description": "🖊️ Remove o nome personalizado previamente definido para as figurinhas, retornando ao padrão do bot.",
   "usage": "/resetname",
@@ -45,7 +45,7 @@ function Comandos() {
   "type": { "name": "Figurinhas", "color": "bg-green-500" }
 },
 {
-  "icon": <Image className=\"w-6 h-6\" />,
+  "icon": <Image className="w-6 h-6" />,
   "name": "/s",
   "description": "🖼️ Cria figurinhas no formato de *preenchimento de tela* a partir de imagens, vídeos (até 10 segundos) ou GIFs.",
   "usage": "/s (responda a uma mídia)",
@@ -53,7 +53,7 @@ function Comandos() {
   "type": { "name": "Figurinhas", "color": "bg-green-500" }
 },
 {
-  "icon": <Image className=\"w-6 h-6\" />,
+  "icon": <Image className="w-6 h-6" />,
   "name": "/f",
   "description": "🖼️ Cria figurinhas no formato original, sem esticar. A partir de imagens, vídeos (até 10 segundos) ou GIFs.",
   "usage": "/f (responda a uma mídia)",
@@ -61,7 +61,7 @@ function Comandos() {
   "type": { "name": "Figurinhas", "color": "bg-green-500" }
 },
 {
-  "icon": <Settings className=\"w-6 h-6\" />,
+  "icon": <Settings className="w-6 h-6" />,
   "name": "/setname",
   "description": "🖊️ Define um nome para todas as figurinhas enviadas pelo bot.",
   "usage": "/setname (nome desejado)",
@@ -69,7 +69,7 @@ function Comandos() {
   "type": { "name": "Figurinhas", "color": "bg-green-500" }
 },
 {
-  "icon": <Image className=\"w-6 h-6\" />,
+  "icon": <Image className="w-6 h-6" />,
   "name": "/toimg",
   "description": "🖼️ Converte figurinhas estáticas ou animadas em imagens no formato JPG.",
   "usage": "/toimg (responda a uma figurinha)",
@@ -192,3 +192,4 @@ function Comandos() {
 }
 
 export default Comandos;
+    

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Search, Package, Image, PiggyBank, Send } from 'lucide-react'; // Importando ícones válidos
+import { ArrowLeft, Settings, Search, Package, Image, PiggyBank } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -15,7 +15,9 @@ interface Comando {
 }
 
 function Comandos() {
-  const [comandoSelecionado, setComandoSelecionado] = useState<Comando | null>(null);
+  const [search, setSearch] = useState('');
+  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [expandedComando, setExpandedComando] = useState<string | null>(null);
 
   const comandos: Comando[] = [
     {
@@ -372,6 +374,14 @@ function Comandos() {
     }
   ];
 
+  const tipos = Array.from(new Set(comandos.map((comando) => comando.type.name)));
+
+  const comandosFiltrados = comandos.filter((comando) => {
+    const matchesSearch = comando.name.includes(search) || comando.description.includes(search);
+    const matchesType = selectedType ? comando.type.name === selectedType : true;
+    return matchesSearch && matchesType;
+  });
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -383,71 +393,78 @@ function Comandos() {
           <h1 className="text-3xl font-bold">Comandos Disponíveis</h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {comandos.map((comando, index) => (
-            <button
-              key={index}
-              onClick={() => setComandoSelecionado(comando)}
-              className="relative text-left bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-blue-500/50 transition-all duration-200"
-            >
-              <span className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${comando.type.color} bg-opacity-20 text-white`}>
-                {comando.type.name}
-              </span>
-              <div className="text-blue-400 mb-4">{comando.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-2">{comando.name}</h3>
-              <p className="text-gray-400">{comando.description}</p>
-            </button>
-          ))}
+        {/* Barra de pesquisa e filtro */}
+        <div className="flex items-center gap-4 mb-6">
+          <input
+            type="text"
+            placeholder="Pesquisar comandos..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+            className="w-full bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-700"
+          />
+          <select
+            value={selectedType || ''}
+            onChange={(e) => setSelectedType(e.target.value || null)}
+            className="bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-700"
+          >
+            <option value="">Todos os Tipos</option>
+            {tipos.map((tipo, index) => (
+              <option key={index} value={tipo}>
+                {tipo}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Modal de Detalhes do Comando */}
-        {comandoSelecionado && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-            <div className="bg-gray-800 rounded-lg p-6 max-w-2xl w-full">
-              <div className="flex justify-between items-start mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="text-blue-400">{comandoSelecionado.icon}</div>
-                  <div>
-                    <h3 className="text-2xl font-bold">{comandoSelecionado.name}</h3>
-                    <span className={`inline-block mt-1 px-2 py-1 rounded-full text-xs font-medium ${comandoSelecionado.type.color} bg-opacity-20 text-white`}>
-                      {comandoSelecionado.type.name}
-                    </span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setComandoSelecionado(null)}
-                  className="text-gray-400 hover:text-white"
+        {comandosFiltrados.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {comandosFiltrados.map((comando, index) => (
+              <div
+                key={index}
+                className="relative text-left bg-gray-800/50 p-6 rounded-lg border border-gray-700"
+              >
+                <span
+                  className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${comando.type.color} bg-opacity-20 text-white`}
                 >
-                  <ArrowLeft className="w-5 h-5" />
+                  {comando.type.name}
+                </span>
+                <div className="text-blue-400 mb-4">{comando.icon}</div>
+                <h3 className="text-xl font-semibold text-white mb-2">{comando.name}</h3>
+                <button
+                  onClick={() =>
+                    setExpandedComando(expandedComando === comando.name ? null : comando.name)
+                  }
+                  className="text-gray-400 hover:text-white flex items-center gap-2"
+                >
+                  {expandedComando === comando.name ? 'Esconder' : 'Detalhes'}
+                  <ArrowLeft
+                    className={`w-5 h-5 transition-transform ${
+                      expandedComando === comando.name ? 'rotate-90' : ''
+                    }`}
+                  />
                 </button>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <h4 className="text-sm font-medium text-gray-400 mb-1">Descrição</h4>
-                  <p className="text-white">{comandoSelecionado.description}</p>
-                </div>
-                
-                <div>
-                  <h4 className="text-sm font-medium text-gray-400 mb-1">Como Usar</h4>
-                  <code className="bg-gray-900 px-3 py-2 rounded-lg block text-blue-400">
-                    {comandoSelecionado.usage}
-                  </code>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-medium text-gray-400 mb-1">Exemplos</h4>
-                  <div className="space-y-2">
-                    {comandoSelecionado.examples.map((example, index) => (
-                      <code key={index} className="bg-gray-900 px-3 py-2 rounded-lg block text-green-400">
-                        {example}
-                      </code>
-                    ))}
+                {expandedComando === comando.name && (
+                  <div className="mt-4 text-gray-400">
+                    <p>{comando.description}</p>
+                    <code className="bg-gray-900 px-3 py-2 rounded-lg block text-blue-400 my-2">
+                      {comando.usage}
+                    </code>
+                    <ul className="space-y-2">
+                      {comando.examples.map((example, i) => (
+                        <li key={i}>
+                          <code className="bg-gray-900 px-3 py-2 rounded-lg block text-green-400">
+                            {example}
+                          </code>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
+        ) : (
+          <p className="text-gray-400 text-center mt-12">Nenhum comando encontrado.</p>
         )}
       </div>
     </div>
@@ -455,4 +472,4 @@ function Comandos() {
 }
 
 export default Comandos;
-      
+        

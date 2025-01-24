@@ -350,7 +350,7 @@ function Comandos() {
       description: '🛡️ Compre escudos que protegem você de roubos. Cada escudo custa 20 coins.',
       usage: '/escudo',
       examples: [
-        '/escudo'
+        '/escudo 3'
       ],
       type: {
         name: 'Economias (interação)',
@@ -455,3 +455,4 @@ function Comandos() {
 }
 
 export default Comandos;
+      

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Search, Package, Image } from 'lucide-react'; // Importando ícones válidos
+import { ArrowLeft, Settings, Search, Package, Image, Casino, Coin, Dice, Gift, Coins, Skull, Thief, ArrowRight, Trophy, Shield } from 'lucide-react'; // Importando ícones válidos
 import { Link } from 'react-router-dom';
 
 interface Comando {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Command, Bot, ArrowLeft, Settings, Search, Users, Bell, Calendar, FileText, HelpCircle, Image, Package, Emoji } from 'lucide-react';
+import { MessageCircle, Command, Bot, ArrowLeft, Settings, Search, Users, Bell, Calendar, FileText, HelpCircle, Package, Emoji, Image } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Comando {
@@ -87,6 +87,20 @@ function Comandos() {
       }
     },
     {
+      icon: <Image className="w-6 h-6" />,
+      name: '/f',
+      description: '🖼️ Cria figurinhas a partir de imagens ou vídeos sem esticar a mídia, ao contrário do comando /s.',
+      usage: '/f (responda a uma mídia)',
+      examples: [
+        '/f',
+        '/f'
+      ],
+      type: {
+        name: 'Sticker',
+        color: 'bg-green-500'
+      }
+    },
+    {
       icon: <Settings className="w-6 h-6" />,
       name: '/setname',
       description: '🖊️ Define um nome para todas as figurinhas enviadas pelo bot. Esse nome será aplicado em "propriedades" das figurinhas, nos comandos como /s, /f, /ly e outros.',
@@ -111,20 +125,6 @@ function Comandos() {
         name: 'Sticker',
         color: 'bg-green-500'
       }
-    },
-    {
-      icon: <Command className="w-6 h-6" />,
-      name: '/f',
-      description: '🎉 Cria figurinhas animadas a partir de textos. Ideal para criar figurinhas personalizadas com frases ou palavras.',
-      usage: '/f (texto)',
-      examples: [
-        '/f Olá!',
-        '/f Eu amo programação'
-      ],
-      type: {
-        name: 'Sticker',
-        color: 'bg-green-500'
-      }
     }
   ];
 
@@ -140,7 +140,7 @@ function Comandos() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {comandos.sort((a, b) => a.name.localeCompare(b.name)).map((comando, index) => (
+          {comandos.map((comando, index) => (
             <button
               key={index}
               onClick={() => setComandoSelecionado(comando)}

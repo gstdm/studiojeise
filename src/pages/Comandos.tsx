@@ -380,14 +380,14 @@ function Comandos() {
   "examples": ["/chute @usuario"],
   "type": { "name": "Brincadeiras", "color": "bg-blue-600" }
 },
-  {
-    "icon": <ArrowLeft className="w-6 h-6" />,
-    "name": "/ban",
-    "description": "🔨 Bane um usuário do grupo. Marque o usuário ou responda à mensagem dele com o comando.",
-    "usage": "/ban @usuario",
-    "examples": ["/ban @usuario", "Responda a mensagem de @usuario com /ban"],
-    "type": { "name": "Moderação", "color": "bg-blue-600" }
-  }
+{
+  "icon": <ArrowLeft className="w-6 h-6" />,
+  "name": "/ban",
+  "description": "🔨 Bane um usuário do grupo. Marque o usuário ou responda à mensagem dele com o comando.",
+  "usage": "/ban @usuario",
+  "examples": ["/ban @usuario", "Responda a mensagem de @usuario com /ban"],
+  "type": { "name": "Moderação", "color": "bg-blue-600" }
+}
 ];
 
   const tipos = Array.from(new Set(comandos.map((comando) => comando.type.name)));
@@ -480,4 +480,4 @@ function Comandos() {
             ))}
           </div>
         ) : (
-          <p className="text-gray-400 text-center mt
+          <p className="text-gray-400 text-center mt-12">Nenhum coma

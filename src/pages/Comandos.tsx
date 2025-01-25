@@ -379,159 +379,319 @@ function Comandos() {
   "usage": "/chute @usuario",
   "examples": ["/chute @usuario"],
   "type": { "name": "Brincadeiras", "color": "bg-blue-600" }
-},    
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/ban',
-  description: '🚫 Remove um usuário do grupo mencionando ele ou marcando sua mensagem. O usuário será expulso do grupo.',
-  usage: '/ban @usuario',
-  examples: ['/ban @josemartins'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
 },
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/promote',
-  description: '⭐ Promove um usuário a administrador mencionando ele ou marcando sua mensagem. O novo administrador terá permissões especiais no grupo.',
-  usage: '/promote @usuario',
-  examples: ['/promote @josemartins'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/demote',
-  description: '🔻 Tira o status de administrador de um usuário mencionando ele ou marcando sua mensagem. O usuário perderá permissões de administração.',
-  usage: '/demote @usuario',
-  examples: ['/demote @josemartins'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/close',
-  description: '🔒 Fecha o grupo, permitindo que apenas administradores falem. Nenhum membro comum poderá enviar mensagens.',
-  usage: '/close',
-  examples: ['/close'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/open',
-  description: '🔓 Abre o grupo, permitindo que todos os membros falem. Qualquer membro poderá enviar mensagens.',
-  usage: '/open',
-  examples: ['/open'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/marcar',
-  description: '🔔 Marca todos os membros do grupo de forma invisível. Use respondendo a uma mensagem sua ou de outro usuário para marcar todos.',
-  usage: '/marcar',
-  examples: ['/marcar'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/revelar',
-  description: '👁️ Revela uma mídia de visualização única de forma normal. Permite que todos visualizem a mídia.',
-  usage: '/revelar',
-  examples: ['/revelar'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/setnamegp',
-  description: '🖼️ Define o *packname* e *author* de todas as figurinhas enviadas no grupo. O nome e autor podem ser alterados se um usuário definir manualmente.',
-  usage: '/setnamegp nome1/nome2',
-  examples: ['/setnamegp figurinhas/autor'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/resetnamegp',
-  description: '🔄 Reseta para o nome padrão do bot os *packname* e *author* das figurinhas enviadas no grupo.',
-  usage: '/resetnamegp',
-  examples: ['/resetnamegp'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/warn',
-  description: '⚠️ Dá uma advertência a um usuário. Use mencionando o usuário ou marcando a mensagem dele. O usuário será notificado.',
-  usage: '/warn @usuario',
-  examples: ['/warn @josemartins'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/delwarn',
-  description: '❌ Remove uma advertência de um usuário. Use mencionando o usuário ou marcando a mensagem dele.',
-  usage: '/delwarn @usuario',
-  examples: ['/delwarn @josemartins'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/warnlimit',
-  description: '📊 Define a quantidade de advertências permitidas no grupo. O limite mínimo é 2 e o máximo é 20.',
-  usage: '/warnlimit quantidade',
-  examples: ['/warnlimit 5'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/warns',
-  description: '📋 Verifica quantas advertências um usuário possui. Use para acompanhar o histórico de advertências de um membro.',
-  usage: '/warns @usuario',
-  examples: ['/warns @josemartins'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/blockcmd',
-  description: '🚫 Bloqueia um comando para ninguém mais no grupo usar. Use para restringir certos comandos.',
-  usage: '/blockcmd comando',
-    examples: ['/blockcmd daily'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/unblockcmd',
-  description: '🔓 Desbloqueia um comando previamente bloqueado, permitindo que os membros usem novamente.',
-  usage: '/unblockcmd comando',
-  examples: ['/unblockcmd daily'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/listcmd',
-  description: '📜 Lista os comandos bloqueados no grupo. Use para verificar quais comandos estão restritos.',
-  usage: '/listcmd',
-  examples: ['/listcmd'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/block',
-  description: '⛔ Bloqueia um usuário de usar o bot por um tempo determinado. Use para impedir o uso do bot por um período.',
-  usage: '/block @usuario tempo',
-  examples: ['/block @josemartins 3d'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/unblock',
-  description: '🔓 Desbloqueia um usuário e permite que ele use o bot novamente.',
-  usage: '/unblock @usuario',
-  examples: ['/unblock @josemartins'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-},
-{
-  icon: <ArrowLeft className="w-6 h-6" />,
-  name: '/listblocks',
-  description: '📝 Lista os usuários bloqueados do grupo. Use para verificar quais membros estão temporariamente bloqueados.',
-  usage: '/listblocks',
-  examples: ['/listblocks'],
-  type: { name: 'Moderação', color: 'bg-red-500' }
-}
+  {
+    "icon": <ArrowLeft className="w-6 h-6" />,
+    "name": "/ban",
+    "description": "🔨 Bane um usuário do grupo. Marque o usuário ou responda à mensagem dele com o comando.",
+    "usage": "/ban @usuario",
+    "examples": ["/ban @usuario", "Responda a mensagem de @usuario com /ban"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/promote",
+    "description": "⬆️ Promove um usuário a administrador. Marque o usuário ou responda à mensagem dele com o comando.",
+    "usage": "/promote @usuario",
+    "examples": ["/promote @usuario", "Responda a mensagem de @usuario com /promote"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/demote",
+    "description": "⬇️ Remove os privilégios de administrador de um usuário. Marque o usuário ou responda à mensagem dele com o comando.",
+    "usage": "/demote @usuario",
+    "examples": ["/demote @usuario", "Responda a mensagem de @usuario com /demote"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/close",
+    "description": "🔒 Fecha o grupo para que apenas administradores possam enviar mensagens.",
+    "usage": "/close",
+    "examples": ["/close"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/open",
+    "description": "🔓 Abre o grupo para que todos os membros possam enviar mensagens.",
+    "usage": "/open",
+    "examples": ["/open"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <ArrowLeft className="w-6 h-6" />,
+    "name": "/marcar",
+    "description": "📢 Marca todos os membros do grupo de forma invisível. Responda a uma mensagem para utilizá-lo.",
+    "usage": "/marcar",
+    "examples": ["/marcar respondendo a uma mensagem sua ou de alguém."],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Search className="w-6 h-6" />,
+    "name": "/revelar",
+    "description": "👀 Revela uma mídia de visualização única de forma normal.",
+    "usage": "/revelar",
+    "examples": ["/revelar"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/setnamegp",
+    "description": "📛 Define o packname e author de todas as figurinhas enviadas pelo bot no grupo.",
+    "usage": "/setnamegp nome1/nome2",
+    "examples": ["/setnamegp BotName/AuthorName"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/resetnamegp",
+    "description": "♻️ Reseta o packname e author das figurinhas para o padrão do bot.",
+    "usage": "/resetnamegp",
+    "examples": ["/resetnamegp"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <ArrowLeft className="w-6 h-6" />,
+    "name": "/warn",
+    "description": "⚠️ Adiciona uma advertência a um usuário. Marque ou responda à mensagem do usuário.",
+    "usage": "/warn @usuario",
+    "examples": ["/warn @usuario", "Responda a mensagem de @usuario com /warn"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <ArrowLeft className="w-6 h-6" />,
+    "name": "/delwarn",
+    "description": "✅ Remove uma advertência de um usuário. Marque ou responda à mensagem do usuário.",
+    "usage": "/delwarn @usuario",
+    "examples": ["/delwarn @usuario", "Responda a mensagem de @usuario com /delwarn"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/warnlimit",
+    "description": "📊 Define o limite de advertências no grupo (mínimo 2 e máximo 20).",
+    "usage": "/warnlimit quantidade",
+    "examples": ["/warnlimit 5"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Search className="w-6 h-6" />,
+    "name": "/warns",
+    "description": "🔍 Verifica quantas advertências um usuário possui. Marque ou responda à mensagem do usuário.",
+    "usage": "/warns @usuario",
+    "examples": ["/warns @usuario",  "Responda a mensagem de @usuario com /warns"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/blockcmd",
+    "description": "🚫 Bloqueia um comando para todos no grupo (use sem prefixo).",
+    "usage": "/blockcmd comando",
+    "examples": ["/blockcmd daily"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/unblockcmd",
+    "description": "✔️ Desbloqueia um comando previamente bloqueado.",
+    "usage": "/unblockcmd comando",
+    "examples": ["/unblockcmd daily"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Search className="w-6 h-6" />,
+    "name": "/listcmd",
+    "description": "📜 Lista todos os comandos bloqueados no grupo.",
+    "usage": "/listcmd",
+    "examples": ["/listcmd"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <ArrowLeft className="w-6 h-6" />,
+    "name": "/block",
+    "description": "🔒 Bloqueia um usuário de usar o bot por um tempo determinado (use h para horas ou d para dias).",
+    "usage": "/block @usuario tempo",
+    "examples": ["/block @usuario 3d"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/unblock",
+    "description": "🔓 Desbloqueia um usuário para voltar a usar o bot.",
+    "usage": "/unblock @usuario",
+    "examples": ["/unblock @usuario"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Search className="w-6 h-6" />,
+    "name": "/listblocks",
+    "description": "📋 Lista todos os usuários bloqueados no grupo.",
+    "usage": "/listblocks",
+    "examples": ["/listblocks"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/boton",
+    "description": "⚙️ Libera o uso do bot para todos os usuários.",
+    "usage": "/boton",
+    "examples": ["/boton"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/botoff",
+    "description": "🔒 Restringe o uso do bot para apenas administradores.",
+    "usage": "/botoff",
+    "examples": ["/botoff"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/antilink",
+    "description": "🔗 Bloqueia o envio de links no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o antilink.\n1 - Ativa apagando o link e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem do link.\n3 - Ativa apenas apagando a mensagem do link.",
+    "usage": "/antilink (número)",
+    "examples": ["/antilink 1"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/limitec",
+    "description": "✏️ Define o limite de caracteres permitidos em mensagens. Escolha entre as opções abaixo:\n\n0 - Desativa o limite.\n1 - Ativa apagando mensagens que excederem o limite.",
+    "usage": "/limitec (limite de caracteres)",
+    "examples": ["/limitec 1500"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/antiimagem",
+    "description": "🖼️ Bloqueia o envio de imagens no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o antiimagem.\n1 - Ativa apagando a mensagem com imagem e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com imagem.\n3 - Ativa apenas apagando a mensagem com imagem.",
+    "usage": "/antiimagem (número)",
+    "examples": ["/antiimagem 2"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/antivideo",
+    "description": "📹 Bloqueia o envio de vídeos no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o antivideo.\n1 - Ativa apagando a mensagem com vídeo e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com vídeo.\n3 - Ativa apenas apagando a mensagem com vídeo.",
+    "usage": "/antivideo (número)",
+    "examples": ["/antivideo 1"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/antiaudio",
+    "description": "🎵 Bloqueia o envio de áudios no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o antiaudio.\n1 - Ativa apagando a mensagem com áudio e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com áudio.\n3 - Ativa apenas apagando a mensagem com áudio.",
+    "usage": "/antiaudio (número)",
+    "examples": ["/antiaudio 3"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/antisticker",
+    "description": "🖼️ Bloqueia o envio de figurinhas no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o antisticker.\n1 - Ativa apagando a mensagem com figurinha e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com figurinha.\n3 - Ativa apenas apagando a mensagem com figurinha.",
+    "usage": "/antisticker (número)",
+    "examples": ["/antisticker 2"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/antidoc",
+    "description": "📄 Bloqueia o envio de documentos no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o antidoc.\n1 - Ativa apagando a mensagem com documento e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com documento.\n3 - Ativa apenas apagando a mensagem com documento.",
+    "usage": "/antidoc (número)",
+    "examples": ["/antidoc 3"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/anticontato",
+    "description": "📇 Bloqueia o envio de contatos no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o anticontato.\n1 - Ativa apagando a mensagem com contato e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com contato.\n3 - Ativa apenas apagando a mensagem com contato.",
+    "usage": "/anticontato (número)",
+    "examples": ["/anticontato 1"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/antilocalizacao",
+    "description": "📍 Bloqueia o envio de localizações no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o antilocalizacao.\n1 - Ativa apagando a mensagem com localização e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com localização.\n3 - Ativa apenas apagando a mensagem com localização.",
+    "usage": "/antilocalizacao (número)",
+    "examples": ["/antilocalizacao 2"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/anticatalogo",
+    "description": "🛍️ Bloqueia o envio de catálogos no grupo. Escolha entre as opções abaixo:\n\n0 - Desativa o anticatalogo.\n1 - Ativa apagando a mensagem com catálogo e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com catálogo.\n3 - Ativa apenas apagando a mensagem com catálogo.",
+    "usage": "/anticatalogo (número)",
+    "examples": ["/anticatalogo 3"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/antipalavra",
+    "description": "🛑 Bloqueia mensagens que contenham palavras proibidas. Para ativar, é necessário que ao menos uma palavra proibida esteja definida.\n\n0 - Desativa o antipalavra.\n1 - Ativa apagando mensagens com palavras proibidas e removendo quem enviou.\n2 - Ativa dando advertência e apagando a mensagem com palavras proibidas.\n3 - Ativa apenas apagando a mensagem com palavras proibidas.",
+    "usage": "/antipalavra (número)",
+    "examples": ["/antipalavra 1"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/addpalavra",
+    "description": "➕ Adiciona palavras à lista de palavras proibidas. Mensagens contendo essas palavras serão bloqueadas dependendo do modo configurado no comando `/antipalavra`.",
+    "usage": "/addpalavra (palavra)",
+    "examples": ["/addpalavra spam"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/delpalavra",
+    "description": "➖ Remove palavras da lista de palavras proibidas. Mensagens contendo essas palavras não serão mais bloqueadas.",
+    "usage": "/delpalavra (palavra)",
+    "examples": ["/delpalavra spam"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/listapalavra",
+    "description": "📋 Lista todas as palavras proibidas configuradas no grupo.",
+    "usage": "/listapalavra",
+    "examples": ["/listapalavra"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/autosticker",
+    "description": "🎨 Ativa ou desativa o modo de figurinhas automáticas, permitindo que imagens enviadas sejam convertidas em stickers sem comandos.",
+    "usage": "/autosticker (1/0)",
+    "examples": ["/autosticker 1"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/modobrincadeiras",
+    "description": "🎮 Ativa ou desativa o modo de comandos de brincadeiras no grupo.",
+    "usage": "/modobrincadeiras (1/0)",
+    "examples": ["/modobrincadeiras 1"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/modoeconomia",
+    "description": "💰 Ativa ou desativa os comandos de economia no grupo. Necessário que o grupo seja configurado como *Standard* ou *Advanced* para ativar.",
+    "usage": "/modoeconomia (1/0)",
+    "examples": ["/modoeconomia 1"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  },
+  {
+    "icon": <Settings className="w-6 h-6" />,
+    "name": "/modo18",
+    "description": "🔞 Ativa ou desativa os comandos +18 no grupo. Necessário que o grupo seja configurado como *Advanced* para ativar.",
+    "usage": "/modo18 (1/0)",
+    "examples": ["/modo18 1"],
+    "type": { "name": "Moderação", "color": "bg-blue-600" }
+  }
 ];
 
   const tipos = Array.from(new Set(comandos.map((comando) => comando.type.name)));
@@ -632,4 +792,4 @@ function Comandos() {
 }
 
 export default Comandos;
-  
+             

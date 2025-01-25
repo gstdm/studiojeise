@@ -76,22 +76,79 @@ function Comandos() {
   "examples": ["/toimg"],
   "type": { "name": "Figurinhas", "color": "bg-green-500" }
 },
-    {
-      icon: <Package className="w-6 h-6" />,
-      name: '/ytvideo',
-      description: '🎥 Baixa vídeos do YouTube em MP4 a partir do link enviado.',
-      usage: '/ytvideo (link do YouTube)',
-      examples: ['/ytvideo https://www.youtube.com/watch?v=dQw4w9WgXcQ'],
-      type: { name: 'Download', color: 'bg-blue-500' }
-    },
-    {
-      icon: <PiggyBank className="w-6 h-6" />,
-      name: '/dado',
-      description: '🎲 Jogue o dado! Se acertar o número, ganha 100 coins. Se errar, perde 30 coins.',
-      usage: '/dado [número de 1 a 6]',
-      examples: ['/dado 4'],
-      type: { name: 'Economias (interação)', color: 'bg-yellow-500' }
-    }
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/ytvideo', 
+  description: '🎥 Baixa o vídeo do *YouTube* a partir do link enviado, retornando a versão em MP4 do vídeo. Ideal para salvar vídeos sem precisar de um app externo.', 
+  usage: '/ytvideo (link do YouTube)', 
+  examples: ['/ytvideo https://www.youtube.com/watch?v=dQw4w9WgXcQ'], 
+  type: { name: 'Download', color: 'bg-blue-500' }
+},
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/ytaudio', 
+  description: '🎵 Baixa o áudio do *YouTube* a partir do link enviado, retornando a versão MP3 do áudio. Útil para quem deseja apenas a música sem o vídeo.', 
+  usage: '/ytaudio (link do YouTube)', 
+  examples: ['/ytaudio https://www.youtube.com/watch?v=dQw4w9WgXcQ'], 
+  type: { name: 'Download', color: 'bg-blue-500' }
+},
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/tiktok', 
+  description: '📱 Baixa o vídeo do *TikTok* sem marca d\'água, a partir do link enviado. Ideal para salvar vídeos virais sem as informações de autoria.', 
+  usage: '/tiktok (link do TikTok)', 
+  examples: ['/tiktok https://www.tiktok.com/@username/video/1234567890123456789'], 
+  type: { name: 'Download', color: 'bg-purple-500' }
+},
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/tiktokaudio', 
+  description: '🎵 Baixa o áudio do *TikTok* sem marca d\'água, a partir do link enviado. Perfeito para quem quer apenas o som sem o vídeo.', 
+  usage: '/tiktokaudio (link do TikTok)', 
+  examples: ['/tiktokaudio https://www.tiktok.com/@username/video/1234567890123456789'], 
+  type: { name: 'Download', color: 'bg-purple-500' }
+},
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/insta', 
+  description: '📸 Baixa o post de *Instagram* (foto ou vídeo) a partir do link enviado. Ideal para salvar posts de maneira rápida e sem sair do WhatsApp.', 
+  usage: '/insta (link do Instagram)', 
+  examples: ['/insta https://www.instagram.com/p/XXXXXXXXXXX/'], 
+  type: { name: 'Download', color: 'bg-red-500' }
+},
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/instaaudio', 
+  description: '🎶 Baixa o áudio de um post de *Instagram* a partir do link enviado. Útil para extrair o áudio de vídeos compartilhados na plataforma.', 
+  usage: '/instaaudio (link do Instagram)', 
+  examples: ['/instaaudio https://www.instagram.com/p/XXXXXXXXXXX/'], 
+  type: { name: 'Download', color: 'bg-red-500' }
+},
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/face', 
+  description: '📘 Baixa o vídeo do *Facebook* a partir do link enviado, retornando a versão MP4 do vídeo. Ideal para quem quer salvar vídeos diretamente do Facebook.', 
+  usage: '/face (link do Facebook)', 
+  examples: ['/face https://www.facebook.com/username/posts/1234567890'], 
+  type: { name: 'Download', color: 'bg-blue-600' }
+},
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/faceaudio', 
+  description: '🎵 Baixa o áudio do *Facebook* a partir do link enviado, retornando o áudio em MP3. Perfeito para salvar o som de vídeos do Facebook.', 
+  usage: '/faceaudio (link do Facebook)', 
+  examples: ['/faceaudio https://www.facebook.com/username/posts/1234567890'], 
+  type: { name: 'Download', color: 'bg-blue-600' }
+},
+{
+  icon: <Package className="w-6 h-6" />, 
+  name: '/kwai', 
+  description: '📹 Baixa o vídeo do *Kwai* a partir do link enviado, sem marca d\'água, ideal para compartilhar vídeos sem a logo da plataforma.', 
+  usage: '/kwai (link do Kwai)', 
+  examples: ['/kwai https://www.kwai.com/video/1234567890123456789'], 
+  type: { name: 'Download', color: 'bg-teal-500' }
+}
+
   ];
 
   const tipos = Array.from(new Set(comandos.map((comando) => comando.type.name)));

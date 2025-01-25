@@ -698,7 +698,7 @@ function Comandos() {
   description: '🤖 Realiza uma busca personalizada no ChatGPT a partir de uma pergunta enviada.',
   usage: '/gpt (pergunta)',
   examples: ['/gpt O que é inteligência artificial?', '/gpt Como funciona a gravidade?'],
-  type: { name: 'Funçõesl', color: 'bg-purple-500' },
+  type: { name: 'Funções', color: 'bg-purple-500' },
 },
 {
   icon: <Send className="w-6 h-6" />,

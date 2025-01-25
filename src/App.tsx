@@ -104,11 +104,6 @@ function App() {
               Para grupos adultos, o Dallas Bot traz comandos 🔞 exclusivos e personalizáveis. Controle e configure o uso conforme a necessidade do grupo, garantindo um ambiente dinâmico e seguro.
             </p>
           </div>
-
-          {/* Finalização */}
-          <h3 className="text-3xl font-bold text-white text-center mt-12">
-            E muito mais!
-          </h3>
         </div>
       </div>
 

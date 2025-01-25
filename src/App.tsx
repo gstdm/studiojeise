@@ -19,13 +19,13 @@ function App() {
             </p>
             <div className="mt-8 flex justify-center gap-4">
               <a
-                href="/planos"
+                href="/#/planos"
                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 shadow-lg shadow-blue-500/30"
               >
                 Começar Agora
               </a>
               <a
-                href="/comandos"
+                href="/#/comandos"
                 className="inline-flex items-center justify-center px-6 py-3 border border-gray-700 text-base font-medium rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-200"
               >
                 Ver Comandos

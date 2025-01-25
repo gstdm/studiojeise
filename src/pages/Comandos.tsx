@@ -77,79 +77,142 @@ function Comandos() {
   "type": { "name": "Figurinhas", "color": "bg-green-500" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/ytvideo', 
-  description: '🎥 Baixa o vídeo do *YouTube* a partir do link enviado, retornando a versão em MP4 do vídeo. Ideal para salvar vídeos sem precisar de um app externo.', 
-  usage: '/ytvideo (link do YouTube)', 
-  examples: ['/ytvideo https://www.youtube.com/watch?v=dQw4w9WgXcQ'], 
-  type: { name: 'Download', color: 'bg-blue-500' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/ytvideo",
+  "description": "🎥 Baixa o vídeo do *YouTube* a partir do link enviado, retornando a versão em MP4 do vídeo. Ideal para salvar vídeos sem precisar de um app externo.",
+  "usage": "/ytvideo (link do YouTube)",
+  "examples": ["/ytvideo https://www.youtube.com/watch?v=dQw4w9WgXcQ"],
+  "type": { "name": "Download", "color": "bg-blue-500" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/ytaudio', 
-  description: '🎵 Baixa o áudio do *YouTube* a partir do link enviado, retornando a versão MP3 do áudio. Útil para quem deseja apenas a música sem o vídeo.', 
-  usage: '/ytaudio (link do YouTube)', 
-  examples: ['/ytaudio https://www.youtube.com/watch?v=dQw4w9WgXcQ'], 
-  type: { name: 'Download', color: 'bg-blue-500' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/ytaudio",
+  "description": "🎵 Baixa o áudio do *YouTube* a partir do link enviado, retornando a versão MP3 do áudio. Útil para quem deseja apenas a música sem o vídeo.",
+  "usage": "/ytaudio (link do YouTube)",
+  "examples": ["/ytaudio https://www.youtube.com/watch?v=dQw4w9WgXcQ"],
+  "type": { "name": "Download", "color": "bg-blue-500" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/tiktok', 
-  description: '📱 Baixa o vídeo do *TikTok* sem marca d\'água, a partir do link enviado. Ideal para salvar vídeos virais sem as informações de autoria.', 
-  usage: '/tiktok (link do TikTok)', 
-  examples: ['/tiktok https://www.tiktok.com/@username/video/1234567890123456789'], 
-  type: { name: 'Download', color: 'bg-purple-500' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/tiktok",
+  "description": "📱 Baixa o vídeo do *TikTok* sem marca d'água, a partir do link enviado. Ideal para salvar vídeos virais sem as informações de autoria.",
+  "usage": "/tiktok (link do TikTok)",
+  "examples": ["/tiktok https://www.tiktok.com/@username/video/1234567890123456789"],
+  "type": { "name": "Download", "color": "bg-purple-500" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/tiktokaudio', 
-  description: '🎵 Baixa o áudio do *TikTok* sem marca d\'água, a partir do link enviado. Perfeito para quem quer apenas o som sem o vídeo.', 
-  usage: '/tiktokaudio (link do TikTok)', 
-  examples: ['/tiktokaudio https://www.tiktok.com/@username/video/1234567890123456789'], 
-  type: { name: 'Download', color: 'bg-purple-500' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/tiktokaudio",
+  "description": "🎵 Baixa o áudio do *TikTok* sem marca d'água, a partir do link enviado. Perfeito para quem quer apenas o som sem o vídeo.",
+  "usage": "/tiktokaudio (link do TikTok)",
+  "examples": ["/tiktokaudio https://www.tiktok.com/@username/video/1234567890123456789"],
+  "type": { "name": "Download", "color": "bg-purple-500" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/insta', 
-  description: '📸 Baixa o post de *Instagram* (foto ou vídeo) a partir do link enviado. Ideal para salvar posts de maneira rápida e sem sair do WhatsApp.', 
-  usage: '/insta (link do Instagram)', 
-  examples: ['/insta https://www.instagram.com/p/XXXXXXXXXXX/'], 
-  type: { name: 'Download', color: 'bg-red-500' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/insta",
+  "description": "📸 Baixa o post de *Instagram* (foto ou vídeo) a partir do link enviado. Ideal para salvar posts de maneira rápida e sem sair do WhatsApp.",
+  "usage": "/insta (link do Instagram)",
+  "examples": ["/insta https://www.instagram.com/p/XXXXXXXXXXX/"],
+  "type": { "name": "Download", "color": "bg-red-500" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/instaaudio', 
-  description: '🎶 Baixa o áudio de um post de *Instagram* a partir do link enviado. Útil para extrair o áudio de vídeos compartilhados na plataforma.', 
-  usage: '/instaaudio (link do Instagram)', 
-  examples: ['/instaaudio https://www.instagram.com/p/XXXXXXXXXXX/'], 
-  type: { name: 'Download', color: 'bg-red-500' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/instaaudio",
+  "description": "🎶 Baixa o áudio de um post de *Instagram* a partir do link enviado. Útil para extrair o áudio de vídeos compartilhados na plataforma.",
+  "usage": "/instaaudio (link do Instagram)",
+  "examples": ["/instaaudio https://www.instagram.com/p/XXXXXXXXXXX/"],
+  "type": { "name": "Download", "color": "bg-red-500" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/face', 
-  description: '📘 Baixa o vídeo do *Facebook* a partir do link enviado, retornando a versão MP4 do vídeo. Ideal para quem quer salvar vídeos diretamente do Facebook.', 
-  usage: '/face (link do Facebook)', 
-  examples: ['/face https://www.facebook.com/username/posts/1234567890'], 
-  type: { name: 'Download', color: 'bg-blue-600' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/face",
+  "description": "📘 Baixa o vídeo do *Facebook* a partir do link enviado, retornando a versão MP4 do vídeo. Ideal para quem quer salvar vídeos diretamente do Facebook.",
+  "usage": "/face (link do Facebook)",
+  "examples": ["/face https://www.facebook.com/username/posts/1234567890"],
+  "type": { "name": "Download", "color": "bg-blue-600" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/faceaudio', 
-  description: '🎵 Baixa o áudio do *Facebook* a partir do link enviado, retornando o áudio em MP3. Perfeito para salvar o som de vídeos do Facebook.', 
-  usage: '/faceaudio (link do Facebook)', 
-  examples: ['/faceaudio https://www.facebook.com/username/posts/1234567890'], 
-  type: { name: 'Download', color: 'bg-blue-600' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/faceaudio",
+  "description": "🎵 Baixa o áudio do *Facebook* a partir do link enviado, retornando o áudio em MP3. Perfeito para salvar o som de vídeos do Facebook.",
+  "usage": "/faceaudio (link do Facebook)",
+  "examples": ["/faceaudio https://www.facebook.com/username/posts/1234567890"],
+  "type": { "name": "Download", "color": "bg-blue-600" }
 },
 {
-  icon: <Package className="w-6 h-6" />, 
-  name: '/kwai', 
-  description: '📹 Baixa o vídeo do *Kwai* a partir do link enviado, sem marca d\'água, ideal para compartilhar vídeos sem a logo da plataforma.', 
-  usage: '/kwai (link do Kwai)', 
-  examples: ['/kwai https://www.kwai.com/video/1234567890123456789'], 
-  type: { name: 'Download', color: 'bg-teal-500' }
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/kwai",
+  "description": "📹 Baixa o vídeo do *Kwai* a partir do link enviado, sem marca d'água, ideal para compartilhar vídeos sem a logo da plataforma.",
+  "usage": "/kwai (link do Kwai)",
+  "examples": ["/kwai https://www.kwai.com/video/1234567890123456789"],
+  "type": { "name": "Download", "color": "bg-teal-500" }
+},
+{
+  "icon": <PiggyBank className="w-6 h-6" />,
+  "name": "/apostar",
+  "description": "🎰 Aposte uma quantia e tente acertar 3 frutas iguais para ganhar 8x o que apostou. Emoção de cassino direto no WhatsApp!",
+  "usage": "/apostar [quantia]",
+  "examples": ["/apostar 100"],
+  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
+},
+{
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/caraoucoroa",
+  "description": "🪙 Jogue cara ou coroa e tente acertar para ganhar 1x o valor apostado!",
+  "usage": "/caraoucoroa",
+  "examples": ["/caraoucoroa"],
+  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
+},
+{
+  "icon": <PiggyBank className="w-6 h-6" />,
+  "name": "/chutar",
+  "description": "🎲 Aposte 30 coins no número de 1 a 10. Se acertar, ganha 150 coins!",
+  "usage": "/chutar [número de 1 a 10]",
+  "examples": ["/chutar 7"],
+  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
+},
+{
+  "icon": <Package className="w-6 h-6" />,
+  "name": "/daily",
+  "description": "🎁 Receba sua recompensa diária de coins. Não perca a chance de acumular mais moedas todos os dias!",
+  "usage": "/daily",
+  "examples": ["/daily"],
+  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
+},
+{
+  "icon": <PiggyBank className="w-6 h-6" />,
+  "name": "/coins",
+  "description": "💰 Veja quantas coins você tem acumuladas. Use este comando sempre que quiser conferir seu saldo.",
+  "usage": "/coins",
+  "examples": ["/coins"],
+  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
+},
+{
+  "icon": <PiggyBank className="w-6 h-6" />,
+  "name": "/roletarussa",
+  "description": "💥 Jogue na roleta russa com 2% de chance de ganhar. Se ganhar, seu saldo é multiplicado por 20. Se perder, seu saldo é zerado.",
+  "usage": "/roletarussa",
+  "examples": ["/roletarussa"],
+  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
+},
+{
+  "icon": <Send className="w-6 h-6" />,
+  "name": "/roubar",
+  "description": "💸 Tente roubar coins de outro usuário! Se tiver sucesso, você pega 1/4 do saldo dele. Se falhar, perde 1/5 do seu saldo. Cuidado, se ele tiver escudo, você perde 2/5.",
+  "usage": "/roubar [@usuario]",
+  "examples": ["/roubar @usuario"],
+  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
+},
+{
+  "icon": <Send className="w-6 h-6" />,
+  "name": "/transferir",
+  "description": "💵 Transfira coins para outro usuário. O valor mínimo da transferência é 50 coins.",
+  "usage": "/transferir @usuario [quantidade]",
+  "examples": ["/transferir @usuario 100"],
+  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
 }
-
-  ];
+];
 
   const tipos = Array.from(new Set(comandos.map((comando) => comando.type.name)));
 

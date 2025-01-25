@@ -381,7 +381,7 @@ function Comandos() {
   "type": { "name": "Brincadeiras", "color": "bg-blue-600" }
 },
 {
-  "icon": <ArrowLeft className="w-6 h-6" />,
+  "icon": <Image className="w-6 h-6" />,
   "name": "/ban",
   "description": "🔨 Bane um usuário do grupo. Marque o usuário ou responda à mensagem dele com o comando.",
   "usage": "/ban @usuario",

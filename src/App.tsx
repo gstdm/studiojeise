@@ -33,7 +33,7 @@ function App() {
           {/* Figurinhas */}
           <div className="grid grid-cols-1 items-start gap-8 mb-12">
             <img
-              src="https://img.freepik.com/free-vector/sticker-collection-flat-design_23-2149322464.jpg"
+              src="https://i.ibb.co/q979NRQ/Remove-bg-ai-1737810940219.png"
               alt="Figurinhas"
               className="w-1/2 mx-auto rounded-lg shadow-md"
             />
@@ -48,7 +48,7 @@ function App() {
           {/* Downloads */}
           <div className="grid grid-cols-1 items-start gap-8 mb-12">
             <img
-              src="https://img.freepik.com/free-vector/download-concept-illustration_114360-4908.jpg"
+              src="https://i.ibb.co/Htz4FQ5/Remove-bg-ai-1737810716652.png"
               alt="Downloads"
               className="w-1/2 mx-auto rounded-lg shadow-md"
             />
@@ -63,7 +63,7 @@ function App() {
           {/* Moderação */}
           <div className="grid grid-cols-1 items-start gap-8 mb-12">
             <img
-              src="https://img.freepik.com/free-vector/robot-concept-illustration_114360-3054.jpg"
+              src="https://i.ibb.co/Htz4FQ5/Remove-bg-ai-1737810716652.png"
               alt="Moderação"
               className="w-1/2 mx-auto rounded-lg shadow-md"
             />
@@ -78,7 +78,7 @@ function App() {
           {/* Interação */}
           <div className="grid grid-cols-1 items-start gap-8 mb-12">
             <img
-              src="https://img.freepik.com/free-vector/happy-robot-characters-futuristic-flat-cartoon-design_71550-366.jpg"
+              src="https://i.ibb.co/Htz4FQ5/Remove-bg-ai-1737810716652.png"
               alt="Interação"
               className="w-1/2 mx-auto rounded-lg shadow-md"
             />
@@ -93,7 +93,7 @@ function App() {
           {/* Comandos Adultos */}
           <div className="grid grid-cols-1 items-start gap-8 mb-12">
             <img
-              src="https://img.freepik.com/free-vector/cyber-security-illustration_23-2148531674.jpg"
+              src="https://i.ibb.co/Htz4FQ5/Remove-bg-ai-1737810716652.png"
               alt="Comandos Adultos"
               className="w-1/2 mx-auto rounded-lg shadow-md"
             />

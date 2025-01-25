@@ -147,94 +147,6 @@ function Comandos() {
   "usage": "/kwai (link do Kwai)",
   "examples": ["/kwai https://www.kwai.com/video/1234567890123456789"],
   "type": { "name": "Download", "color": "bg-teal-500" }
-},
-{
-  "icon": <PiggyBank className="w-6 h-6" />,
-  "name": "/apostar",
-  "description": "🎰 Aposte uma quantia e tente acertar 3 frutas iguais para ganhar 8x o que apostou. Emoção de cassino direto no WhatsApp!",
-  "usage": "/apostar [quantia]",
-  "examples": ["/apostar 100"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <Package className="w-6 h-6" />,
-  "name": "/caraoucoroa",
-  "description": "🪙 Jogue cara ou coroa e tente acertar para ganhar 1x o valor apostado!",
-  "usage": "/caraoucoroa",
-  "examples": ["/caraoucoroa"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <PiggyBank className="w-6 h-6" />,
-  "name": "/chutar",
-  "description": "🎲 Aposte 30 coins no número de 1 a 10. Se acertar, ganha 150 coins!",
-  "usage": "/chutar [número de 1 a 10]",
-  "examples": ["/chutar 7"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <Package className="w-6 h-6" />,
-  "name": "/daily",
-  "description": "🎁 Receba sua recompensa diária de coins. Não perca a chance de acumular mais moedas todos os dias!",
-  "usage": "/daily",
-  "examples": ["/daily"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <PiggyBank className="w-6 h-6" />,
-  "name": "/coins",
-  "description": "💰 Veja quantas coins você tem acumuladas. Use este comando sempre que quiser conferir seu saldo.",
-  "usage": "/coins",
-  "examples": ["/coins"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <PiggyBank className="w-6 h-6" />,
-  "name": "/roletarussa",
-  "description": "💥 Jogue na roleta russa com 2% de chance de ganhar. Se ganhar, seu saldo é multiplicado por 20. Se perder, seu saldo é zerado.",
-  "usage": "/roletarussa",
-  "examples": ["/roletarussa"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <Send className="w-6 h-6" />,
-  "name": "/roubar",
-  "description": "💸 Tente roubar coins de outro usuário! Se tiver sucesso, você pega 1/4 do saldo dele. Se falhar, perde 1/5 do seu saldo. Cuidado, se ele tiver escudo, você perde 2/5.",
-  "usage": "/roubar [@usuario]",
-  "examples": ["/roubar @usuario"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <Send className="w-6 h-6" />,
-  "name": "/transferir",
-  "description": "💵 Transfira coins para outro usuário. O valor mínimo da transferência é 50 coins.",
-  "usage": "/transferir @usuario [quantidade]",
-  "examples": ["/transferir @usuario 100"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <PiggyBank className="w-6 h-6" />,
-  "name": "/top",
-  "description": "🏆 Exibe o ranking dos usuários com mais coins no sistema. Veja quem são os mais ricos!",
-  "usage": "/top",
-  "examples": ["/top"],
-  "type": { "name": "Economias (interação)", "color": "bg-yellow-500" }
-},
-{
-  "icon": <PiggyBank className="w-6 h-6" />,
-  "name": "/escudo",
-  "description": "🛡️ Ativa um escudo de proteção para seu saldo de coins. Com ele, você protege seu saldo contra roubos e perdas.",
-  "usage": "/escudo",
-  "examples": ["/escudo"],
-  "type": { "name": "Economias (interação)", "color": "bg-green-500" }
-},
-{
-  "icon": <PiggyBank className="w-6 h-6" />,
-  "name": "/dado",
-  "description": "🎲 Jogue um dado e veja qual número você tirou. Divirta-se e compartilhe com seus amigos!",
-  "usage": "/dado",
-  "examples": ["/dado"],
-  "type": { "name": "Economias (interação)", "color": "bg-red-500" }
 }
 ];
 
@@ -336,4 +248,4 @@ function Comandos() {
 }
 
 export default Comandos;
-    
+            

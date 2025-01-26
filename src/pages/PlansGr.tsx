@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, XCircle, ChevronRight, Lock, Command } from 'lucide-react';
+import { CheckCircle, XCircle, ChevronRight, Lock, Command, Info } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
@@ -11,52 +11,52 @@ function ComprarPlanos() {
       preco: 'R$ 10,99/mês',
       descricao: 'Ideal para uso pessoal e moderado.',
       beneficios: [
-        { texto: 'Limite diário de 60 comandos por usuário', disponivel: true },
+        { texto: 'Limite de 60 comandos (diário por usuário)', disponivel: true },
         { texto: 'Moderação avançada de grupos', disponivel: true },
         { texto: 'Interação garantida', disponivel: true },
         { texto: 'Criação de figurinhas', disponivel: true },
-        { texto: 'Comandos básicos e VIP', disponivel: true },
+        { texto: 'Comandos básicos e vip', disponivel: true },
         { texto: 'Comandos de economia', disponivel: false },
         { texto: 'Comandos de +18', disponivel: false },
       ],
       cta: 'Assinar Hobby',
       link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1,%20gostaria%20do%20plano%20Hobby",
-      disponivel: true
+      disponivel: true,
     },
     {
       nome: 'Standard',
       preco: 'R$ 13,90/mês',
       descricao: 'Para quem precisa de mais funcionalidades.',
       beneficios: [
-        { texto: 'Limite diário de 90 comandos por usuário', disponivel: true },
+        { texto: 'Limite de 90 comandos (diário por usuário)', disponivel: true },
         { texto: 'Moderação avançada de grupos', disponivel: true },
         { texto: 'Interação garantida', disponivel: true },
         { texto: 'Criação de figurinhas', disponivel: true },
-        { texto: 'Comandos básicos e VIP', disponivel: true },
+        { texto: 'Comandos básicos e vip', disponivel: true },
         { texto: 'Comandos de economia', disponivel: true },
         { texto: 'Comandos de +18', disponivel: false },
       ],
       cta: 'Assinar Standard',
-      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1.%20gostaria%20do%20plano%20Standard",
-      disponivel: true
+      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1,%20gostaria%20do%20plano%20Standard",
+      disponivel: true,
     },
     {
       nome: 'Advanced',
       preco: 'R$ 19,90/mês',
       descricao: 'Para quem quer o máximo de benefícios.',
       beneficios: [
-        { texto: 'Limite diário de 120 comandos por usuário', disponivel: true },
+        { texto: 'Limite de 120 comandos (diário por usuário)', disponivel: true },
         { texto: 'Moderação avançada de grupos', disponivel: true },
         { texto: 'Interação garantida', disponivel: true },
         { texto: 'Criação de figurinhas', disponivel: true },
-        { texto: 'Comandos básicos e VIP', disponivel: true },
+        { texto: 'Comandos básicos e vip', disponivel: true },
         { texto: 'Comandos de economia', disponivel: true },
         { texto: 'Comandos de +18', disponivel: true },
       ],
-      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1.%20gostaria%20do%20plano%20Advanced",
+      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1,%20gostaria%20do%20plano%20Advanced",
       cta: 'Assinar Advanced',
-      disponivel: true
-    }
+      disponivel: true,
+    },
   ];
 
   return (
@@ -101,9 +101,22 @@ function ComprarPlanos() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-8">
-            <Link to="/planos/termos" className="text-gray-400 hover:underline">
-              Leia os Termos antes de contratar.
+
+          <div className="flex flex-col sm:flex-row justify-center items-center mt-10 space-y-4 sm:space-y-0 sm:space-x-4">
+            <Link
+              to="/planospv"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 transition-all duration-200"
+            >
+              <Command className="mr-2 w-5 h-5" />
+              Ver Planos Privados
+            </Link>
+
+            <Link
+              to="/planos/termos"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition-all duration-200"
+            >
+              <Info className="mr-2 w-5 h-5" />
+              Leia os Termos
             </Link>
           </div>
         </div>

@@ -15,7 +15,7 @@ const VipPage = () => {
           {/* Imagem geral no início */}
           <div className="text-center mb-10">
             <img
-              src="https://i.ibb.co/MBmPRYg/Remove-bg-ai-1737834145392.png"
+              src="https://i.ibb.co/Pwhkf5h/Friendly-3-D-Robot-With-Neon-Highlights-And-Glowing-Orb-removebg-preview.png"
               alt="Dallas Bot VIP"
               className="rounded-lg shadow-md max-w-xs mx-auto"
             />

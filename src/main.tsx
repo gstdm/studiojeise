@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/comandos" element={<Comandos />} />
         <Route path="/planos" element={<ComprarPlanos />} />
         <Route path="/planospv" element={<ComprarPlanosPv />} />
-        <Route path="/planos/termos" element={<TermosGp />} />
+        <Route path="/termosgp" element={<TermosGp />} />
       </Routes>
     </Router>
 );

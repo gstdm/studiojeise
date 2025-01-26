@@ -6,6 +6,7 @@ import './index.css';
 import ComprarPlanos from './pages/PlansGr.tsx';
 import ComprarPlanosPv from './pages/PlanosPv.tsx';
 import TermosGp from './pages/TermosGp.tsx'; // Importe a página de termos
+import TermosPv from './pages/TermosPv.tsx'; 
 
 createRoot(document.getElementById('root')!).render(
     <Router>
@@ -14,7 +15,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/comandos" element={<Comandos />} />
         <Route path="/planos" element={<ComprarPlanos />} />
         <Route path="/planospv" element={<ComprarPlanosPv />} />
-        <Route path="/planos/termos" element={<TermosGp />} />
+        <Route path="/planos/termos" element={<TermosGp />} /> 
+        <Route path="/planospv/termos" element={<TermosPv />} />
       </Routes>
     </Router>
 );

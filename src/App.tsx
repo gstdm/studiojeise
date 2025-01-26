@@ -39,6 +39,16 @@ function App() {
                 Testar Gratuitamente
               </a>
             </div>
+
+            {/* Grupo VIP Button */}
+            <div className="mt-4">
+              <a
+                href="/#/gpvip" // Atualizado para o redirecionamento para /gpvio
+                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-purple-600 hover:bg-purple-700 transition-all duration-200 shadow-lg shadow-purple-500/30"
+              >
+                Grupo VIP
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -68,7 +78,7 @@ function App() {
           {/* Downloads */}
           <div className="grid grid-cols-1 items-start gap-8 mb-12 text-center">
             <img
-              src="https://i.ibb.co/k141v7D/Remove-bg-ai-1737903926155.png"
+              src="https://i.ibb.co/QrCR4sR/IMG-20250126-123814-removebg-preview.png"
               alt="Downloads"
               className="w-1/3 mx-auto rounded-lg shadow-md"
             />
@@ -138,3 +148,4 @@ function App() {
 }
 
 export default App;
+              

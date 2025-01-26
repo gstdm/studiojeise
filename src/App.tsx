@@ -68,7 +68,7 @@ function App() {
           {/* Downloads */}
           <div className="grid grid-cols-1 items-start gap-8 mb-12 text-center">
             <img
-              src="https://i.ibb.co/VqHRLjg/Remove-bg-ai-1737834159090.png"
+              src="https://i.ibb.co/k141v7D/Remove-bg-ai-1737903926155.png"
               alt="Downloads"
               className="w-1/3 mx-auto rounded-lg shadow-md"
             />
@@ -138,4 +138,3 @@ function App() {
 }
 
 export default App;
-            

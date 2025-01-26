@@ -1,8 +1,9 @@
 import React from 'react';
-import { CheckCircle, XCircle, ChevronRight, Lock, Command } from 'lucide-react';
+import { CheckCircle, XCircle, ChevronRight, Lock, Command, Book } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+
 function ComprarPlanosPv() {
   const planos = [
     {
@@ -10,50 +11,60 @@ function ComprarPlanosPv() {
       preco: 'R$ 6,90/mês',
       descricao: 'Ideal para uso pessoal e moderado.',
       beneficios: [
-        { texto: 'Limite de 80 comandos', disponivel: true },
+        { texto: 'Limite diário de 80 comandos', disponivel: true },
         { texto: 'Comandos básicos e vip', disponivel: true },
+        { texto: 'Acesso aos comandos 24h', disponivel: true },
+        { texto: 'Diversão garantida', disponivel: true },
+        { texto: 'Privacidade total', disponivel: true },
         { texto: 'Vantagens na economia', disponivel: false },
+        { texto: 'Suporte priorizado', disponivel: false },
         { texto: 'Comandos de +18', disponivel: false },
       ],
-      cta: 'Assinar Hobby',
-      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1,%20gostaria%20do%20plano%20Hobby",
-      disponivel: true
+      cta: 'Assinar Basic',
+      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1,%20gostaria%20do%20plano%20Basic",
+      disponivel: true,
     },
     {
-      nome: 'Standard',
+      nome: 'Pro',
       preco: 'R$ 9,90/mês',
       descricao: 'Para quem precisa de mais funcionalidades.',
       beneficios: [
-        { texto: 'Limite de 120 comandos', disponivel: true },
+        { texto: 'Limite diário de 120 comandos', disponivel: true },
         { texto: 'Comandos básicos e vip', disponivel: true },
+        { texto: 'Acesso aos comandos 24h', disponivel: true },
+        { texto: 'Diversão garantida', disponivel: true },
+        { texto: 'Privacidade total', disponivel: true },
         { texto: 'Vantagens na economia', disponivel: true },
+        { texto: 'Suporte priorizado', disponivel: false },
         { texto: 'Comandos de +18', disponivel: false },
       ],
-      cta: 'Assinar Standard',
-      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1.%20gostaria%20do%20plano%20Standard",
-      disponivel: true
+      cta: 'Assinar Pro',
+      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1,%20gostaria%20do%20plano%20Pro",
+      disponivel: true,
     },
     {
-      nome: 'Advanced',
-      preco: 'R$ 17,90/mês',
+      nome: 'Ultimate',
+      preco: 'R$ 13,90/mês',
       descricao: 'Para quem quer o máximo de benefícios.',
       beneficios: [
-        { texto: 'Limite de 120 comandos', disponivel: true },
+        { texto: 'Limite diário de 250 comandos', disponivel: true },
         { texto: 'Comandos básicos e vip', disponivel: true },
+        { texto: 'Acesso aos comandos 24h', disponivel: true },
+        { texto: 'Diversão garantida', disponivel: true },
+        { texto: 'Privacidade total', disponivel: true },
         { texto: 'Vantagens na economia', disponivel: true },
-        { texto: 'Comandos de +18', disponivel: true },
         { texto: 'Suporte priorizado', disponivel: true },
+        { texto: 'Comandos de +18', disponivel: true },
       ],
-      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1.%20gostaria%20do%20plano%20Advanced",
-      cta: 'Assinar Advanced',
-      disponivel: true
-    }
+      cta: 'Assinar Ultimate',
+      link: "https://api.whatsapp.com/send?phone=5589981385908&text=Ol%C3%A1,%20gostaria%20do%20plano%20Ultimate",
+      disponivel: true,
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col">
       <Navbar />
-
       <div className="flex-grow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h1 className="text-4xl font-bold text-white text-center mb-10">Escolha o Plano Ideal para Você</h1>
@@ -91,16 +102,25 @@ function ComprarPlanosPv() {
                 )}
               </div>
             ))}
-                <Link to="/planos" className="inline-flex items-center justify-center px-6 py-3 border border-gray-700 text-base font-medium rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-200">
-                  <Command className="mr-2 w-5 h-5" />
-                  Ver Plano Para Grupos
-                </Link>
+          </div>
+          <div className="mt-10 flex justify-center space-x-4">
+            <Link
+              to="/planos"
+              className="inline-flex items-center justify-center px-6 py-3 border border-gray-700 text-base font-medium rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-200"
+            >
+              <Command className="mr-2 w-5 h-5" />
+              Ver Planos de Grupos
+            </Link>
+            <Link
+              to="/planospv/termos"
+              className="inline-flex items-center justify-center px-6 py-3 border border-gray-700 text-base font-medium rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-200"
+            >
+              <Book className="mr-2 w-5 h-5" />
+              Leia os Termos
+            </Link>
           </div>
         </div>
       </div>
-
-
-
       <Footer />
     </div>
   );

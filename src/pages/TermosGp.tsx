@@ -10,12 +10,12 @@ const TermosGp = () => {
 
       <div className="flex-grow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <h1 className="text-4xl font-bold text-white text-center mb-10">Termos de Uso do Bot</h1>
+          <h1 className="text-4xl font-bold text-white text-center mb-10">Termos de Uso e Aluguel</h1>
 
           {/* Imagem geral no início */}
           <div className="text-center mb-10">
             <img
-              src="https://i.ibb.co/58kM5zD/Remove-bg-ai-1737834141576.png"
+              src="https://ibb.co/ZWn7N37"
               alt="Termos de Uso"
               className="rounded-lg shadow-md"
             />
@@ -88,7 +88,7 @@ const TermosGp = () => {
               Voltar para Planos
             </Link>
             <a
-              href="https://wa.me/1234567890" // Substitua pelo link do seu WhatsApp
+              href="https://wa.me/5589981385908" // Substitua pelo link do seu WhatsApp
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3 border border-green-600 text-base font-medium rounded-lg text-gray-300 bg-green-600 hover:bg-green-700 transition-all duration-200"
@@ -105,3 +105,4 @@ const TermosGp = () => {
 };
 
 export default TermosGp;
+            

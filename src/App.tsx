@@ -22,7 +22,7 @@ function App() {
                 href="/#/planos"
                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 shadow-lg shadow-blue-500/30"
               >
-                Começar Agora
+                Preços do Bot
               </a>
               <a
                 href="/#/comandos"
@@ -36,7 +36,7 @@ function App() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-lg shadow-green-500/30"
               >
-                Entrar no Grupo
+                Testar Gratuitamente
               </a>
             </div>
           </div>
@@ -138,3 +138,4 @@ function App() {
 }
 
 export default App;
+            

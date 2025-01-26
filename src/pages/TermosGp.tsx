@@ -15,7 +15,7 @@ const TermosGp = () => {
           {/* Imagem geral no início */}
           <div className="text-center mb-10">
             <img
-              src="https://ibb.co/ZWn7N37"
+              src="https://i.ibb.co/7Jj5Y3V/Remove-bg-ai-1737902058870.png"
               alt="Termos de Uso"
               className="rounded-lg shadow-md"
             />
@@ -105,4 +105,3 @@ const TermosGp = () => {
 };
 
 export default TermosGp;
-            

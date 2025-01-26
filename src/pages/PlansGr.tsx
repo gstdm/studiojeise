@@ -8,11 +8,14 @@ function ComprarPlanos() {
   const planos = [
     {
       nome: 'Hobby',
-      preco: 'R$ 9,90/mês',
+      preco: 'R$ 10,99/mês',
       descricao: 'Ideal para uso pessoal e moderado.',
       beneficios: [
-        { texto: 'Limite de 60 comandos', disponivel: true },
-        { texto: 'Comandos básicos e vip', disponivel: true },
+        { texto: 'Limite diário de 60 comandos por usuário', disponivel: true },
+        { texto: 'Moderação avançada de grupos', disponivel: true },
+        { texto: 'Interação garantida', disponivel: true },
+        { texto: 'Criação de figurinhas', disponivel: true },
+        { texto: 'Comandos básicos e VIP', disponivel: true },
         { texto: 'Comandos de economia', disponivel: false },
         { texto: 'Comandos de +18', disponivel: false },
       ],
@@ -22,11 +25,14 @@ function ComprarPlanos() {
     },
     {
       nome: 'Standard',
-      preco: 'R$ 12,90/mês',
+      preco: 'R$ 13,90/mês',
       descricao: 'Para quem precisa de mais funcionalidades.',
       beneficios: [
-        { texto: 'Limite de 90 comandos', disponivel: true },
-        { texto: 'Comandos básicos e vip', disponivel: true },
+        { texto: 'Limite diário de 90 comandos por usuário', disponivel: true },
+        { texto: 'Moderação avançada de grupos', disponivel: true },
+        { texto: 'Interação garantida', disponivel: true },
+        { texto: 'Criação de figurinhas', disponivel: true },
+        { texto: 'Comandos básicos e VIP', disponivel: true },
         { texto: 'Comandos de economia', disponivel: true },
         { texto: 'Comandos de +18', disponivel: false },
       ],
@@ -36,11 +42,14 @@ function ComprarPlanos() {
     },
     {
       nome: 'Advanced',
-      preco: 'R$ 17,90/mês',
+      preco: 'R$ 19,90/mês',
       descricao: 'Para quem quer o máximo de benefícios.',
       beneficios: [
-        { texto: 'Limite de 120 comandos', disponivel: true },
-        { texto: 'Comandos básicos e vip', disponivel: true },
+        { texto: 'Limite diário de 120 comandos por usuário', disponivel: true },
+        { texto: 'Moderação avançada de grupos', disponivel: true },
+        { texto: 'Interação garantida', disponivel: true },
+        { texto: 'Criação de figurinhas', disponivel: true },
+        { texto: 'Comandos básicos e VIP', disponivel: true },
         { texto: 'Comandos de economia', disponivel: true },
         { texto: 'Comandos de +18', disponivel: true },
       ],
@@ -91,12 +100,11 @@ function ComprarPlanos() {
                 )}
               </div>
             ))}
-
-                <Link to="/planospv" className="inline-flex items-center justify-center px-6 py-3 border border-gray-700 text-base font-medium rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-200">
-                  <Command className="mr-2 w-5 h-5" />
-                  Ver Plano Privados
-                </Link>
-
+          </div>
+          <div className="text-center mt-8">
+            <Link to="/planos/termos" className="text-gray-400 hover:underline">
+              Leia os Termos antes de contratar.
+            </Link>
           </div>
         </div>
       </div>

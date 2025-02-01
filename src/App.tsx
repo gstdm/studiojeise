@@ -1,84 +1,62 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
-function App() {
+export default function App() {
   const [darkMode, setDarkMode] = useState(false);
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
+  const toggleTheme = () => setDarkMode(!darkMode);
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
   };
 
   return (
-    <div className={`${darkMode ? "bg-black text-white" : "bg-white text-gray-900"} min-h-screen transition-all duration-300`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-r from-gray-900 to-black text-white' : 'bg-gradient-to-r from-pink-100 to-pink-300 text-gray-900'} transition-all duration-300`}>
       
-      {/* Cabeçalho */}
-      <header className="flex justify-between items-center p-4 fixed w-full top-0 bg-white dark:bg-black shadow-md z-10">
-        <button className="text-pink-500 text-3xl">&#9776;</button>
-        <button onClick={toggleTheme} className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800">
-          {darkMode ? "Modo Claro" : "Modo Escuro"}
-        </button>
-      </header>
+      {/* Botão de Troca de Tema */}
+      <button onClick={toggleTheme} className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-2xl">
+        {darkMode ? '🌞' : '🌙'}
+      </button>
 
-      {/* Corpo */}
-      <main className="pt-16 p-6 flex flex-col items-center">
+      {/* Seção Principal */}
+      <div className="flex flex-col items-center justify-center p-8 space-y-14">
         
-        {/* Imagem e Descrição */}
-        <div className="flex flex-col md:flex-row items-center gap-6 bg-gradient-to-r from-pink-100 to-pink-300 dark:from-pink-900 dark:to-pink-700 p-8 rounded-lg shadow-lg w-full max-w-3xl">
-          <div className="w-40 h-40 bg-gray-300 dark:bg-gray-700 rounded-md"></div>
-          <div>
-            <h1 className="text-2xl font-bold">Realce seu olhar com cílios perfeitos</h1>
-            <p className="mt-2 text-lg">
-              Os cílios são uma moldura para os olhos e podem transformar sua aparência de forma natural e sofisticada.
-            </p>
-            <p className="mt-2 text-gray-700 dark:text-gray-300">
-              Com técnicas avançadas, nossos alongamentos garantem volume, curvatura e leveza sem prejudicar os fios naturais.
-            </p>
-          </div>
-        </div>
+        {/* Título Principal */}
+        <motion.h1 
+          className="text-6xl font-extrabold text-center leading-tight" 
+          initial="hidden" 
+          animate="visible" 
+          variants={itemVariants} 
+          transition={{ duration: 0.5 }}
+        >
+          ✨ O SEGREDO PARA UM OLHAR MAGNÉTICO! ✨
+        </motion.h1>
 
-        {/* Botão de Modelos */}
-        <button className="mt-8 px-6 py-3 rounded-lg bg-pink-500 text-white text-lg font-semibold hover:bg-pink-600 transition">
-          Ver Modelos de Cílios
-        </button>
-
-        {/* Vantagens */}
-        <section className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-          <div className="p-6 bg-pink-200 dark:bg-pink-800 rounded-lg shadow-md">
-            <h2 className="font-bold text-xl">✨ Beleza e Autoestima</h2>
-            <p className="text-gray-700 dark:text-gray-300 mt-2">
-              Alongamentos de cílios deixam seu olhar mais expressivo e sofisticado, elevando sua confiança no dia a dia.
-            </p>
-          </div>
-
-          <div className="p-6 bg-pink-200 dark:bg-pink-800 rounded-lg shadow-md">
-            <h2 className="font-bold text-xl">⏳ Economia de Tempo</h2>
-            <p className="text-gray-700 dark:text-gray-300 mt-2">
-              Esqueça o rímel! Com os cílios perfeitos 24h por dia, você economiza tempo na maquiagem e sempre está pronta.
-            </p>
-          </div>
-
-          <div className="p-6 bg-pink-200 dark:bg-pink-800 rounded-lg shadow-md">
-            <h2 className="font-bold text-xl">💧 Resistência à Água</h2>
-            <p className="text-gray-700 dark:text-gray-300 mt-2">
-              Nossos cílios são resistentes à água, permitindo que você aproveite piscina, praia e chuvas sem preocupações.
-            </p>
-          </div>
-
-          <div className="p-6 bg-pink-200 dark:bg-pink-800 rounded-lg shadow-md">
-            <h2 className="font-bold text-xl">🌿 Seguro e Confortável</h2>
-            <p className="text-gray-700 dark:text-gray-300 mt-2">
-              Aplicamos fios leves e hipoalergênicos, garantindo um procedimento seguro, confortável e sem danos aos cílios naturais.
-            </p>
-          </div>
-        </section>
-
-        {/* Botão Final */}
-        <button className="mt-10 mb-6 px-6 py-3 rounded-lg bg-pink-500 text-white text-lg font-semibold hover:bg-pink-600 transition">
-          Ver Modelos de Cílios
-        </button>
-
-      </main>
+        {/* Lista de Imagens e Textos */}
+        {[
+          { text: '🔥 Tenha cílios volumosos e impecáveis 24h por dia, sem precisar de rímel! Chega de maquiagem borrada ou tempo perdido na frente do espelho!', delay: 0.3 },
+          { text: '👁️‍🗨️ Seu olhar mais sedutor e expressivo! Alongamento profissional que valoriza a beleza natural dos seus olhos. Realce seu charme agora!', delay: 0.6 },
+          { text: '💎 Atendimento VIP e resultado luxuoso! Escolha o estilo ideal para você e conquiste um visual elegante e sofisticado todos os dias!', delay: 0.9 },
+          { text: '💖 Feito com técnica segura e fios leves, para cílios incríveis sem incomodar! Conforto absoluto e beleza impecável.', delay: 1.2 },
+          { text: '🚀 Agende seu horário hoje e descubra o poder de um olhar irresistível! Você merece esse cuidado especial. Clique agora!', delay: 1.5 }
+        ].map((item, index) => (
+          <motion.div 
+            key={index}
+            className="flex flex-col md:flex-row items-center gap-6 w-full max-w-3xl"
+            initial="hidden"
+            animate="visible"
+            variants={itemVariants}
+            transition={{ duration: 0.5, delay: item.delay }}
+          >
+            {/* Imagem Placeholder */}
+            <div className="w-72 h-48 bg-black rounded-lg shadow-lg"></div>
+            
+            {/* Texto */}
+            <p className="text-3xl font-extrabold leading-snug text-center md:text-left">{item.text}</p>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }
-
-export default App;

@@ -2,22 +2,53 @@ import React, { useState } from 'react';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gradient-to-b from-beige-200 to-beige-400 text-gray-800'}`}>
-      {/* Barra de Modo Claro / Escuro */}
-      <div className="flex justify-between items-center p-4 bg-gray-800 text-white">
-        <div className="text-xl font-semibold">Studio Jeise Lashes</div>
+    <div
+      className={`min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gradient-to-b from-beige-200 to-beige-300 text-gray-800'}`}
+    >
+      {/* Barra de Navegação */}
+      <div className="flex justify-between items-center p-4">
         <button onClick={toggleTheme} className="text-2xl">
           {isDarkMode ? '🌙' : '☀️'}
         </button>
+        <div className="flex gap-6">
+          <button onClick={toggleMenu} className="text-2xl">
+            ☰
+          </button>
+        </div>
       </div>
 
-      {/* Título e Subtítulo */}
+      {/* Menu Lateral */}
+      {isMenuOpen && (
+        <div className="fixed top-0 left-0 w-64 bg-white text-gray-800 shadow-md h-full p-6">
+          <ul className="space-y-6">
+            <li>
+              <a href="/#/modelos" className="text-xl">Ver Modelos</a>
+            </li>
+            <li>
+              <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="text-xl">Agendar Horário</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer" className="text-xl">Instagram</a>
+            </li>
+            <li>
+              <a href="/#/historia" className="text-xl">História</a>
+            </li>
+          </ul>
+        </div>
+      )}
+
+      {/* Conteúdo Principal */}
       <div className="text-center py-16 px-4">
         <h1 className="text-4xl font-bold">Studio Jeise Lashes</h1>
         <p className="text-lg mt-4">@jeuusilayne.s | O poder de transformar olhares! 🔥</p>
@@ -41,7 +72,7 @@ function App() {
         </a>
       </div>
 
-      {/* Foto */}
+      {/* Foto da Dona do Studio */}
       <div className="flex justify-center py-8">
         <img
           src="https://via.placeholder.com/300"
@@ -51,7 +82,7 @@ function App() {
       </div>
 
       {/* Vantagens de Fazer Cílios */}
-      <div className="py-12 bg-pink-100">
+      <div className="py-12" style={{ backgroundColor: isDarkMode ? '#222222' : '#f5d0d0' }}>
         <h2 className="text-3xl font-bold text-center mb-6">Vantagens de Fazer Extensão de Cílios</h2>
         <div className="max-w-7xl mx-auto space-y-6 px-6 sm:px-8">
           <div className="flex items-start gap-6">

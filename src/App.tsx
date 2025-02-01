@@ -14,10 +14,10 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gradient-to-b from-beige-100 to-beige-200 text-gray-800'}`}
+      className={`min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gradient-to-b from-nude-100 to-nude-200 text-gray-800'}`}
     >
       {/* Barra de Navegação */}
-      <div className="flex justify-between items-center p-4">
+      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-nude-100'}`}>
         <button onClick={toggleTheme} className="text-2xl">
           {isDarkMode ? '🌙' : '☀️'}
         </button>
@@ -49,7 +49,7 @@ function App() {
       )}
 
       {/* Conteúdo Principal */}
-      <div className="text-center py-16 px-4 bg-gradient-to-b from-beige-100 to-beige-200">
+      <div className="text-center py-16 px-4 bg-gradient-to-b from-nude-100 to-nude-200">
         <h1 className="text-4xl font-bold">Studio Jeise Lashes</h1>
         <p className="text-lg mt-4">@jeuusilayne.s | O poder de transformar olhares! 🔥</p>
       </div>
@@ -84,7 +84,7 @@ function App() {
       {/* Vantagens de Fazer Cílios */}
       <div className="py-12" style={{ backgroundColor: isDarkMode ? '#222222' : '#f5d0d0' }}>
         <h2 className="text-3xl font-bold text-center mb-6">Vantagens de Fazer Extensão de Cílios</h2>
-        <div className="max-w-7xl mx-auto space-y-6 px-6 sm:px-8">
+        <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8">
           <div className="flex items-start gap-6">
             <img
               src="https://via.placeholder.com/150"

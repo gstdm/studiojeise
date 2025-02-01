@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaSun, FaMoon } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function App() {
@@ -22,7 +21,7 @@ function App() {
             onClick={toggleTheme}
             className="text-xl p-2 focus:outline-none"
           >
-            {darkMode ? <FaSun /> : <FaMoon />}
+            {darkMode ? '☀️' : '🌙'}
           </button>
         </div>
         <div>

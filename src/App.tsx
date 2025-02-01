@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function App() {
   return (
@@ -6,7 +6,7 @@ function App() {
       {/* Título e Subtítulo */}
       <div className="text-center py-16">
         <h1 className="text-4xl font-bold text-gray-800">Studio Jeise Lashes</h1>
-        <p className="text-lg text-gray-600 mt-4">@jeuusilayne.s | O poder de transformar olhares🔥</p>
+        <p className="text-lg text-gray-600 mt-4">@jeuusilayne.s | O poder de transformar olhares! 🔥</p>
       </div>
 
       {/* Botões */}
@@ -23,7 +23,7 @@ function App() {
           rel="noopener noreferrer"
           className="bg-red-500 text-white px-8 py-3 rounded-lg text-xl font-medium hover:bg-red-600 transition duration-300"
         >
-          Fale Conosco
+          Agendar Horário
         </a>
       </div>
 
@@ -73,6 +73,13 @@ function App() {
             <p className="text-lg">Resultados duradouros, com manutenção periódica.</p>
           </div>
         </div>
+      </div>
+
+      {/* Frase sobre as fotos */}
+      <div className="text-center py-4">
+        <p className="text-gray-500 text-sm">
+          *As fotos exibidas no site foram tiradas pela própria dona do Studio.
+        </p>
       </div>
 
       {/* Botão Pré e Pós Agendamento */}

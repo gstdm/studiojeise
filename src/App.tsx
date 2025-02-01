@@ -15,11 +15,9 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen ${
-        darkMode ? "bg-gray-900 text-white" : "bg-red-500 text-gray-900"
-      } flex flex-col`}
+      className={`min-h-screen ${darkMode ? "bg-gray-900 text-white" : "bg-beige text-gray-900"} flex flex-col transition-colors duration-300`}
     >
-      {/* Barra de navegação */}
+      {/* Barra de Navegação */}
       <div className="fixed top-0 left-0 w-full bg-transparent flex items-center justify-between p-4 z-10">
         <div>
           <button
@@ -41,9 +39,9 @@ function App() {
         </div>
       </div>
 
-      {/* Menu */}
+      {/* Menu Lateral */}
       {menuOpen && (
-        <div className="absolute left-0 top-16 w-2/3 bg-gray-800 text-white py-4 px-6 z-20">
+        <div className="absolute left-0 top-0 w-2/3 md:w-1/3 bg-gray-800 text-white h-full z-20 p-6">
           <ul>
             <li className="mb-4">
               <Link to="/#/modelos" className="text-lg">
@@ -80,9 +78,9 @@ function App() {
       )}
 
       {/* Hero Section */}
-      <div className="flex-grow text-center py-20">
+      <div className="flex-grow text-center py-20 px-4">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Studio Jeise Lashes</h1>
-        <p className="text-lg text-gray-700 dark:text-gray-400 mb-4">
+        <p className="text-lg text-gray-700 mb-4">
           @jeuusilayne.s | O poder de transformar olhares! 🔥
         </p>
 
@@ -109,7 +107,7 @@ function App() {
         <img
           src="https://via.placeholder.com/150"
           alt="Foto da Dona"
-          className="w-36 h-36 mx-auto mb-4 border-4 border-black"
+          className="w-36 h-36 mx-auto mb-4 border-4 border-black rounded-full"
         />
       </div>
 

@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gradient-to-b from-beige-200 to-beige-300 text-gray-800'}`}
+      className={`min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gradient-to-b from-beige-100 to-beige-200 text-gray-800'}`}
     >
       {/* Barra de Navegação */}
       <div className="flex justify-between items-center p-4">
@@ -49,7 +49,7 @@ function App() {
       )}
 
       {/* Conteúdo Principal */}
-      <div className="text-center py-16 px-4">
+      <div className="text-center py-16 px-4 bg-gradient-to-b from-beige-100 to-beige-200">
         <h1 className="text-4xl font-bold">Studio Jeise Lashes</h1>
         <p className="text-lg mt-4">@jeuusilayne.s | O poder de transformar olhares! 🔥</p>
       </div>

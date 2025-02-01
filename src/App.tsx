@@ -1,149 +1,111 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setDarkMode(!darkMode);
   };
 
   return (
     <div
-      className={`min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gradient-to-b from-nude-100 to-nude-200 text-gray-800'}`}
+      className={`min-h-screen ${
+        darkMode ? "bg-gray-900 text-white" : "bg-beige text-gray-900"
+      } flex flex-col`}
     >
-      {/* Barra de Navegação */}
-      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-nude-100'}`}>
-        <button onClick={toggleTheme} className="text-2xl">
-          {isDarkMode ? '🌙' : '☀️'}
-        </button>
-        <div className="flex gap-6">
-          <button onClick={toggleMenu} className="text-2xl">
+      {/* Barra de navegação */}
+      <div className="fixed top-0 left-0 w-full bg-transparent flex items-center justify-between p-4 z-10">
+        <div>
+          <button
+            onClick={toggleTheme}
+            className="text-xl p-2 focus:outline-none"
+          >
+            {darkMode ? <FaSun /> : <FaMoon />}
+          </button>
+        </div>
+        <div>
+          <button
+            className="text-xl text-gray-900 dark:text-white focus:outline-none"
+            onClick={() => alert("Abrir Menu")}
+          >
             ☰
           </button>
         </div>
       </div>
 
-      {/* Menu Lateral */}
-      {isMenuOpen && (
-        <div className="fixed top-0 left-0 w-64 bg-white text-gray-800 shadow-md h-full p-6">
-          <ul className="space-y-6">
-            <li>
-              <a href="/#/modelos" className="text-xl">Ver Modelos</a>
-            </li>
-            <li>
-              <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="text-xl">Agendar Horário</a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer" className="text-xl">Instagram</a>
-            </li>
-            <li>
-              <a href="/#/historia" className="text-xl">História</a>
-            </li>
-          </ul>
+      {/* Hero Section */}
+      <div className="flex-grow text-center py-20">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Studio Jeise Lashes</h1>
+        <p className="text-lg text-gray-700 dark:text-gray-400 mb-4">
+          @jeuusilayne.s | O poder de transformar olhares! 🔥
+        </p>
+
+        <div className="flex justify-center gap-6 mt-6">
+          <Link
+            to="/#/modelos"
+            className="bg-pink-600 text-white py-2 px-6 rounded-md hover:bg-pink-700 transition duration-300"
+          >
+            Ver Modelos
+          </Link>
+          <a
+            href="https://wa.me/558988023208"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 transition duration-300"
+          >
+            Agendar Horário
+          </a>
         </div>
-      )}
-
-      {/* Conteúdo Principal */}
-      <div className="text-center py-16 px-4 bg-gradient-to-b from-nude-100 to-nude-200">
-        <h1 className="text-4xl font-bold">Studio Jeise Lashes</h1>
-        <p className="text-lg mt-4">@jeuusilayne.s | O poder de transformar olhares! 🔥</p>
       </div>
 
-      {/* Botões */}
-      <div className="flex justify-center gap-8 py-8">
-        <a
-          href="/#/modelos"
-          className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}
-        >
-          Ver Modelos
-        </a>
-        <a
-          href="https://wa.me/558988023208"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
-        >
-          Agendar Horário
-        </a>
-      </div>
-
-      {/* Foto da Dona do Studio */}
-      <div className="flex justify-center py-8">
+      {/* Foto da dona */}
+      <div className="text-center mt-12">
         <img
-          src="https://via.placeholder.com/300"
-          alt="Foto da dona do Studio"
-          className="w-72 h-72 object-cover rounded-lg border-4 border-gray-400"
+          src="https://via.placeholder.com/150"
+          alt="Foto da Dona"
+          className="w-36 h-36 rounded-full mx-auto"
         />
       </div>
 
-      {/* Vantagens de Fazer Cílios */}
-      <div className="py-12" style={{ backgroundColor: isDarkMode ? '#222222' : '#f5d0d0' }}>
-        <h2 className="text-3xl font-bold text-center mb-6">Vantagens de Fazer Extensão de Cílios</h2>
-        <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8">
-          <div className="flex items-start gap-6">
+      {/* Vantagens */}
+      <div className="text-center py-12 bg-pink-100">
+        <h2 className="text-3xl font-semibold text-pink-600">Vantagens</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
+          <div>
             <img
               src="https://via.placeholder.com/150"
-              alt="Imagem 1"
-              className="w-32 h-32 rounded-md shadow-md"
+              alt="Vantagem 1"
+              className="w-32 h-32 mx-auto mb-4"
             />
-            <p className="text-lg">
-              Aumento da autoestima, proporcionando um olhar marcante e impactante, ideal para quem busca realçar a beleza natural.
-            </p>
+            <p className="text-lg text-gray-800">Vantagem 1 - Extensão de cílios duradoura.</p>
           </div>
-          <div className="flex items-start gap-6 flex-row-reverse">
+          <div>
             <img
               src="https://via.placeholder.com/150"
-              alt="Imagem 2"
-              className="w-32 h-32 rounded-md shadow-md"
+              alt="Vantagem 2"
+              className="w-32 h-32 mx-auto mb-4"
             />
-            <p className="text-lg">
-              Praticidade no dia a dia, dispensando a necessidade de maquiagem diária, economizando tempo na rotina de beleza.
-            </p>
-          </div>
-          <div className="flex items-start gap-6">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Imagem 3"
-              className="w-32 h-32 rounded-md shadow-md"
-            />
-            <p className="text-lg">
-              Olhar naturalmente volumoso e alongado, com cílios de alta qualidade, proporcionando um efeito deslumbrante.
-            </p>
-          </div>
-          <div className="flex items-start gap-6 flex-row-reverse">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Imagem 4"
-              className="w-32 h-32 rounded-md shadow-md"
-            />
-            <p className="text-lg">
-              Resultados duradouros, com manutenção periódica que mantém o visual sempre perfeito.
-            </p>
+            <p className="text-lg text-gray-800">Vantagem 2 - Olhar natural e encantador.</p>
           </div>
         </div>
       </div>
 
-      {/* Frase sobre as fotos */}
-      <div className="text-center py-4">
-        <p className="text-sm text-gray-500">
-          *As fotos exibidas no site foram tiradas pela própria dona do Studio, garantindo um registro autêntico da experiência.
-        </p>
-      </div>
-
       {/* Botão Pré e Pós Agendamento */}
-      <div className="flex justify-center py-8">
+      <div className="text-center py-8">
         <a
-          href="/#"
-          className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-black text-white hover:bg-gray-800' : 'bg-black text-white hover:bg-gray-800'}`}
+          href="#"
+          className="bg-black text-white py-2 px-6 rounded-md hover:bg-gray-800 transition duration-300"
         >
           Leia o Pré e o Pós Agendamento
         </a>
       </div>
+
+      {/* Rodapé */}
+      <footer className="bg-gray-800 text-white text-center py-4 mt-12">
+        <p>© 2025 Studio Jeise Lashes - Todos os direitos reservados</p>
+      </footer>
     </div>
   );
 }

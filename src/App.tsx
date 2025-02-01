@@ -1,62 +1,101 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
-export default function App() {
+function App() {
   const [darkMode, setDarkMode] = useState(false);
 
-  const toggleTheme = () => setDarkMode(!darkMode);
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0 },
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-r from-gray-900 to-black text-white' : 'bg-gradient-to-r from-pink-100 to-pink-300 text-gray-900'} transition-all duration-300`}>
-      
-      {/* Botão de Troca de Tema */}
-      <button onClick={toggleTheme} className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-2xl">
-        {darkMode ? '🌞' : '🌙'}
-      </button>
-
-      {/* Seção Principal */}
-      <div className="flex flex-col items-center justify-center p-8 space-y-14">
-        
-        {/* Título Principal */}
-        <motion.h1 
-          className="text-6xl font-extrabold text-center leading-tight" 
-          initial="hidden" 
-          animate="visible" 
-          variants={itemVariants} 
-          transition={{ duration: 0.5 }}
-        >
-          ✨ O SEGREDO PARA UM OLHAR MAGNÉTICO! ✨
-        </motion.h1>
-
-        {/* Lista de Imagens e Textos */}
-        {[
-          { text: '🔥 Tenha cílios volumosos e impecáveis 24h por dia, sem precisar de rímel! Chega de maquiagem borrada ou tempo perdido na frente do espelho!', delay: 0.3 },
-          { text: '👁️‍🗨️ Seu olhar mais sedutor e expressivo! Alongamento profissional que valoriza a beleza natural dos seus olhos. Realce seu charme agora!', delay: 0.6 },
-          { text: '💎 Atendimento VIP e resultado luxuoso! Escolha o estilo ideal para você e conquiste um visual elegante e sofisticado todos os dias!', delay: 0.9 },
-          { text: '💖 Feito com técnica segura e fios leves, para cílios incríveis sem incomodar! Conforto absoluto e beleza impecável.', delay: 1.2 },
-          { text: '🚀 Agende seu horário hoje e descubra o poder de um olhar irresistível! Você merece esse cuidado especial. Clique agora!', delay: 1.5 }
-        ].map((item, index) => (
-          <motion.div 
-            key={index}
-            className="flex flex-col md:flex-row items-center gap-6 w-full max-w-3xl"
-            initial="hidden"
-            animate="visible"
-            variants={itemVariants}
-            transition={{ duration: 0.5, delay: item.delay }}
-          >
-            {/* Imagem Placeholder */}
-            <div className="w-72 h-48 bg-black rounded-lg shadow-lg"></div>
-            
-            {/* Texto */}
-            <p className="text-3xl font-extrabold leading-snug text-center md:text-left">{item.text}</p>
-          </motion.div>
-        ))}
+    <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} min-h-screen transition-all duration-300`}>
+      {/* Navbar (3 Risquinhos) */}
+      <div className="fixed top-0 left-0 z-10 flex justify-between items-center p-4 w-full">
+        <button className="text-2xl" onClick={toggleDarkMode}>
+          {darkMode ? '🌞' : '🌙'}
+        </button>
+        <div className="space-x-4">
+          <a href="/#/modelos" className="text-lg font-medium">Ver Modelos de Cílios</a>
+          <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="text-lg font-medium">Contato</a>
+        </div>
       </div>
+
+      {/* Hero Section */}
+      <div className="py-32 text-center bg-gradient-to-r from-pink-400 to-yellow-500">
+        <h1 className="text-5xl md:text-6xl font-bold">
+          Studio Jeise Lashes
+        </h1>
+        <p className="text-lg mt-4">
+          Transforme seu olhar com cílios perfeitos, criados sob medida por Jeusilayne.
+        </p>
+        <div className="mt-8 flex justify-center gap-4">
+          <a
+            href="/#/modelos"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-pink-600 hover:bg-pink-700 transition-all duration-200 shadow-lg shadow-pink-500/30"
+          >
+            Ver Modelos de Cílios
+          </a>
+          <a
+            href="https://wa.me/558988023208"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-lg shadow-green-500/30"
+          >
+            Fale Conosco
+          </a>
+        </div>
+      </div>
+
+      {/* Imagem Base de Cílios */}
+      <div className="flex justify-center py-16 bg-gradient-to-l from-pink-200 to-yellow-200">
+        <img
+          src="https://i.ibb.co/q979NRQ/Remove-bg-ai-1737810940219.png"
+          alt="Cílios"
+          className="w-1/2 mx-auto rounded-lg shadow-lg"
+        />
+      </div>
+
+      {/* Vantagens de Fazer Cílios */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 py-12">
+        <h2 className="text-3xl font-bold text-center mb-8">Vantagens de Fazer Cílios</h2>
+        <ul className="space-y-6">
+          <li className="flex items-start gap-4">
+            <span className="text-4xl text-pink-600">🌟</span>
+            <p className="text-lg">Aumente sua autoestima com um olhar marcante, realçando sua beleza natural.</p>
+          </li>
+          <li className="flex items-start gap-4">
+            <span className="text-4xl text-pink-600">✨</span>
+            <p className="text-lg">Praticidade no seu dia a dia, sem precisar de máscara de cílios ou curvex.</p>
+          </li>
+          <li className="flex items-start gap-4">
+            <span className="text-4xl text-pink-600">💖</span>
+            <p className="text-lg">Sinta-se confiante com cílios volumosos, longos e naturais.</p>
+          </li>
+          <li className="flex items-start gap-4">
+            <span className="text-4xl text-pink-600">👁️</span>
+            <p className="text-lg">Realce seu olhar com diferentes estilos que combinam com sua personalidade.</p>
+          </li>
+          <li className="flex items-start gap-4">
+            <span className="text-4xl text-pink-600">💅</span>
+            <p className="text-lg">Cílios de alta qualidade que garantem durabilidade e conforto.</p>
+          </li>
+        </ul>
+      </div>
+
+      {/* Footer (Detalhes de Contato) */}
+      <footer className="bg-gradient-to-r from-pink-400 to-yellow-500 py-8 text-center">
+        <p className="text-lg font-medium">Entre em contato para mais informações e agendamentos!</p>
+        <a
+          href="https://wa.me/558988023208"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-lg shadow-green-500/30"
+        >
+          Fale Conosco
+        </a>
+      </footer>
     </div>
   );
 }
+
+export default App;

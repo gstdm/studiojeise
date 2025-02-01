@@ -11,7 +11,7 @@ function App() {
   return (
     <div
       className={`min-h-screen ${
-        darkMode ? "bg-gray-900 text-white" : "bg-beige text-gray-900"
+        darkMode ? "bg-gray-900 text-white" : "bg-red-500 text-gray-900"
       } flex flex-col`}
     >
       {/* Barra de navegação */}
@@ -19,14 +19,16 @@ function App() {
         <div>
           <button
             onClick={toggleTheme}
-            className="text-xl p-2 focus:outline-none"
+            className="text-2xl p-2 focus:outline-none"
           >
-            {darkMode ? '☀️' : '🌙'}
+            {darkMode ? "🌙" : "☀️"}
           </button>
         </div>
         <div>
           <button
-            className="text-xl text-gray-900 dark:text-white focus:outline-none"
+            className={`text-xl p-2 focus:outline-none rounded-full ${
+              darkMode ? "bg-black text-white" : "bg-white text-black"
+            }`}
             onClick={() => alert("Abrir Menu")}
           >
             ☰

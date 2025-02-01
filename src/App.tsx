@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
@@ -26,15 +31,53 @@ function App() {
         </div>
         <div>
           <button
+            onClick={toggleMenu}
             className={`text-xl p-2 focus:outline-none rounded-full ${
               darkMode ? "bg-black text-white" : "bg-white text-black"
             }`}
-            onClick={() => alert("Abrir Menu")}
           >
             ☰
           </button>
         </div>
       </div>
+
+      {/* Menu */}
+      {menuOpen && (
+        <div className="absolute left-0 top-16 w-2/3 bg-gray-800 text-white py-4 px-6 z-20">
+          <ul>
+            <li className="mb-4">
+              <Link to="/#/modelos" className="text-lg">
+                Ver Modelos
+              </Link>
+            </li>
+            <li className="mb-4">
+              <a
+                href="https://wa.me/558988023208"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg"
+              >
+                Agendar Horário
+              </a>
+            </li>
+            <li className="mb-4">
+              <a
+                href="https://www.instagram.com/jeuusilayne.s"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg"
+              >
+                Instagram
+              </a>
+            </li>
+            <li className="mb-4">
+              <Link to="/#/historia" className="text-lg">
+                História
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
 
       {/* Hero Section */}
       <div className="flex-grow text-center py-20">
@@ -66,7 +109,7 @@ function App() {
         <img
           src="https://via.placeholder.com/150"
           alt="Foto da Dona"
-          className="w-36 h-36 rounded-full mx-auto"
+          className="w-36 h-36 mx-auto mb-4 border-4 border-black"
         />
       </div>
 
@@ -74,21 +117,25 @@ function App() {
       <div className="text-center py-12 bg-pink-100">
         <h2 className="text-3xl font-semibold text-pink-600">Vantagens</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
-          <div>
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Vantagem 1"
-              className="w-32 h-32 mx-auto mb-4"
-            />
-            <p className="text-lg text-gray-800">Vantagem 1 - Extensão de cílios duradoura.</p>
+          <div className="flex flex-col items-center">
+            <div className="w-36 h-36 bg-black mb-4"></div>
+            <p className="text-lg text-gray-800">Extensão de cílios duradoura.</p>
           </div>
-          <div>
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Vantagem 2"
-              className="w-32 h-32 mx-auto mb-4"
-            />
-            <p className="text-lg text-gray-800">Vantagem 2 - Olhar natural e encantador.</p>
+          <div className="flex flex-col items-center">
+            <div className="w-36 h-36 bg-black mb-4"></div>
+            <p className="text-lg text-gray-800">Olhar natural e encantador.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-36 h-36 bg-black mb-4"></div>
+            <p className="text-lg text-gray-800">Técnicas modernas e eficazes.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-36 h-36 bg-black mb-4"></div>
+            <p className="text-lg text-gray-800">Consultoria personalizada.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-36 h-36 bg-black mb-4"></div>
+            <p className="text-lg text-gray-800">Atendimento confortável e exclusivo.</p>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ function App() {
       }`}
       style={{
         backgroundImage: isDarkMode
-          ? 'url(https://i.ibb.co/3CjC6H5/marmorizado-escuro.jpg)'
+          ? 'url(https://cdn.iset.io/assets/55268/produtos/52861/papel-de-parede-marmore-rose-e-dourado05.jpg)'
           : 'https://cdn.iset.io/assets/55268/produtos/52861/papel-de-parede-marmore-rose-e-dourado05.jpg',
       }}
     >

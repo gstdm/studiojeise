@@ -14,6 +14,7 @@ function App() {
 
   return (
     <div className={`min-h-screen flex flex-col ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-700 text-white' : 'bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800'}`}>
+      
       {/* Barra de Navegação */}
       <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-pink-200'}`}>
         <button onClick={toggleTheme} className="text-2xl">
@@ -24,13 +25,13 @@ function App() {
         </button>
       </div>
 
-      {/* Menu Lateral (ajustado para não cobrir toda a tela) */}
+      {/* Menu Lateral */}
       {isMenuOpen && (
-        <div className={`fixed top-0 right-0 h-full w-64 ${isDarkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg z-50`}>
+        <div className={`fixed top-0 right-0 w-64 h-full shadow-lg z-50 flex flex-col items-center bg-opacity-95 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
           <button onClick={toggleMenu} className="absolute top-4 right-6 text-3xl">
             ✖
           </button>
-          <ul className="mt-16 space-y-6 text-center text-2xl">
+          <ul className="space-y-6 text-center text-2xl mt-16">
             <li><a href="/#/modelos">Ver Modelos</a></li>
             <li><a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer">Agendar Horário</a></li>
             <li><a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer">Instagram</a></li>
@@ -47,29 +48,55 @@ function App() {
         <p className="text-lg mt-4">@jeuusilayne.s | O poder de transformar olhares! 🔥</p>
       </div>
 
-      {/* Seção de Vantagens (com ajustes) */}
+      {/* Botões principais */}
+      <div className="flex flex-col items-center py-12">
+        <div className="flex justify-center gap-8">
+          <a href="/#/modelos" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
+            Ver Modelos
+          </a>
+          <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white">
+            Agendar Horário
+          </a>
+        </div>
+
+        {/* Foto da Dona do Studio */}
+        <div className="flex justify-center py-8">
+          <img src="https://via.placeholder.com/300" alt="Foto da dona do Studio" className="w-72 h-72 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
+        </div>
+      </div>
+
+      {/* Seção de Vantagens */}
       <div className="py-12">
-        <h2 className="text-3xl font-bold text-center mb-12">Vantagens de Fazer Extensão de Cílios</h2>
-        <div className="max-w-7xl mx-auto space-y-16 px-6 sm:px-8">
+        <h2 className="text-3xl font-bold text-center mb-6">Vantagens de Fazer Extensão de Cílios</h2>
+        <div className="max-w-7xl mx-auto space-y-10 px-6 sm:px-8">
+          
+          {/* Vantagem 1 */}
           <div className="flex items-start gap-6">
-            <img src="https://i.ibb.co/5hHjyXSV/Screenshot-20250203-185948.jpg" alt="Imagem 1" className="w-36 h-36 rounded-md border-4 border-pink-400 shadow-md" />
+            <img src="https://i.ibb.co/5hHjyXSV/Screenshot-20250203-185948.jpg" alt="Imagem 1" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
             <p className="text-lg">Aumento da autoestima, proporcionando um olhar marcante e impactante, ideal para quem busca realçar a beleza natural.</p>
           </div>
-          <div className="border-t w-full mx-auto" style={{ borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)' }}></div>
+          <hr className="border-t border-gray-400 opacity-30 my-4" />
+
+          {/* Vantagem 2 */}
           <div className="flex items-start gap-6 flex-row-reverse">
-            <img src="https://i.ibb.co/twFL5p5W/Screenshot-20250203-190009.jpg" alt="Imagem 2" className="w-36 h-36 rounded-md border-4 border-pink-400 shadow-md" />
+            <img src="https://i.ibb.co/twFL5p5W/Screenshot-20250203-190009.jpg" alt="Imagem 2" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
             <p className="text-lg">Praticidade no dia a dia, dispensando a necessidade de maquiagem diária, economizando tempo na rotina de beleza.</p>
           </div>
-          <div className="border-t w-full mx-auto" style={{ borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)' }}></div>
+          <hr className="border-t border-gray-400 opacity-30 my-4" />
+
+          {/* Vantagem 3 */}
           <div className="flex items-start gap-6">
-            <img src="https://i.ibb.co/6c12TDzL/Screenshot-20250203-190002.jpg" alt="Imagem 3" className="w-36 h-36 rounded-md border-4 border-pink-400 shadow-md" />
+            <img src="https://i.ibb.co/6c12TDzL/Screenshot-20250203-190002.jpg" alt="Imagem 3" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
             <p className="text-lg">Olhar naturalmente volumoso e alongado, com cílios de alta qualidade, proporcionando um efeito deslumbrante.</p>
           </div>
-          <div className="border-t w-full mx-auto" style={{ borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)' }}></div>
+          <hr className="border-t border-gray-400 opacity-30 my-4" />
+
+          {/* Vantagem 4 */}
           <div className="flex items-start gap-6 flex-row-reverse">
-            <img src="https://i.ibb.co/mrdV0dRr/Screenshot-20250203-185955.jpg" alt="Imagem 4" className="w-36 h-36 rounded-md border-4 border-pink-400 shadow-md" />
+            <img src="https://i.ibb.co/mrdV0dRr/Screenshot-20250203-185955.jpg" alt="Imagem 4" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
             <p className="text-lg">Resultados duradouros, com manutenção periódica que mantém o visual sempre perfeito.</p>
           </div>
+          
         </div>
       </div>
 

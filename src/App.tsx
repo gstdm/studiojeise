@@ -61,7 +61,7 @@ function App() {
 
         {/* Botão Ver Localização */}
         <div className="py-8">
-          <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
+          <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}>
             Ver Localização
           </a>
         </div>

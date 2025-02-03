@@ -36,32 +36,33 @@ function App() {
         </div>
       )}
 
-      {/* Conteúdo Principal */}
-      <div className={`text-center py-16 px-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-pink-100 to-pink-200'}`}>
-        <h1 className="text-4xl font-bold relative inline-block">
-          <span className="absolute -inset-1 bg-pink-400 rounded-lg opacity-50"></span>
-          <span className="relative px-4">Studio Jeise Lashes</span>
+      {/* Hero Section - Introdução */}
+      <div className={`text-center py-16 px-4 ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-pink-100 to-pink-300'}`}>
+        <h1 className="text-4xl font-bold relative inline-block px-6 py-2 border-4 rounded-lg border-pink-400">
+          Studio Jeise Lashes
         </h1>
         <p className="text-lg mt-4">@jeuusilayne.s | O poder de transformar olhares! 🔥</p>
       </div>
 
-      {/* Botões */}
-      <div className="flex justify-center gap-8 py-8">
-        <a href="/#/modelos" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
-          Ver Modelos
-        </a>
-        <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white">
-          Agendar Horário
-        </a>
-      </div>
+      {/* Botões e Foto */}
+      <div className={`flex flex-col items-center py-12 ${isDarkMode ? 'bg-gradient-to-b from-gray-800 to-gray-700' : 'bg-gradient-to-b from-pink-300 to-pink-200'}`}>
+        <div className="flex justify-center gap-8">
+          <a href="/#/modelos" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
+            Ver Modelos
+          </a>
+          <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white">
+            Agendar Horário
+          </a>
+        </div>
 
-      {/* Foto da Dona do Studio */}
-      <div className="flex justify-center py-8">
-        <img src="https://via.placeholder.com/300" alt="Foto da dona do Studio" className="w-72 h-72 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
+        {/* Foto da Dona do Studio */}
+        <div className="flex justify-center py-8">
+          <img src="https://via.placeholder.com/300" alt="Foto da dona do Studio" className="w-72 h-72 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
+        </div>
       </div>
 
       {/* Vantagens de Fazer Cílios */}
-      <div className={`py-12 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gradient-to-b from-pink-200 to-white'}`}>
+      <div className={`py-12 ${isDarkMode ? 'bg-gradient-to-b from-gray-700 to-gray-800' : 'bg-gradient-to-b from-pink-200 to-white'}`}>
         <h2 className="text-3xl font-bold text-center mb-6">Vantagens de Fazer Extensão de Cílios</h2>
         <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8">
           <div className="flex items-start gap-6">

@@ -13,9 +13,9 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-pink-100 text-gray-800'}`}>
-      {/* Barra de Navegação */}
-      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-pink-200'}`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-700 text-white' : 'bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800'}`}>
+      {/* Barra de Navegação com gradiente */}
+      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gradient-to-b from-gray-800 to-gray-700' : 'bg-gradient-to-b from-pink-200 to-pink-100'}`}>
         <button onClick={toggleTheme} className="text-2xl">
           {isDarkMode ? '🌙' : '☀️'}
         </button>
@@ -37,7 +37,7 @@ function App() {
       )}
 
       {/* Hero Section - Introdução */}
-      <div className={`text-center py-16 px-4 ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-pink-100 to-pink-300'}`}>
+      <div className="text-center py-16 px-4">
         <h1 className="text-4xl font-bold relative inline-block px-6 py-2 border-4 rounded-lg border-pink-400">
           Studio Jeise Lashes
         </h1>
@@ -45,7 +45,7 @@ function App() {
       </div>
 
       {/* Botões e Foto */}
-      <div className={`flex flex-col items-center py-12 ${isDarkMode ? 'bg-gradient-to-b from-gray-800 to-gray-700' : 'bg-gradient-to-b from-pink-300 to-pink-200'}`}>
+      <div className="flex flex-col items-center py-12">
         <div className="flex justify-center gap-8">
           <a href="/#/modelos" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
             Ver Modelos
@@ -62,7 +62,7 @@ function App() {
       </div>
 
       {/* Vantagens de Fazer Cílios */}
-      <div className={`py-12 ${isDarkMode ? 'bg-gradient-to-b from-gray-700 to-gray-800' : 'bg-gradient-to-b from-pink-200 to-white'}`}>
+      <div className="py-12">
         <h2 className="text-3xl font-bold text-center mb-6">Vantagens de Fazer Extensão de Cílios</h2>
         <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8">
           <div className="flex items-start gap-6">
@@ -89,8 +89,8 @@ function App() {
         <p className="text-sm text-gray-500">*As fotos exibidas no site foram tiradas pela própria dona do Studio, garantindo um registro autêntico da experiência.</p>
       </div>
 
-      {/* Botão Pré e Pós Agendamento */}
-      <div className="flex justify-center py-8">
+      {/* Botão Pré e Pós Agendamento com transição suave */}
+      <div className={`py-8 flex justify-center ${isDarkMode ? 'bg-gradient-to-t from-gray-700 to-gray-800' : 'bg-gradient-to-t from-pink-300 to-pink-100'}`}>
         <a href="/#" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
           Leia o Pré e o Pós Agendamento
         </a>

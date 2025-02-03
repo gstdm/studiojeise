@@ -13,9 +13,9 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-700 text-white' : 'bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800'}`}>
-      {/* Barra de Navegação com gradiente */}
-      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gradient-to-b from-gray-800 to-gray-700' : 'bg-gradient-to-b from-pink-200 to-pink-100'}`}>
+    <div className={`min-h-screen flex flex-col ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-700 text-white' : 'bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800'}`}>
+      {/* Barra de Navegação */}
+      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-pink-200'}`}>
         <button onClick={toggleTheme} className="text-2xl">
           {isDarkMode ? '🌙' : '☀️'}
         </button>
@@ -36,7 +36,7 @@ function App() {
         </div>
       )}
 
-      {/* Hero Section - Introdução */}
+      {/* Hero Section */}
       <div className="text-center py-16 px-4">
         <h1 className="text-4xl font-bold relative inline-block px-6 py-2 border-4 rounded-lg border-pink-400">
           Studio Jeise Lashes
@@ -89,8 +89,8 @@ function App() {
         <p className="text-sm text-gray-500">*As fotos exibidas no site foram tiradas pela própria dona do Studio, garantindo um registro autêntico da experiência.</p>
       </div>
 
-      {/* Botão Pré e Pós Agendamento com transição suave */}
-      <div className={`py-8 flex justify-center ${isDarkMode ? 'bg-gradient-to-t from-gray-700 to-gray-800' : 'bg-gradient-to-t from-pink-300 to-pink-100'}`}>
+      {/* Botão Pré e Pós Agendamento - Agora faz parte do gradiente único */}
+      <div className="py-8 flex justify-center">
         <a href="/#" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
           Leia o Pré e o Pós Agendamento
         </a>

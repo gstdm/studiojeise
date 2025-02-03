@@ -22,7 +22,7 @@ function App() {
       style={{
         backgroundImage: isDarkMode
           ? 'url(https://cdn.iset.io/assets/55268/produtos/52861/papel-de-parede-marmore-rose-e-dourado05.jpg)'
-          : 'https://cdn.iset.io/assets/55268/produtos/52861/papel-de-parede-marmore-rose-e-dourado05.jpg',
+          : 'url(https://cdn.iset.io/assets/55268/produtos/52861/papel-de-parede-marmore-rose-e-dourado05.jpg)',
       }}
     >
       {/* Barra de Navegação */}

@@ -59,6 +59,13 @@ function App() {
           </a>
         </div>
 
+        {/* Botão Ver Localização */}
+        <div className="py-8">
+          <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
+            Ver Localização
+          </a>
+        </div>
+
         {/* Foto da Dona do Studio */}
         <div className="flex justify-center py-8">
           <img src="https://via.placeholder.com/300" alt="Foto da dona do Studio" className="w-72 h-72 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
@@ -86,7 +93,7 @@ function App() {
 
           {/* Vantagem 3 */}
           <div className="flex items-start gap-6">
-            <img src="https://i.ibb.co/zWZRpXTQ/Screenshot-20250203-190002-2.jpg" alt="Imagem 3" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
+            <img src="https://i.ibb.co/Mx3jXXGr/Screenshot-20250203-202443.jpg" alt="Imagem 3" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
             <p className="text-lg">Olhar naturalmente volumoso e alongado, com cílios de alta qualidade, proporcionando um efeito deslumbrante.</p>
           </div>
           <hr className="border-t border-gray-400 opacity-30 my-4" />

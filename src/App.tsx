@@ -86,7 +86,7 @@ function App() {
 
           {/* Vantagem 3 */}
           <div className="flex items-start gap-6">
-            <img src="https://i.ibb.co/6c12TDzL/Screenshot-20250203-190002.jpg" alt="Imagem 3" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
+            <img src="https://i.ibb.co/zWZRpXTQ/Screenshot-20250203-190002-2.jpg" alt="Imagem 3" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
             <p className="text-lg">Olhar naturalmente volumoso e alongado, com cílios de alta qualidade, proporcionando um efeito deslumbrante.</p>
           </div>
           <hr className="border-t border-gray-400 opacity-30 my-4" />

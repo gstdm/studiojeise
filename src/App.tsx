@@ -14,10 +14,19 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gradient-to-b from-nude-100 to-nude-200 text-gray-800'}`}
+      className={`min-h-screen ${
+        isDarkMode
+          ? 'bg-gray-800 text-white'
+          : 'bg-cover bg-center text-gray-800'
+      }`}
+      style={{
+        backgroundImage: isDarkMode
+          ? 'url(https://i.ibb.co/3CjC6H5/marmorizado-escuro.jpg)'
+          : 'url(https://i.ibb.co/0tKXbhn/marmorizado-claro.jpg)',
+      }}
     >
       {/* Barra de Navegação */}
-      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-nude-100'}`}>
+      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-white bg-opacity-80'}`}>
         <button onClick={toggleTheme} className="text-2xl">
           {isDarkMode ? '🌙' : '☀️'}
         </button>
@@ -49,8 +58,10 @@ function App() {
       )}
 
       {/* Conteúdo Principal */}
-      <div className="text-center py-16 px-4 bg-gradient-to-b from-nude-100 to-nude-200">
-        <h1 className="text-4xl font-bold">Studio Jeise Lashes</h1>
+      <div className="text-center py-16 px-4">
+        <div className="inline-block border-4 border-pink-500 px-6 py-2 rounded-lg">
+          <h1 className="text-4xl font-bold">Studio Jeise Lashes</h1>
+        </div>
         <p className="text-lg mt-4">@jeuusilayne.s | O poder de transformar olhares! 🔥</p>
       </div>
 
@@ -58,7 +69,9 @@ function App() {
       <div className="flex justify-center gap-8 py-8">
         <a
           href="/#/modelos"
-          className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}
+          className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${
+            isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'
+          }`}
         >
           Ver Modelos
         </a>
@@ -66,7 +79,7 @@ function App() {
           href="https://wa.me/558988023208"
           target="_blank"
           rel="noopener noreferrer"
-          className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
+          className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white"
         >
           Agendar Horário
         </a>
@@ -139,7 +152,9 @@ function App() {
       <div className="flex justify-center py-8">
         <a
           href="/#"
-          className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-black text-white hover:bg-gray-800' : 'bg-black text-white hover:bg-gray-800'}`}
+          className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${
+            isDarkMode ? 'bg-black text-white hover:bg-gray-800' : 'bg-black text-white hover:bg-gray-800'
+          }`}
         >
           Leia o Pré e o Pós Agendamento
         </a>

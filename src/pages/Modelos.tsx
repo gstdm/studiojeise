@@ -14,7 +14,7 @@ function Modelos() {
       
       {/* Barra de Navegação */}
       <div className="flex justify-between items-center p-4 bg-pink-200">
-        <button onClick={() => navigate(-1)} className="text-2xl">⬅</button>
+        <button onClick={() => navigate(-1)} className="text-2xl">←</button>
         <button onClick={toggleMenu} className="text-2xl">☰</button>
       </div>
 
@@ -49,7 +49,7 @@ function Modelos() {
           { nome: "Modelo Mega Volume", preco: "R$149,99", descricao: "Para quem ama um olhar intenso e super volumoso.", img: "https://i.ibb.co/Htz4FQ5/Remove-bg-ai-1737810716652.png" }
         ].map((modelo, index) => (
           <div key={index} className={`flex items-center gap-6 ${index % 2 === 0 ? "" : "flex-row-reverse"}`}>
-            <img src={modelo.img} alt={modelo.nome} className="w-40 h-40 object-cover rounded-full border-t border-pink-400 shadow-lg" />
+            <img src={modelo.img} alt={modelo.nome} className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
             <div>
               <h2 className="text-2xl font-bold">{modelo.nome}</h2>
               <p className="text-lg text-pink-600 font-semibold">{modelo.preco}</p>
@@ -72,7 +72,7 @@ function Modelos() {
       <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8 mt-8">
         {/* Correção de sobrancelha */}
         <div className="flex items-center gap-6">
-          <img src="https://i.ibb.co/q979NRQ/Remove-bg-ai-1737810940219.png" alt="Correção de sobrancelha" className="w-40 h-40 object-cover rounded-full border-t border-pink-400 shadow-lg" />
+          <img src="https://i.ibb.co/q979NRQ/Remove-bg-ai-1737810940219.png" alt="Correção de sobrancelha" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
           <div>
             <h2 className="text-2xl font-bold">Correção de Sobrancelha</h2>
             <p className="text-lg text-pink-600 font-semibold">R$15,00</p>
@@ -82,7 +82,7 @@ function Modelos() {
 
         {/* Remoção de Cílios */}
         <div className="flex items-center gap-6 flex-row-reverse">
-          <img src="https://i.ibb.co/VqHRLjg/Remove-bg-ai-1737834159090.png" alt="Remoção de cílios" className="w-40 h-40 object-cover rounded-full border-t border-pink-400 shadow-lg" />
+          <img src="https://i.ibb.co/VqHRLjg/Remove-bg-ai-1737834159090.png" alt="Remoção de cílios" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
           <div>
             <h2 className="text-2xl font-bold">Remoção de Cílios</h2>
             <p className="text-lg text-pink-600 font-semibold">R$30,00</p>
@@ -92,13 +92,13 @@ function Modelos() {
 
         {/* Maquiagem */}
         <div className="flex items-center gap-6">
-          <img src="https://i.ibb.co/MBmPRYg/Remove-bg-ai-1737834145392.png" alt="Maquiagem" className="w-40 h-40 object-cover rounded-full border-t border-pink-400 shadow-lg" />
+          <img src="https://i.ibb.co/MBmPRYg/Remove-bg-ai-1737834145392.png" alt="Maquiagem" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
           <div>
             <h2 className="text-2xl font-bold">Maquiagem</h2>
-            <p className="text-lg text-pink-600 font-semibold">R$45,00 - Completa com cílios postiços</p>
-            <p className="text-lg text-pink-600 font-semibold">R$40,00 - Completa sem cílios postiços</p>
-            <p className="text-lg text-pink-600 font-semibold">R$25,00 - Apenas pele (base + acabamento, sem sombra nos olhos)</p>
-            <p className="text-lg text-pink-600 font-semibold">R$15,00 - Apenas olhos (sombra na pálpebra)</p>
+            <p className="text-lg font-semibold">R$45,00 - Completa com cílios postiços</p>
+            <p className="text-lg font-semibold">R$40,00 - Completa sem cílios postiços</p>
+            <p className="text-lg font-semibold">R$25,00 - Apenas pele (base + acabamento, sem sombra nos olhos)</p>
+            <p className="text-lg font-semibold">R$15,00 - Apenas olhos (sombra na pálpebra)</p>
           </div>
         </div>
       </div>

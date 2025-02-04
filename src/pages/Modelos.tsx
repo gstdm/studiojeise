@@ -34,18 +34,24 @@ function Modelos() {
 
       {/* Título */}
       <div className="text-center py-12">
-        <h1 className="text-4xl font-bold">Modelos de Cílios</h1>
+        <h1 className="text-4xl font-bold border-b-4 border-pink-400 inline-block">Modelos de Cílios</h1>
       </div>
 
       {/* Modelos */}
       <div className="max-w-7xl mx-auto space-y-10 px-6 sm:px-8">
-        {Array.from({ length: 5 }).map((_, index) => (
+        {[
+          { img: "https://i.ibb.co/q979NRQ/Remove-bg-ai-1737810940219.png", name: "Natural", price: "R$100,00", desc: "Para um olhar sutil e delicado, com efeito natural." },
+          { img: "https://i.ibb.co/VqHRLjg/Remove-bg-ai-1737834159090.png", name: "Volume Brasileiro", price: "R$120,00", desc: "Mais preenchido, ideal para destacar os olhos." },
+          { img: "https://i.ibb.co/Htz4FQ5/Remove-bg-ai-1737810716652.png", name: "Híbrido", price: "R$130,00", desc: "Mistura entre natural e volume, um equilíbrio perfeito." },
+          { img: "https://i.ibb.co/MBmPRYg/Remove-bg-ai-1737834145392.png", name: "Volume Russo", price: "R$150,00", desc: "Fios ultrafinos, criando um efeito volumoso e sofisticado." },
+          { img: "https://i.ibb.co/58kM5zD/Remove-bg-ai-1737834141576.png", name: "Mega Volume", price: "R$180,00", desc: "Para quem ama um olhar impactante e glamouroso." }
+        ].map((model, index) => (
           <div key={index} className={`flex items-center gap-6 ${index % 2 === 0 ? '' : 'flex-row-reverse'}`}>
-            <img src="https://via.placeholder.com/150" alt="Modelo" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
+            <img src={model.img} alt="Modelo" className="w-32 h-32 rounded-full shadow-md" />
             <div>
-              <h2 className="text-2xl font-bold">Modelo {index + 1}</h2>
-              <p className="text-lg text-pink-600 font-bold">R$99,99</p>
-              <p className="text-lg">Para quem gosta de um visual minimalista e elegante.</p>
+              <h2 className="text-2xl font-bold">{model.name}</h2>
+              <p className="text-lg text-pink-600 font-bold">{model.price}</p>
+              <p className="text-lg">{model.desc}</p>
             </div>
           </div>
         ))}
@@ -53,65 +59,38 @@ function Modelos() {
 
       {/* Serviços Adicionais */}
       <div className="max-w-7xl mx-auto space-y-10 px-6 sm:px-8 py-12">
-        <h2 className="text-3xl font-bold text-center">Serviços Adicionais</h2>
+        <h2 className="text-3xl font-bold text-center border-b-4 border-pink-400 inline-block">Serviços Adicionais</h2>
 
-        <div className="border-2 border-pink-400 rounded-lg p-6 space-y-6">
-          {/* Serviço 1 */}
-          <div className="flex items-center gap-6">
-            <img src="https://via.placeholder.com/150" alt="Serviço" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-            <div>
-              <h2 className="text-2xl font-bold">Correção de Sobrancelha</h2>
-              <p className="text-lg text-pink-600 font-bold">R$15,00</p>
-              <p className="text-lg">Ajuste e alinhamento profissional para realçar sua expressão.</p>
-            </div>
+        {/* Serviço 1 */}
+        <div className="flex items-center gap-6">
+          <img src="https://i.ibb.co/q979NRQ/Remove-bg-ai-1737810940219.png" alt="Sobrancelha" className="w-32 h-32 rounded-full shadow-md" />
+          <div>
+            <h2 className="text-2xl font-bold">Correção de Sobrancelha</h2>
+            <p className="text-lg text-pink-600 font-bold">R$15,00</p>
+            <p className="text-lg">Ajuste profissional para sobrancelhas alinhadas e harmoniosas.</p>
           </div>
+        </div>
 
-          {/* Serviço 2 */}
-          <div className="flex items-center gap-6 flex-row-reverse">
-            <img src="https://via.placeholder.com/150" alt="Serviço" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-            <div>
-              <h2 className="text-2xl font-bold">Remoção de Cílios</h2>
-              <p className="text-lg text-pink-600 font-bold">R$30,00</p>
-              <p className="text-lg">Removemos com segurança os cílios de outra extensão.</p>
-            </div>
+        {/* Serviço 2 */}
+        <div className="flex items-center gap-6 flex-row-reverse">
+          <img src="https://i.ibb.co/VqHRLjg/Remove-bg-ai-1737834159090.png" alt="Remoção" className="w-32 h-32 rounded-full shadow-md" />
+          <div>
+            <h2 className="text-2xl font-bold">Remoção de Cílios</h2>
+            <p className="text-lg text-pink-600 font-bold">R$30,00</p>
+            <p className="text-lg">Retirada segura da extensão sem danificar os fios naturais.</p>
           </div>
+        </div>
 
-          {/* Serviço 3 - Maquiagem */}
-          <div className="flex flex-col space-y-6">
-            <h2 className="text-2xl font-bold text-center">Maquiagem</h2>
-            
-            <div className="flex items-center gap-6">
-              <img src="https://via.placeholder.com/150" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-              <div>
-                <h3 className="text-lg font-bold">Completa com cílios postiços</h3>
-                <p className="text-lg text-pink-600 font-bold">R$45,00</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6 flex-row-reverse">
-              <img src="https://via.placeholder.com/150" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-              <div>
-                <h3 className="text-lg font-bold">Completa sem cílios postiços</h3>
-                <p className="text-lg text-pink-600 font-bold">R$40,00</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6">
-              <img src="https://via.placeholder.com/150" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-              <div>
-                <h3 className="text-lg font-bold">Somente pele</h3>
-                <p className="text-lg text-pink-600 font-bold">R$25,00</p>
-                <p className="text-lg">Maquiagem sem sombra nos olhos, apenas com base e acabamento.</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6 flex-row-reverse">
-              <img src="https://via.placeholder.com/150" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-              <div>
-                <h3 className="text-lg font-bold">Somente olhos</h3>
-                <p className="text-lg text-pink-600 font-bold">R$15,00</p>
-                <p className="text-lg">Aplicação de sombra e acabamento para um olhar destacado.</p>
-              </div>
+        {/* Serviço 3 - Maquiagem */}
+        <div className="flex items-center gap-6">
+          <img src="https://i.ibb.co/Htz4FQ5/Remove-bg-ai-1737810716652.png" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md" />
+          <div>
+            <h2 className="text-2xl font-bold">Maquiagem</h2>
+            <div className="mt-2">
+              <p className="text-lg text-pink-600 font-bold">R$45,00 - Completa (com cílios postiços)</p>
+              <p className="text-lg text-pink-600 font-bold">R$40,00 - Completa (sem cílios postiços)</p>
+              <p className="text-lg text-pink-600 font-bold">R$25,00 - Apenas pele (base e acabamento, sem sombra nos olhos)</p>
+              <p className="text-lg text-pink-600 font-bold">R$15,00 - Apenas olhos (maquiagem na pálpebra)</p>
             </div>
           </div>
         </div>

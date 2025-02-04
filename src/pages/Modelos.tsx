@@ -1,110 +1,125 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Modelos({ isDarkMode }: { isDarkMode: boolean }) {
-  const location = useLocation();
+function Modelos() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <div className={`min-h-screen flex flex-col ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-700 text-white' : 'bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800'}`}>
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800">
       
-      {/* Hero Section */}
-      <div className="text-center py-16 px-4">
-        <h1 className="text-4xl font-bold relative inline-block px-6 py-2 border-4 rounded-lg border-pink-400">
-          Modelos de Extensão de Cílios
-        </h1>
-        <p className="text-lg mt-4">Escolha o modelo perfeito para realçar sua beleza!</p>
+      {/* Barra de Navegação */}
+      <div className="flex justify-between items-center p-4 bg-pink-200 shadow-md">
+        <button onClick={() => navigate(-1)} className="text-2xl">←</button>
+        <button onClick={toggleMenu} className="text-2xl">☰</button>
       </div>
 
-      {/* Lista de Modelos */}
-      <div className="py-12 max-w-7xl mx-auto space-y-10 px-6 sm:px-8">
-        
-        {/* Modelo 1 */}
-        <div className="flex items-center gap-6">
-          <img src="https://i.ibb.co/5hHjyXSV/Screenshot-20250203-185948.jpg" alt="Modelo 1" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-          <div>
-            <h2 className="text-2xl font-bold">Modelo 1</h2>
-            <p className="text-lg">Para quem gosta de um olhar minimalista e elegante.</p>
-            <p className="text-xl font-semibold mt-2">R$99,99</p>
-          </div>
+      {/* Menu Lateral */}
+      {isMenuOpen && (
+        <div className="fixed top-0 right-0 w-64 h-full shadow-lg z-50 flex flex-col items-center bg-white bg-opacity-95">
+          <button onClick={toggleMenu} className="absolute top-4 right-6 text-3xl">✖</button>
+          <ul className="space-y-6 text-center text-2xl mt-16">
+            <li className="text-blue-600 text-3xl font-bold">Ver Modelos</li>
+            <li><a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer">Agendar Horário</a></li>
+            <li><a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="/#/historia">História</a></li>
+            <li><a href="/#/">Tela Inicial</a></li>
+          </ul>
         </div>
-        <hr className="border-t border-gray-400 opacity-30 my-4" />
+      )}
 
-        {/* Modelo 2 */}
-        <div className="flex items-center gap-6 flex-row-reverse">
-          <img src="https://i.ibb.co/twFL5p5W/Screenshot-20250203-190009.jpg" alt="Modelo 2" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-          <div>
-            <h2 className="text-2xl font-bold">Modelo 2</h2>
-            <p className="text-lg">Extensão volumosa para um olhar marcante.</p>
-            <p className="text-xl font-semibold mt-2">R$99,99</p>
-          </div>
-        </div>
-        <hr className="border-t border-gray-400 opacity-30 my-4" />
-
-        {/* Modelo 3 */}
-        <div className="flex items-center gap-6">
-          <img src="https://i.ibb.co/Mx3jXXGr/Screenshot-20250203-202443.jpg" alt="Modelo 3" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-          <div>
-            <h2 className="text-2xl font-bold">Modelo 3</h2>
-            <p className="text-lg">Cílios longos e delicados para um efeito natural.</p>
-            <p className="text-xl font-semibold mt-2">R$99,99</p>
-          </div>
-        </div>
-        <hr className="border-t border-gray-400 opacity-30 my-4" />
-
-        {/* Modelo 4 */}
-        <div className="flex items-center gap-6 flex-row-reverse">
-          <img src="https://i.ibb.co/mrdV0dRr/Screenshot-20250203-185955.jpg" alt="Modelo 4" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-          <div>
-            <h2 className="text-2xl font-bold">Modelo 4</h2>
-            <p className="text-lg">Volume russo para um efeito poderoso.</p>
-            <p className="text-xl font-semibold mt-2">R$99,99</p>
-          </div>
-        </div>
-        <hr className="border-t border-gray-400 opacity-30 my-4" />
-
-        {/* Modelo 5 */}
-        <div className="flex items-center gap-6">
-          <img src="https://i.ibb.co/5hHjyXSV/Screenshot-20250203-185948.jpg" alt="Modelo 5" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
-          <div>
-            <h2 className="text-2xl font-bold">Modelo 5</h2>
-            <p className="text-lg">Mix de fios clássicos e volumosos.</p>
-            <p className="text-xl font-semibold mt-2">R$99,99</p>
-          </div>
-        </div>
+      {/* Título */}
+      <div className="text-center py-12">
+        <h1 className="text-4xl font-bold">Modelos de Cílios</h1>
       </div>
 
-      {/* Separação para Serviços Adicionais */}
-      <div className="py-16">
-        <h2 className="text-3xl font-bold text-center mb-6">Serviços Adicionais</h2>
-        <div className="max-w-7xl mx-auto space-y-10 px-6 sm:px-8">
+      {/* Modelos */}
+      <div className="max-w-7xl mx-auto space-y-10 px-6 sm:px-8">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <div key={index} className={`flex items-center gap-6 ${index % 2 === 0 ? '' : 'flex-row-reverse'}`}>
+            <img src="https://via.placeholder.com/150" alt="Modelo" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
+            <div>
+              <h2 className="text-2xl font-bold">Modelo {index + 1}</h2>
+              <p className="text-lg text-pink-600 font-bold">R$99,99</p>
+              <p className="text-lg">Para quem gosta de um visual minimalista e elegante.</p>
+            </div>
+          </div>
+        ))}
+      </div>
 
-          {/* Conserto de Sobrancelha */}
+      {/* Serviços Adicionais */}
+      <div className="max-w-7xl mx-auto space-y-10 px-6 sm:px-8 py-12">
+        <h2 className="text-3xl font-bold text-center">Serviços Adicionais</h2>
+
+        <div className="border-2 border-pink-400 rounded-lg p-6 space-y-6">
+          {/* Serviço 1 */}
           <div className="flex items-center gap-6">
-            <img src="https://i.ibb.co/5hHjyXSV/Screenshot-20250203-185948.jpg" alt="Conserto de Sobrancelha" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
+            <img src="https://via.placeholder.com/150" alt="Serviço" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
             <div>
-              <h2 className="text-2xl font-bold">Conserto de Sobrancelha</h2>
-              <p className="text-lg">Corrija falhas e realce sua expressão.</p>
-              <p className="text-xl font-semibold mt-2">R$15,00</p>
+              <h2 className="text-2xl font-bold">Correção de Sobrancelha</h2>
+              <p className="text-lg text-pink-600 font-bold">R$15,00</p>
+              <p className="text-lg">Ajuste e alinhamento profissional para realçar sua expressão.</p>
             </div>
           </div>
-          <hr className="border-t border-gray-400 opacity-30 my-4" />
 
-          {/* Remoção de Extensão */}
+          {/* Serviço 2 */}
           <div className="flex items-center gap-6 flex-row-reverse">
-            <img src="https://i.ibb.co/twFL5p5W/Screenshot-20250203-190009.jpg" alt="Remoção de Extensão" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
+            <img src="https://via.placeholder.com/150" alt="Serviço" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
             <div>
-              <h2 className="text-2xl font-bold">Remoção de Extensão</h2>
-              <p className="text-lg">Remova sua extensão com segurança e conforto.</p>
-              <p className="text-xl font-semibold mt-2">R$30,00</p>
+              <h2 className="text-2xl font-bold">Remoção de Cílios</h2>
+              <p className="text-lg text-pink-600 font-bold">R$30,00</p>
+              <p className="text-lg">Removemos com segurança os cílios de outra extensão.</p>
             </div>
           </div>
-          
+
+          {/* Serviço 3 - Maquiagem */}
+          <div className="flex flex-col space-y-6">
+            <h2 className="text-2xl font-bold text-center">Maquiagem</h2>
+            
+            <div className="flex items-center gap-6">
+              <img src="https://via.placeholder.com/150" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
+              <div>
+                <h3 className="text-lg font-bold">Completa com cílios postiços</h3>
+                <p className="text-lg text-pink-600 font-bold">R$45,00</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6 flex-row-reverse">
+              <img src="https://via.placeholder.com/150" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
+              <div>
+                <h3 className="text-lg font-bold">Completa sem cílios postiços</h3>
+                <p className="text-lg text-pink-600 font-bold">R$40,00</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <img src="https://via.placeholder.com/150" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
+              <div>
+                <h3 className="text-lg font-bold">Somente pele</h3>
+                <p className="text-lg text-pink-600 font-bold">R$25,00</p>
+                <p className="text-lg">Maquiagem sem sombra nos olhos, apenas com base e acabamento.</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6 flex-row-reverse">
+              <img src="https://via.placeholder.com/150" alt="Maquiagem" className="w-32 h-32 rounded-full shadow-md border-2 border-pink-400" />
+              <div>
+                <h3 className="text-lg font-bold">Somente olhos</h3>
+                <p className="text-lg text-pink-600 font-bold">R$15,00</p>
+                <p className="text-lg">Aplicação de sombra e acabamento para um olhar destacado.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Botão Pré e Pós Agendamento */}
       <div className="py-8 flex justify-center">
-        <a href="/#" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
+        <a href="/#" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-black text-white hover:bg-gray-800">
           Leia o Pré e o Pós Agendamento
         </a>
       </div>

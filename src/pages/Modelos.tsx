@@ -49,7 +49,7 @@ function Modelos() {
           { nome: "Volume Russo", preco: "R$100,00", descricao: "Para quem ama um olhar intenso e super volumoso.", img: "https://i.ibb.co/p6VHdFcK/Screenshot-20250204-174706.jpg" }
         ].map((modelo, index) => (
           <div key={index} className={`flex items-center gap-6 ${index % 2 === 0 ? "" : "flex-row-reverse"}`}>
-            <img src={modelo.img} alt={modelo.nome} className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
+            <img src={modelo.img} alt={modelo.nome} className="w-44 h-44 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
             <div>
               <h2 className="text-2xl font-bold">{modelo.nome}</h2>
               <p className="text-lg text-pink-600 font-semibold">{modelo.preco}</p>

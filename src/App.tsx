@@ -17,9 +17,6 @@ function App() {
       
       {/* Barra de Navegação */}
       <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-pink-200'}`}>
-        <button onClick={toggleTheme} className="text-2xl">
-          {isDarkMode ? '🌙' : '☀️'}
-        </button>
         <button onClick={toggleMenu} className="text-2xl">
           ☰
         </button>
@@ -68,7 +65,7 @@ function App() {
 
         {/* Foto da Dona do Studio */}
         <div className="flex justify-center py-8">
-          <img src="https://via.placeholder.com/300" alt="Foto da dona do Studio" className="w-72 h-72 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
+          <img src="https://i.ibb.co/svZKtVWC/Screenshot-20250206-195243.jpg" alt="Foto da dona do Studio" className="w-72 h-72 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
         </div>
       </div>
 
@@ -86,7 +83,7 @@ function App() {
 
           {/* Vantagem 2 */}
           <div className="flex items-start gap-6 flex-row-reverse">
-            <img src="https://i.ibb.co/twFL5p5W/Screenshot-20250203-190009.jpg" alt="Imagem 2" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
+            <img src="https://i.ibb.co/LzRmNpXT/Screenshot-20250206-080616.jpg" alt="Imagem 2" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
             <p className="text-lg">Praticidade no dia a dia, dispensando a necessidade de maquiagem diária, economizando tempo na rotina de beleza.</p>
           </div>
           <hr className="border-t border-gray-400 opacity-30 my-4" />

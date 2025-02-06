@@ -65,7 +65,7 @@ function App() {
 
         {/* Foto da Dona do Studio */}
         <div className="flex justify-center py-8">
-          <img src="https://i.ibb.co/svZKtVWC/Screenshot-20250206-195243.jpg" alt="Foto da dona do Studio" className="w-72 h-96 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
+          <img src="https://i.ibb.co/svZKtVWC/Screenshot-20250206-195243.jpg" alt="Foto da dona do Studio" className="w-72 h-104 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
         </div>
       </div>
 

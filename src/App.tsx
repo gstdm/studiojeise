@@ -67,11 +67,10 @@ function App() {
 <div className="flex flex-col items-center py-8 relative">
   <img src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" alt="Foto da dona do Studio" className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
   <div className="absolute bottom-0 left-0 right-0 bg-gray-900 bg-opacity-50 p-2 text-white text-center">
-    <p className="text-lg font-semibold" style={{ fontFamily: 'Dancing Script, cursive' }}>Jeusilayne</p>
+    <p className="text-lg font-semibold italic">Jeusilayne</p>
     <p className="text-sm">Lash Designer</p>
   </div>
 </div>
-
 
       {/* Seção de Vantagens */}
       <div className="py-12">

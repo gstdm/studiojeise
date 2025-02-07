@@ -49,7 +49,7 @@ function Modelos() {
           { nome: "Volume Russo", preco: "R$100,00", descricao: "Para quem ama um olhar intenso e super volumoso.", img: "https://i.ibb.co/p6VHdFcK/Screenshot-20250204-174706.jpg" }
         ].map((modelo, index) => (
           <div key={index} className={`flex items-center gap-6 ${index % 2 === 0 ? "" : "flex-row-reverse"}`}>
-            <img src={modelo.img} alt={modelo.nome} className="w-44 h-44 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
+            <img src={modelo.img} alt={modelo.nome} className="w-44 h-45 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
             <div>
               <h2 className="text-2xl font-bold">{modelo.nome}</h2>
               <p className="text-lg text-pink-600 font-semibold">{modelo.preco}</p>
@@ -72,7 +72,7 @@ function Modelos() {
       <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8 mt-8">
         {/* Correção de sobrancelha */}
         <div className="flex items-center gap-6">
-          <img src="https://i.ibb.co/q979NRQ/Remove-bg-ai-1737810940219.png" alt="Correção de sobrancelha" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
+          <img src="https://i.ibb.co/7Jn6hXK1/Screenshot-20250204-175627.jpg" alt="Correção de sobrancelha" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
           <div>
             <h2 className="text-2xl font-bold">Correção de Sobrancelha</h2>
             <p className="text-lg text-pink-600 font-semibold">R$15,00</p>
@@ -82,9 +82,9 @@ function Modelos() {
 
         {/* Remoção de Cílios */}
         <div className="flex items-center gap-6 flex-row-reverse">
-          <img src="https://i.ibb.co/VqHRLjg/Remove-bg-ai-1737834159090.png" alt="Remoção de cílios" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
+          <img src="https://i.ibb.co/vx1mWWkv/Screenshot-20250204-175435.jpg" alt="Remoção de cílios" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
           <div>
-            <h2 className="text-2xl font-bold">Remoção de Cílios</h2>
+            <h2 className="text-2xl font-bold">Remoção de Extensão</h2>
             <p className="text-lg text-pink-600 font-semibold">R$30,00</p>
             <p className="text-lg">Removemos extensões anteriores com segurança e cuidado.</p>
           </div>
@@ -92,7 +92,7 @@ function Modelos() {
 
         {/* Maquiagem */}
         <div className="flex items-center gap-6">
-          <img src="https://i.ibb.co/MBmPRYg/Remove-bg-ai-1737834145392.png" alt="Maquiagem" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
+          <img src="https://i.ibb.co/xKyYB0vS/IMG-20250207-WA0308-2.jpg" alt="Maquiagem" className="w-40 h-40 object-cover rounded-full border-2 border-pink-400 shadow-lg" />
           <div>
             <h2 className="text-2xl font-bold">Maquiagem</h2>
             <p className="text-lg font-semibold">R$45,00 - Completa com cílios postiços</p>

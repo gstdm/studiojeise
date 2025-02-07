@@ -63,23 +63,17 @@ function App() {
           </a>
         </div>
 
-{/* Foto da Dona do Studio */}
-<div className="relative flex justify-center py-8">
-  {/* Imagem da dona do Studio */}
-  <img 
-    src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" 
-    alt="Foto da dona do Studio" 
-    className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg"
-  />
+{/* Contêiner principal para organizar os elementos */}
+<div className="flex flex-col items-center py-8 relative">
 
-  {/* Texto sobreposto na foto */}
-  <div className="absolute top-1/3 text-center">
+  {/* Espaço extra para o texto antes da foto */}
+  <div className="mb-4 text-center">
     {/* Nome "Jeusilayne" em cursivo com borda */}
     <p 
       className="text-5xl font-bold text-white relative"
       style={{
         fontFamily: "'Dancing Script', cursive",
-        WebkitTextStroke: "0.8px #f8c8dc", // Borda rosa bem clara
+        WebkitTextStroke: "1px #ff69b4", // Borda rosa forte para destacar
         textShadow: "2px 2px 6px rgba(0, 0, 0, 0.3)" // Sombra suave
       }}
     >
@@ -91,15 +85,21 @@ function App() {
       className="text-lg uppercase tracking-widest text-white -mt-2"
       style={{
         fontFamily: "'Playfair Display', serif",
-        WebkitTextStroke: "0.5px #f8c8dc", // Borda rosa bem clara
+        WebkitTextStroke: "0.8px #ff69b4", // Mesma borda rosa
         textShadow: "1px 1px 4px rgba(0, 0, 0, 0.3)" // Sombra suave
       }}
     >
       Lash Designer
     </p>
   </div>
-</div>
 
+  {/* Imagem da dona do Studio */}
+  <img 
+    src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" 
+    alt="Foto da dona do Studio" 
+    className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg"
+  />
+</div>
 </div>
 
       {/* Seção de Vantagens */}

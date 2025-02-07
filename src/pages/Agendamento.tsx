@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Agendamento() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setShowNavbar(false); // Some ao rolar para baixo
+      } else {
+        setShowNavbar(true); // Aparece ao rolar para cima
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800">
-      {/* Barra de Navegação Fixa */}
-      <div className="fixed top-0 left-0 w-full bg-pink-200 shadow-md py-4 px-6 flex justify-between items-center z-50">
+      {/* Barra de Navegação que some ao rolar */}
+      <div className={`fixed top-0 left-0 w-full bg-pink-200 shadow-md py-4 px-6 flex justify-between items-center z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"}`}>
         <button onClick={() => navigate(-1)} className="text-pink-600 text-2xl font-bold">
           ←
         </button>

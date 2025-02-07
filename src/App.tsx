@@ -64,13 +64,42 @@ function App() {
         </div>
 
 {/* Foto da Dona do Studio */}
-<div className="flex flex-col items-center py-8 relative">
-  <img src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" alt="Foto da dona do Studio" className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
-  <div className="absolute bottom-0 left-0 right-0 bg-gray-900 bg-opacity-50 p-2 text-white text-center">
-    <p className="text-lg font-semibold" style={{ fontFamily: 'Dancing Script, cursive' }}>Jeusilayne</p>
-    <p className="text-sm">Lash Designer</p>
+<div className="relative flex justify-center py-8">
+  {/* Imagem da dona do Studio */}
+  <img 
+    src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" 
+    alt="Foto da dona do Studio" 
+    className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg"
+  />
+
+  {/* Texto sobreposto na foto */}
+  <div className="absolute top-1/3 text-center">
+    {/* Nome "Jeusilayne" em cursivo com borda */}
+    <p 
+      className="text-5xl font-bold text-white relative"
+      style={{
+        fontFamily: "'Dancing Script', cursive",
+        WebkitTextStroke: "0.8px #f8c8dc", // Borda rosa bem clara
+        textShadow: "2px 2px 6px rgba(0, 0, 0, 0.3)" // Sombra suave
+      }}
+    >
+      Jeusilayne
+    </p>
+
+    {/* Texto "Lash Designer" abaixo, mais refinado */}
+    <p 
+      className="text-lg uppercase tracking-widest text-white -mt-2"
+      style={{
+        fontFamily: "'Playfair Display', serif",
+        WebkitTextStroke: "0.5px #f8c8dc", // Borda rosa bem clara
+        textShadow: "1px 1px 4px rgba(0, 0, 0, 0.3)" // Sombra suave
+      }}
+    >
+      Lash Designer
+    </p>
   </div>
 </div>
+
 </div>
 
       {/* Seção de Vantagens */}

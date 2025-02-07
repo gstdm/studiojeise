@@ -32,7 +32,6 @@ function App() {
             <li><a href="/#/modelos">Ver Modelos</a></li>
             <li><a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer">Agendar Horário</a></li>
             <li><a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="/#/historia">História</a></li>
           </ul>
         </div>
       )}
@@ -121,7 +120,7 @@ function App() {
 
       {/* Botão Pré e Pós Agendamento */}
       <div className="py-8 flex justify-center">
-        <a href="/#" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
+        <a href="/#/agendamento" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
           Leia o Pré e o Pós Agendamento
         </a>
       </div>

@@ -67,26 +67,36 @@ function App() {
 <div className="flex flex-col items-center py-8 relative">
 
   {/* Espaço extra para o texto antes da foto */}
-  <div className="mb-4 text-center">
-    {/* Nome "Jeusilayne" em cursivo com borda preta fininha */}
+  <div className="mb-4 text-center relative">
+    {/* Nome "Jeusilayne" em cursivo, preto com uma borda externa branca */}
     <p 
-      className="text-5xl font-bold text-white relative"
+      className="text-5xl font-bold text-black relative"
       style={{
         fontFamily: "'Dancing Script', cursive",
-        WebkitTextStroke: "0.5px black", // Borda preta fininha
-        textShadow: "2px 2px 6px rgba(0, 0, 0, 0.3)" // Sombra suave
+        textShadow: `
+          -2px -2px 0 white,  
+          2px -2px 0 white,  
+          -2px 2px 0 white,  
+          2px 2px 0 white,
+          0px 0px 6px rgba(255, 255, 255, 0.5)  
+        ` // Cria uma borda externa ao redor do texto
       }}
     >
       Jeusilayne
     </p>
 
-    {/* Texto "Lash Designer" abaixo, mais refinado, sem sobrepor */}
+    {/* Texto "Lash Designer" abaixo, refinado, com borda externa branca */}
     <p 
-      className="text-lg uppercase tracking-widest text-white -mt-2"
+      className="text-lg uppercase tracking-widest text-black -mt-2"
       style={{
         fontFamily: "'Playfair Display', serif",
-        WebkitTextStroke: "0.3px black", // Borda preta ainda mais fina
-        textShadow: "1px 1px 4px rgba(0, 0, 0, 0.3)" // Sombra suave
+        textShadow: `
+          -1px -1px 0 white,  
+          1px -1px 0 white,  
+          -1px 1px 0 white,  
+          1px 1px 0 white,
+          0px 0px 4px rgba(255, 255, 255, 0.5)
+        ` // Mesma técnica para a borda externa
       }}
     >
       Lash Designer
@@ -100,6 +110,7 @@ function App() {
     className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg"
   />
 </div>
+
 </div>
 
       {/* Seção de Vantagens */}

@@ -63,54 +63,20 @@ function App() {
           </a>
         </div>
 
-{/* Contêiner principal para organizar os elementos */}
 <div className="flex flex-col items-center py-8 relative">
-
-  {/* Espaço extra para o texto antes da foto */}
   <div className="mb-4 text-center relative">
-    {/* Nome "Jeusilayne" em cursivo, preto com uma borda externa branca */}
-    <p 
-      className="text-5xl font-bold text-black relative"
-      style={{
-        fontFamily: "'Dancing Script', cursive",
-        textShadow: `
-          -2px -2px 0 white,  
-          2px -2px 0 white,  
-          -2px 2px 0 white,  
-          2px 2px 0 white,
-          0px 0px 6px rgba(255, 255, 255, 0.5)  
-        ` // Cria uma borda externa ao redor do texto
-      }}
-    >
+    <p className="text-5xl font-bold text-pink-800 relative"
+      style={{ fontFamily: "'Dancing Script', cursive", textShadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white" }}>
       Jeusilayne
     </p>
-
-    {/* Texto "Lash Designer" abaixo, refinado, com borda externa branca */}
-    <p 
-      className="text-lg uppercase tracking-widest text-black -mt-2"
-      style={{
-        fontFamily: "'Playfair Display', serif",
-        textShadow: `
-          -1px -1px 0 white,  
-          1px -1px 0 white,  
-          -1px 1px 0 white,  
-          1px 1px 0 white,
-          0px 0px 4px rgba(255, 255, 255, 0.5)
-        ` // Mesma técnica para a borda externa
-      }}
-    >
+    <p className="text-lg uppercase tracking-widest text-pink-800 -mt-2"
+      style={{ fontFamily: "'Playfair Display', serif", textShadow: "-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white" }}>
       Lash Designer
     </p>
   </div>
-
-  {/* Imagem da dona do Studio */}
-  <img 
-    src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" 
-    alt="Foto da dona do Studio" 
-    className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg"
-  />
+  <img src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" alt="Foto da dona do Studio"
+    className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
 </div>
-
 </div>
 
       {/* Seção de Vantagens */}

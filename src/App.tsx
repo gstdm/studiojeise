@@ -68,23 +68,25 @@ function App() {
 
   {/* Espaço extra para o texto antes da foto */}
   <div className="mb-4 text-center">
-    {/* Nome "Jeusilayne" em cursivo com sombra */}
+    {/* Nome "Jeusilayne" em cursivo com borda preta fininha */}
     <p 
       className="text-5xl font-bold text-white relative"
       style={{
         fontFamily: "'Dancing Script', cursive",
-        textShadow: "2px 2px 6px rgba(0, 0, 0, 0.3)" // Apenas sombra suave
+        WebkitTextStroke: "0.5px black", // Borda preta fininha
+        textShadow: "2px 2px 6px rgba(0, 0, 0, 0.3)" // Sombra suave
       }}
     >
       Jeusilayne
     </p>
 
-    {/* Texto "Lash Designer" abaixo, mais refinado */}
+    {/* Texto "Lash Designer" abaixo, mais refinado, sem sobrepor */}
     <p 
       className="text-lg uppercase tracking-widest text-white -mt-2"
       style={{
         fontFamily: "'Playfair Display', serif",
-        textShadow: "1px 1px 4px rgba(0, 0, 0, 0.3)" // Apenas sombra suave
+        WebkitTextStroke: "0.3px black", // Borda preta ainda mais fina
+        textShadow: "1px 1px 4px rgba(0, 0, 0, 0.3)" // Sombra suave
       }}
     >
       Lash Designer

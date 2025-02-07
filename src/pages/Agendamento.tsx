@@ -8,13 +8,9 @@ function Agendamento() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f5c6d6] to-[#e8a6bc] px-6 py-8">
       {/* Barra de Navegação */}
-      <div className="bg-[#f8d7e3] shadow-md py-4 px-6 flex justify-between items-center rounded-md">
-        <button onClick={() => navigate(-1)} className="text-[#b73460] text-2xl font-bold">
-          ←
-        </button>
-        <button onClick={() => setMenuOpen(!menuOpen)} className="text-[#b73460] text-2xl font-bold">
-          ☰
-        </button>
+      <div className="flex justify-between items-center p-4 bg-pink-200">
+        <button onClick={() => navigate(-1)} className="text-2xl">←</button>
+        <button onClick={toggleMenu} className="text-2xl">☰</button>
       </div>
 
       {/* Menu Lateral */}

@@ -26,7 +26,6 @@ function Modelos() {
             <li className="text-blue-600 text-3xl font-bold">Ver Modelos</li>
             <li><a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer">Agendar Horário</a></li>
             <li><a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="/#/historia">História</a></li>
             <li><a href="/#/">Tela Inicial</a></li>
           </ul>
         </div>

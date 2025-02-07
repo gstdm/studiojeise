@@ -64,7 +64,10 @@ function App() {
         </div>
 
 <div className="flex flex-col items-center py-8 relative">
-  <div className="mb-4 text-center relative">
+<div className="flex flex-col items-center py-8 relative">
+  <img src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" alt="Foto da dona do Studio"
+    className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
+  <div className="mt-4 text-center">
     <p className="text-5xl font-bold text-pink-800 relative"
       style={{ fontFamily: "'Dancing Script', cursive", textShadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white" }}>
       Jeusilayne
@@ -74,8 +77,6 @@ function App() {
       Lash Designer
     </p>
   </div>
-  <img src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" alt="Foto da dona do Studio"
-    className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
 </div>
 </div>
 

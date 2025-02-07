@@ -6,7 +6,7 @@ function Agendamento() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f5c6d6] to-[#e8a6bc] px-6 py-8">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800">
       {/* Barra de Navegação */}
       <div className="flex justify-between items-center p-4 bg-pink-200">
         <button onClick={() => navigate(-1)} className="text-2xl">←</button>

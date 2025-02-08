@@ -122,7 +122,6 @@ function App() {
       <div className="text-center py-4">
         <p className="text-sm text-gray-500">*As fotos exibidas no site foram tiradas pela própria dona do Studio, garantindo um registro autêntico da experiência.</p>
       </div>
-    </div>
   );
 }
 

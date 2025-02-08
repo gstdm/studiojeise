@@ -118,10 +118,9 @@ function Modelos() {
         <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-green-500 hover:bg-green-600 text-white">
           Agendar Horário
         </a>
-        <a href="/#/agendamento" onclick="setTimeout(() => { window.scrollTo(0, 0); }, 100);" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-black text-white hover:bg-gray-800">
+        <a onclick="location.href='/#/agendamento'; setTimeout(() => { window.scrollTo(0, 0); }, 100);" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-black text-white hover:bg-gray-800">
   Leia o Pré e o Pós Agendamento
 </a>
-
 
       </div>
     </div>

@@ -5,13 +5,16 @@ function Agendamento() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800">
-      
       {/* Barra de Navegação */}
       <div className="flex justify-between items-center p-4 bg-pink-200">
         <button onClick={() => navigate(-1)} className="text-2xl">←</button>

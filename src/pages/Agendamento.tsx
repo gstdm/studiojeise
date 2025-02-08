@@ -67,6 +67,7 @@ function Agendamento() {
           <p><strong className="text-pink-700">Não consuma bebidas com cafeína antes da sessão.</strong><br/> A cafeína pode causar tremores nos olhos e dificultar a aplicação.</p>
           <p><strong className="text-pink-700">Se tiver filhos pequenos, traga um acompanhante.</strong><br/> O procedimento exige que você fique de olhos fechados, então é essencial um apoio para cuidar das crianças.</p>
           <p><strong className="text-pink-700">Evite atrasos.</strong><br/> Respeite o horário agendado para garantir um atendimento tranquilo e bem feito.</p>
+          <p><strong className="text-pink-700">O procedimento é demorado.</strong><br/>O procedimento de extensão de cílios dura, em média, de 1 hora e 30 minutos a 2 horas, dependendo do modelo escolhido e da quantidade de fios aplicados.</p>
         </div>
 
         <h1 className="text-pink-700 text-3xl font-bold border-b border-pink-400 pb-2 mt-12 text-center">Pós Agendamento</h1>

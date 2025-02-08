@@ -46,42 +46,40 @@ function App() {
 
       {/* Botões principais */}
       <div className="flex flex-col items-center py-12">
-  <div className="flex justify-center gap-8">
-    <a href="/#/modelos" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
-      Ver Modelos
-    </a>
-    <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white">
-      Agendar Horário
-    </a>
-  </div>
+        <div className="flex justify-center gap-8">
+          <a href="/#/modelos" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
+            Ver Modelos
+          </a>
+          <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white">
+            Agendar Horário
+          </a>
+        </div>
 
-  {/* Botões Ver Localização e Pré/Pós Agendamento */}
-  <div className="flex justify-center gap-8 mt-8">
-    <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}>
-      Ver Localização
-    </a>
-    <a href="/#/agendamento" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
-      Leia o Pré e o Pós Agendamento
-    </a>
-  </div>
-</div>
-      
+        {/* Botões Ver Localização e Pré/Pós Agendamento */}
+        <div className="flex justify-center gap-8 mt-8">
+          <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}>
+            Ver Localização
+          </a>
+          <a href="/#/agendamento" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
+            Leia o Pré e o Pós Agendamento
+          </a>
+        </div>
+      </div>
 
-<div className="flex flex-col items-center py-8 relative">
-  <img src="https://i.ibb.co/svZKtVWC/Screenshot-20250206-195243.jpg" alt="Foto da dona do Studio"
-    className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
-  <div className="mt-4 text-center">
-    <p className="text-5xl font-bold text-pink-800 relative"
-      style={{ fontFamily: "'Dancing Script', cursive", textShadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white" }}>
-      Jeusilayne
-    </p>
-    <p className="text-lg uppercase tracking-widest text-pink-800 -mt-2"
-      style={{ fontFamily: "'Playfair Display', serif", textShadow: "-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white" }}>
-      Lash Designer
-    </p>
-  </div>
-</div>
-</div>
+      <div className="flex flex-col items-center py-8 relative">
+        <img src="https://i.ibb.co/svZKtVWC/Screenshot-20250206-195243.jpg" alt="Foto da dona do Studio"
+          className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
+        <div className="mt-4 text-center">
+          <p className="text-5xl font-bold text-pink-800 relative"
+            style={{ fontFamily: "'Dancing Script', cursive", textShadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white" }}>
+            Jeusilayne
+          </p>
+          <p className="text-lg uppercase tracking-widest text-pink-800 -mt-2"
+            style={{ fontFamily: "'Playfair Display', serif", textShadow: "-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white" }}>
+            Lash Designer
+          </p>
+        </div>
+      </div>
 
       {/* Seção de Vantagens */}
       <div className="py-12">
@@ -114,7 +112,6 @@ function App() {
             <img src="https://i.ibb.co/mrdV0dRr/Screenshot-20250203-185955.jpg" alt="Imagem 4" className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400" />
             <p className="text-lg">Resultados duradouros, com manutenção periódica que mantém o visual sempre perfeito.</p>
           </div>
-          
         </div>
       </div>
 
@@ -122,6 +119,7 @@ function App() {
       <div className="text-center py-4">
         <p className="text-sm text-gray-500">*As fotos exibidas no site foram tiradas pela própria dona do Studio, garantindo um registro autêntico da experiência.</p>
       </div>
+    </div>
   );
 }
 

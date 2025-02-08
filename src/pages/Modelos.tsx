@@ -53,7 +53,7 @@ function Modelos() {
       <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8">
         {[
           { nome: "Fio a Fio", preco: "R$90,00", descricao: "Ideal para quem deseja um olhar realçado, mas discreto.", img: "https://i.ibb.co/HTxnhWy4/Screenshot-20250204-172946.jpg" },
-          { nome: "Volume Brasileiro", preco: "R$90,00", descricao: "Perfeito para quem gosta de cílios mais cheios e bem alinhados.", img: "https://i.ibb.co/VY1S5DM6/IMG-20241220-WA0211.jpg" },
+          { nome: "Volume Brasileiro", preco: "R$90,00", descricao: "Perfeito para quem gosta de cílios mais cheios e bem alinhados.", img: "https://i.ibb.co/Kz8KPxs4/IMG-20250206-WA0093.jpg" },
           { nome: "Volume Egípcio", preco: "R$90,00", descricao: "Efeito sofisticado e marcante, com fios longos e bem definidos.", img: "https://i.ibb.co/SDGTCQgn/IMG-20250123-WA0050-2.jpg" },
           { nome: "Fox Eyes", preco: "R$100,00", descricao: "Alonga e levanta o olhar, inspirado no efeito das raposas.", img: "https://i.ibb.co/MD6N1r0t/IMG-20250204-174404.jpg" },
           { nome: "Volume Russo", preco: "R$100,00", descricao: "Para quem ama um olhar intenso e super volumoso.", img: "https://i.ibb.co/p6VHdFcK/Screenshot-20250204-174706.jpg" }

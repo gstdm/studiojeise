@@ -56,7 +56,7 @@ function App() {
         </div>
 
         {/* Botões Ver Localização e Pré/Pós Agendamento */}
-        <div className="flex justify-center gap-8 mt-8">
+        <div className="flex flex-col items-center py-12">
           <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}>
             Ver Localização
           </a>

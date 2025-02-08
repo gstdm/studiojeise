@@ -46,24 +46,29 @@ function App() {
 
       {/* Botões principais */}
       <div className="flex flex-col items-center py-12">
-        <div className="flex justify-center gap-8">
-          <a href="/#/modelos" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
-            Ver Modelos
-          </a>
-          <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white">
-            Agendar Horário
-          </a>
-        </div>
+  <div className="flex justify-center gap-8">
+    <a href="/#/modelos" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-pink-500 hover:bg-pink-600 text-white'}`}>
+      Ver Modelos
+    </a>
+    <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white">
+      Agendar Horário
+    </a>
+  </div>
 
-        {/* Botão Ver Localização */}
-        <div className="py-8">
-          <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}>
-            Ver Localização
-          </a>
-        </div>
+  {/* Botões Ver Localização e Pré/Pós Agendamento */}
+  <div className="flex justify-center gap-8 mt-8">
+    <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}>
+      Ver Localização
+    </a>
+    <a href="/#/agendamento" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
+      Leia o Pré e o Pós Agendamento
+    </a>
+  </div>
+</div>
+      
 
 <div className="flex flex-col items-center py-8 relative">
-  <img src="https://i.ibb.co/v4srFYNS/IMG-20250206-115702.jpg" alt="Foto da dona do Studio"
+  <img src="https://i.ibb.co/svZKtVWC/Screenshot-20250206-195243.jpg" alt="Foto da dona do Studio"
     className="w-72 h-102 object-cover rounded-lg border-4 border-pink-400 shadow-lg" />
   <div className="mt-4 text-center">
     <p className="text-5xl font-bold text-pink-800 relative"
@@ -116,13 +121,6 @@ function App() {
       {/* Frase sobre as fotos */}
       <div className="text-center py-4">
         <p className="text-sm text-gray-500">*As fotos exibidas no site foram tiradas pela própria dona do Studio, garantindo um registro autêntico da experiência.</p>
-      </div>
-
-      {/* Botão Pré e Pós Agendamento */}
-      <div className="py-8 flex justify-center">
-        <a href="/#/agendamento" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
-          Leia o Pré e o Pós Agendamento
-        </a>
       </div>
     </div>
   );

@@ -2,58 +2,33 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Agendamento() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(true);
 
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setShowNavbar(false); // Some ao rolar para baixo
-      } else {
-        setShowNavbar(true); // Aparece ao rolar para cima
-      }
-      lastScrollY = window.scrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800">
-      {/* Barra de Navegação que some ao rolar */}
-      <div className={`fixed top-0 left-0 w-full bg-pink-200 shadow-md py-4 px-6 flex justify-between items-center z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"}`}>
-        <button onClick={() => navigate(-1)} className="text-pink-600 text-2xl font-bold">
-          ←
-        </button>
-        <button onClick={() => setMenuOpen(!menuOpen)} className="text-pink-600 text-2xl font-bold">
-          ☰
-        </button>
+      
+      {/* Barra de Navegação */}
+      <div className="flex justify-between items-center p-4 bg-pink-200">
+        <button onClick={() => navigate(-1)} className="text-2xl">←</button>
+        <button onClick={toggleMenu} className="text-2xl">☰</button>
       </div>
 
       {/* Menu Lateral */}
-      {menuOpen && (
-        <div className="fixed inset-y-0 right-0 w-64 bg-pink-200 shadow-lg border-l border-pink-300 z-50 overflow-auto">
-          <button onClick={() => setMenuOpen(false)} className="absolute top-4 right-6 text-pink-600 text-3xl">
-            ✖
-          </button>
-          <div className="mt-12 space-y-6 text-pink-600 text-xl text-center px-4">
-            <button onClick={() => { navigate("/modelos"); setMenuOpen(false); }} className="block hover:text-pink-700">
-              Ver Modelos
-            </button>
-            <button onClick={() => { navigate("/agendar"); setMenuOpen(false); }} className="block hover:text-pink-700">
-              Agendar Horário
-            </button>
-            <a href="https://www.instagram.com/seuinstagram" className="block hover:text-pink-700" target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-            <button onClick={() => { navigate("/"); setMenuOpen(false); }} className="block hover:text-pink-700">
-              Tela Inicial
-            </button>
-          </div>
+      {isMenuOpen && (
+        <div className="fixed top-0 right-0 w-64 h-full shadow-lg z-50 flex flex-col items-center bg-opacity-95 bg-white">
+          <button onClick={toggleMenu} className="absolute top-4 right-6 text-3xl">✖</button>
+          <ul className="space-y-6 text-center text-2xl mt-16">
+            <li className="text-blue-600 text-3xl font-bold">Pré e Pós Agendamento</li>
+            <li><a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer">Agendar Horário</a></li>
+            <li><a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="/#/">Tela Inicial</a></li>
+            <li><a href="/#/modelos">Ver Modelos</a></li>
+          </ul>
         </div>
       )}
 
@@ -82,7 +57,7 @@ function Agendamento() {
 
         <h2 className="text-pink-700 text-2xl font-bold mt-12 text-center">Observação Importante</h2>
         <p className="mt-4 text-lg text-center">
-          <strong className="text-pink-700">A má higienização pode causar blefarite!</strong>  
+          <strong className="text-pink-700">A má higienização pode causar blefarite! </strong>  
           Blefarite é uma inflamação na borda das pálpebras que pode causar coceira, vermelhidão e descamação.  
           Para evitar, mantenha os cílios sempre limpos e use produtos adequados.
         </p>

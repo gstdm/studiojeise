@@ -55,15 +55,15 @@ function App() {
           </a>
         </div>
 
-        {/* Botões Ver Localização e Pré/Pós Agendamento */}
-        <div className="flex flex-col items-center py-12">
-          <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}>
-            Ver Localização
-          </a>
-          <a href="/#/agendamento" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
-            Leia o Pré e o Pós Agendamento
-          </a>
-        </div>
+{/* Botões Ver Localização e Pré/Pós Agendamento */}
+<div className="flex justify-center gap-8 mt-8 px-4">
+  <a href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}>
+    Ver Localização
+  </a>
+  <a href="/#/agendamento" className={`px-8 py-3 rounded-lg text-xl font-medium transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-black text-white hover:bg-gray-800'}`}>
+    Leia o Pré e o Pós Agendamento
+  </a>
+</div>
       </div>
 
       <div className="flex flex-col items-center py-8 relative">

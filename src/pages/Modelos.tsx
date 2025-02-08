@@ -37,7 +37,18 @@ function Modelos() {
           Modelos de Cílios
         </h1>
       </div>
-
+{/* Informação sobre promoções */}
+<p className="text-sm text-gray-600 text-center mt-4 max-w-md mx-auto">
+  Os preços no site são fixos. Em caso de promoções, verificar com a{" "}
+  <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+    dona do studio
+  </a>{" "}
+  ou no{" "}
+  <a href="https://www.instagram.com/studio_jeise.lashes" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+    Instagram do studio
+  </a>.
+</p>
+      
       {/* Modelos de Cílios */}
       <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8">
         {[
@@ -57,18 +68,7 @@ function Modelos() {
           </div>
         ))}
       </div>
-{/* Informação sobre promoções */}
-<p className="text-sm text-gray-600 text-center mt-4">
-  Os preços no site são fixos. Em caso de promoções, verificar com a{" "}
-  <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
-    dona do studio
-  </a>{" "}
-  ou no{" "}
-  <a href="https://www.instagram.com/studio_jeise.lashes" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
-    Instagram do studio
-  </a>.
-</p>
-              
+      
       {/* Separação */}
       <div className="py-12"></div>
 

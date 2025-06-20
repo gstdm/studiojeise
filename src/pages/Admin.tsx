@@ -52,7 +52,7 @@ export default function Admin() {
   }, []);
 
   const fazerLogin = () => {
-    if (usuarioInput.trim() === "jeise" && senhaInput.trim() === "123456") {
+    if (usuarioInput.trim() === "Jeise" && senhaInput.trim() === "123456") {
       setLogado(true);
       setSalvoComSucesso(false);
       setErroSalvar(false);

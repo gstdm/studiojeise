@@ -1,49 +1,33 @@
 import React, { useEffect, useState } from "react";
 
-const URL_API = "https://jeiselashes.squareweb.app";
-
-type Modelo = {
-  nome: string;
-  preco: string;
-  precoPromocional?: string;
-  descricao: string;
-  img: string;
-};
-
-type Servico = {
-  nome: string;
-  preco: string;
-  precoPromocional?: string;
-  descricao: string;
-  img: string;
-};
-
-type ConteudoSite = {
-  usuario: string;
-  senha: string;
-  promocaoAtiva: boolean;
-  modelos: Modelo[];
-  servicosAdicionais: Servico[];
-};
-
 function Admin() {
-  const [conteudo, setConteudo] = useState<ConteudoSite | null>(null);
-  const [logado, setLogado] = useState(false);
   const [usuarioInput, setUsuarioInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
-  const [editando, setEditando] = useState(false);
+  const [logado, setLogado] = useState(false);
+  const [conteudo, setConteudo] = useState(null);
   const [jsonEdit, setJsonEdit] = useState("");
+  const [salvando, setSalvando] = useState(false);
+  const [mensagem, setMensagem] = useState("");
+
+  const URL_API = "https://jeiselashes.squareweb.app";
 
   useEffect(() => {
     fetch(`${URL_API}/api/conteudo`)
       .then((res) => res.json())
       .then((data) => setConteudo(data))
-      .catch((err) => console.error("Erro ao carregar dados:", err));
+      .catch((err) => console.error("Erro ao carregar conteúdo:", err));
   }, []);
 
   const fazerLogin = () => {
-    if (!conteudo) return alert("Conteúdo não carregado ainda");
-    if (usuarioInput === conteudo.usuario && senhaInput === conteudo.senha) {
+    if (!conteudo || !conteudo.login) {
+      alert("Aguarde o carregamento dos dados.");
+      return;
+    }
+
+    if (
+      usuarioInput.trim() === conteudo.login.usuario &&
+      senhaInput.trim() === conteudo.login.senha
+    ) {
       setLogado(true);
       setJsonEdit(JSON.stringify(conteudo, null, 2));
     } else {
@@ -51,50 +35,51 @@ function Admin() {
     }
   };
 
-  const salvarAlteracoes = () => {
+  const salvarAlteracoes = async () => {
     try {
-      const novoConteudo = JSON.parse(jsonEdit);
-      fetch(`${URL_API}/api/salvar`, {
+      setSalvando(true);
+      const atualizado = JSON.parse(jsonEdit);
+
+      const res = await fetch(`${URL_API}/api/conteudo`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(novoConteudo),
-      })
-        .then((res) => res.json())
-        .then((resp) => {
-          if (resp.ok) {
-            alert("Dados salvos com sucesso!");
-            setConteudo(novoConteudo);
-            setEditando(false);
-          } else {
-            alert("Erro ao salvar os dados");
-          }
-        });
-    } catch (error) {
-      alert("JSON inválido");
+        body: JSON.stringify(atualizado),
+      });
+
+      if (res.ok) {
+        setMensagem("Conteúdo salvo com sucesso!");
+        setTimeout(() => setMensagem(""), 3000);
+      } else {
+        throw new Error("Erro ao salvar.");
+      }
+    } catch (err) {
+      alert("Erro ao salvar alterações: " + err.message);
+    } finally {
+      setSalvando(false);
     }
   };
 
   if (!logado) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800 p-6">
-        <h1 className="text-4xl font-bold mb-8">Painel Admin - Login</h1>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-pink-100 px-4">
+        <h1 className="text-3xl font-bold mb-6">Painel Administrativo</h1>
         <input
           type="text"
           placeholder="Usuário"
-          className="mb-4 p-2 rounded border border-pink-400 w-64"
           value={usuarioInput}
           onChange={(e) => setUsuarioInput(e.target.value)}
+          className="p-3 mb-4 border rounded w-full max-w-sm"
         />
         <input
           type="password"
           placeholder="Senha"
-          className="mb-6 p-2 rounded border border-pink-400 w-64"
           value={senhaInput}
           onChange={(e) => setSenhaInput(e.target.value)}
+          className="p-3 mb-4 border rounded w-full max-w-sm"
         />
         <button
           onClick={fazerLogin}
-          className="px-6 py-2 bg-pink-500 text-white rounded hover:bg-pink-600"
+          className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded"
         >
           Entrar
         </button>
@@ -103,56 +88,28 @@ function Admin() {
   }
 
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800">
-      <h1 className="text-4xl font-bold mb-6">Painel Admin</h1>
+    <div className="min-h-screen bg-pink-50 p-6">
+      <h1 className="text-3xl font-bold mb-4 text-center">Editar Conteúdo</h1>
 
-      {!editando ? (
-        <>
-          <pre className="whitespace-pre-wrap bg-white p-4 rounded shadow max-h-[60vh] overflow-auto">
-            {JSON.stringify(conteudo, null, 2)}
-          </pre>
-          <div className="mt-4 flex gap-4">
-            <button
-              onClick={() => setEditando(true)}
-              className="px-6 py-2 bg-pink-500 text-white rounded hover:bg-pink-600"
-            >
-              Editar JSON
-            </button>
-            <button
-              onClick={() => {
-                setLogado(false);
-                setUsuarioInput("");
-                setSenhaInput("");
-                setConteudo(null);
-              }}
-              className="px-6 py-2 bg-gray-400 text-black rounded hover:bg-gray-500"
-            >
-              Logout
-            </button>
-          </div>
-        </>
-      ) : (
-        <>
-          <textarea
-            className="w-full h-[60vh] p-4 rounded border border-pink-400 font-mono text-sm"
-            value={jsonEdit}
-            onChange={(e) => setJsonEdit(e.target.value)}
-          />
-          <div className="mt-4 flex gap-4">
-            <button
-              onClick={salvarAlteracoes}
-              className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-            >
-              Salvar
-            </button>
-            <button
-              onClick={() => setEditando(false)}
-              className="px-6 py-2 bg-gray-400 text-black rounded hover:bg-gray-500"
-            >
-              Cancelar
-            </button>
-          </div>
-        </>
+      <textarea
+        value={jsonEdit}
+        onChange={(e) => setJsonEdit(e.target.value)}
+        rows={30}
+        className="w-full p-4 border rounded font-mono text-sm"
+      />
+
+      <div className="mt-4 flex justify-center gap-4">
+        <button
+          onClick={salvarAlteracoes}
+          className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded"
+          disabled={salvando}
+        >
+          {salvando ? "Salvando..." : "Salvar Alterações"}
+        </button>
+      </div>
+
+      {mensagem && (
+        <p className="text-center text-green-600 mt-4 font-semibold">{mensagem}</p>
       )}
     </div>
   );

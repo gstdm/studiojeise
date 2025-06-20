@@ -77,48 +77,47 @@ function Modelos() {
       {/* Separação */}
       <div className="py-12"></div>
 
-      {/* Serviços Adicionais */}
-      <div className="text-center">
-        <h2 className="text-3xl font-bold border-4 border-pink-400 inline-block px-6 py-2 rounded-lg">
-          Serviços Adicionais
-        </h2>
-      </div>
+{/* Serviços Adicionais */}
+<div className="text-center">
+  <h2 className="text-3xl font-bold border-4 border-pink-400 inline-block px-6 py-2 rounded-lg">
+    Serviços Adicionais
+  </h2>
+</div>
 
-      <div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8 mt-8">
-        {servicos.map((servico: any, index: number) => (
-          <div
-            key={index}
-            className={`flex items-center gap-6 ${
-              index % 2 === 0 ? "" : "flex-row-reverse"
-            }`}
-          >
-            <img
-              src={servico.img}
-              alt={servico.nome}
-              className="w-44 h-45 object-cover rounded-full border-2 border-pink-400 shadow-lg"
-            />
-            <div>
-              <h2 className="text-2xl font-bold">{servico.nome}</h2>
-              {promocaoAtiva && servico.precoPromocional ? (
-                <p className="text-lg font-semibold text-red-600 line-through">
-                  {servico.preco}
-                </p>
-              ) : null}
-              <p
-                className={`text-lg font-semibold ${
-                  promocaoAtiva ? "text-green-700" : "text-pink-600"
-                }`}
-              >
-                {promocaoAtiva && servico.precoPromocional
-                  ? servico.precoPromocional
-                  : servico.preco}
-              </p>
-              <p className="text-lg">{servico.descricao}</p>
-            </div>
-          </div>
-        ))}
+<div className="max-w-7xl mx-auto space-y-12 px-6 sm:px-8 mt-8">
+  {servicos.map((servico: any, index: number) => (
+    <div
+      key={index}
+      className={`flex items-center gap-6 ${
+        index % 2 === 0 ? "" : "flex-row-reverse"
+      }`}
+    >
+      <img
+        src={servico.img}
+        alt={servico.nome}
+        className="w-44 h-45 object-cover rounded-full border-2 border-pink-400 shadow-lg"
+      />
+      <div>
+        <h2 className="text-2xl font-bold">{servico.nome}</h2>
+        {promocaoAtiva && servico.precoPromocional ? (
+          <p className="text-lg font-semibold text-red-600 line-through whitespace-pre-wrap">
+            {servico.preco}
+          </p>
+        ) : null}
+        <p
+          className={`text-lg font-semibold ${
+            promocaoAtiva ? "text-green-700" : "text-pink-600"
+          } whitespace-pre-wrap`}
+        >
+          {promocaoAtiva && servico.precoPromocional
+            ? servico.precoPromocional
+            : servico.preco}
+        </p>
+        <p className="text-lg whitespace-pre-wrap">{servico.descricao}</p>
       </div>
-
+    </div>
+  ))}
+</div>
       {/* Botões Finais */}
       <div className="py-8 flex flex-col items-center gap-4">
         <a

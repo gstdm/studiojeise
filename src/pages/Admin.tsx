@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const URL_API = "https://jeiselashes.squareweb.app";
 
@@ -31,6 +31,9 @@ export default function Admin() {
   const [modelos, setModelos] = useState<Modelo[]>([]);
   const [servicos, setServicos] = useState<Servico[]>([]);
 
+  // Para comparar e detectar alterações
+  const originalData = useRef<{ promocaoAtiva: boolean; modelos: Modelo[]; servicos: Servico[] } | null>(null);
+
   useEffect(() => {
     fetch(`${URL_API}/api/conteudo`)
       .then((res) => res.json())
@@ -38,6 +41,11 @@ export default function Admin() {
         setPromocaoAtiva(data.promocaoAtiva);
         setModelos(data.modelos || []);
         setServicos(data.servicosAdicionais || []);
+        originalData.current = {
+          promocaoAtiva: data.promocaoAtiva,
+          modelos: data.modelos || [],
+          servicos: data.servicosAdicionais || [],
+        };
         setDadosCarregados(true);
       })
       .catch(() => alert("Erro ao carregar os dados. Tente recarregar."));
@@ -99,6 +107,12 @@ export default function Admin() {
 
       if (res.ok) {
         setSalvoComSucesso(true);
+        // Atualiza a original para comparar futuras alterações
+        originalData.current = {
+          promocaoAtiva,
+          modelos: [...modelos],
+          servicos: [...servicos],
+        };
       } else {
         setErroSalvar(true);
       }
@@ -108,6 +122,17 @@ export default function Admin() {
       setSalvando(false);
       setTimeout(() => setSalvoComSucesso(false), 3000);
     }
+  };
+
+  // Função para comparar se houve alterações entre dados atuais e originais
+  const houveAlteracoes = () => {
+    if (!originalData.current) return false;
+    if (promocaoAtiva !== originalData.current.promocaoAtiva) return true;
+    if (JSON.stringify(modelos) !== JSON.stringify(originalData.current.modelos))
+      return true;
+    if (JSON.stringify(servicos) !== JSON.stringify(originalData.current.servicos))
+      return true;
+    return false;
   };
 
   if (!logado) {
@@ -223,17 +248,19 @@ export default function Admin() {
                   type="text"
                   value={modelo.img}
                   onChange={(e) => alterarModelo(i, "img", e.target.value)}
-                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-6 focus:outline-none focus:ring-4 focus:ring-pink-500"
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-6 focus:outline-none focus:ring-4 focus:ring-pink-500 overflow-x-auto whitespace-nowrap"
+                  style={{ minWidth: "300px" }}
                 />
 
                 <label className="block font-semibold text-pink-700 mb-2">
                   Preço Normal
                 </label>
-                <input
-                  type="text"
+                <textarea
                   value={modelo.preco}
                   onChange={(e) => alterarModelo(i, "preco", e.target.value)}
-                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-2 focus:outline-none focus:ring-4 focus:ring-pink-500"
+                  rows={2}
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-2 focus:outline-none focus:ring-4 focus:ring-pink-500 resize-y whitespace-pre-wrap"
+                  placeholder="Preços (quebre linha para separar tipos de maquiagem)"
                 />
 
                 <label className="block font-semibold text-pink-700 mb-2">
@@ -256,7 +283,7 @@ export default function Admin() {
                   value={modelo.descricao}
                   onChange={(e) => alterarModelo(i, "descricao", e.target.value)}
                   rows={4}
-                  className="w-full rounded-xl border border-pink-300 px-4 py-2 resize-none focus:outline-none focus:ring-4 focus:ring-pink-500"
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 resize-y focus:outline-none focus:ring-4 focus:ring-pink-500 whitespace-pre-wrap"
                   placeholder="Descrição do modelo"
                 />
               </div>
@@ -302,17 +329,19 @@ export default function Admin() {
                   type="text"
                   value={servico.img}
                   onChange={(e) => alterarServico(i, "img", e.target.value)}
-                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-6 focus:outline-none focus:ring-4 focus:ring-pink-500"
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-6 focus:outline-none focus:ring-4 focus:ring-pink-500 overflow-x-auto whitespace-nowrap"
+                  style={{ minWidth: "300px" }}
                 />
 
                 <label className="block font-semibold text-pink-700 mb-2">
                   Preço Normal
                 </label>
-                <input
-                  type="text"
+                <textarea
                   value={servico.preco}
                   onChange={(e) => alterarServico(i, "preco", e.target.value)}
-                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-2 focus:outline-none focus:ring-4 focus:ring-pink-500"
+                  rows={2}
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-2 focus:outline-none focus:ring-4 focus:ring-pink-500 resize-y whitespace-pre-wrap"
+                  placeholder="Preços (quebre linha para separar tipos de maquiagem)"
                 />
 
                 <label className="block font-semibold text-pink-700 mb-2">
@@ -335,7 +364,7 @@ export default function Admin() {
                   value={servico.descricao}
                   onChange={(e) => alterarServico(i, "descricao", e.target.value)}
                   rows={4}
-                  className="w-full rounded-xl border border-pink-300 px-4 py-2 resize-none focus:outline-none focus:ring-4 focus:ring-pink-500"
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 resize-y focus:outline-none focus:ring-4 focus:ring-pink-500 whitespace-pre-wrap"
                   placeholder="Descrição do serviço"
                 />
               </div>
@@ -343,8 +372,8 @@ export default function Admin() {
           ))}
         </section>
 
-        {/* Botão salvar */}
-        <div className="max-w-sm mx-auto">
+        {/* Botões */}
+        <div className="max-w-sm mx-auto flex flex-col gap-4">
           <button
             onClick={salvarTudo}
             disabled={salvando}
@@ -356,14 +385,26 @@ export default function Admin() {
           >
             {salvando ? "Salvando..." : "Salvar Alterações"}
           </button>
-
+          
           {salvoComSucesso && (
-            <p className="text-green-700 mt-4 text-center font-semibold">
+            <p className="text-green-700 text-center font-semibold">
               Salvo com sucesso!
             </p>
           )}
+
+          {!houveAlteracoes() && salvoComSucesso && (
+            <button
+              onClick={() => {
+                window.location.href = "/modelos";
+              }}
+              className="w-full py-4 mt-4 rounded-3xl font-bold bg-green-600 hover:bg-green-700 text-white text-lg transition"
+            >
+              Ir para página de Modelos
+            </button>
+          )}
+
           {erroSalvar && (
-            <p className="text-red-600 mt-4 text-center font-semibold">
+            <p className="text-red-600 text-center font-semibold mt-2">
               Erro ao salvar. Tente novamente.
             </p>
           )}

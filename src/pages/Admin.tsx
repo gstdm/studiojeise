@@ -2,40 +2,19 @@ import React, { useEffect, useState } from "react";
 
 const URL_API = "https://jeiselashes.squareweb.app";
 
-type Modelo = {
-  nome: string;
-  preco: string;
-  precoPromocional?: string;
-  descricao: string;
-  img: string;
-};
-
-type Servico = {
-  nome: string;
-  preco: string;
-  descricao: string;
-  img: string;
-};
-
-type Conteudo = {
-  login: { usuario: string; senha: string };
-  promocaoAtiva: boolean;
-  modelos: Modelo[];
-  servicosAdicionais: Servico[];
-};
-
 export default function Admin() {
-  const [conteudo, setConteudo] = useState<Conteudo | null>(null);
+  const [conteudo, setConteudo] = useState(null);
   const [logado, setLogado] = useState(false);
   const [usuarioInput, setUsuarioInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
+  const [carregando, setCarregando] = useState(true);
   const [salvando, setSalvando] = useState(false);
   const [salvoComSucesso, setSalvoComSucesso] = useState(false);
   const [erroSalvar, setErroSalvar] = useState(false);
 
   const [promocaoAtiva, setPromocaoAtiva] = useState(false);
-  const [modelos, setModelos] = useState<Modelo[]>([]);
-  const [servicos, setServicos] = useState<Servico[]>([]);
+  const [modelos, setModelos] = useState([]);
+  const [servicos, setServicos] = useState([]);
 
   useEffect(() => {
     fetch(`${URL_API}/api/conteudo`)
@@ -45,8 +24,12 @@ export default function Admin() {
         setPromocaoAtiva(data.promocaoAtiva);
         setModelos(data.modelos);
         setServicos(data.servicosAdicionais);
+        setCarregando(false);
       })
-      .catch(() => alert("Erro ao carregar os dados. Tente recarregar."));
+      .catch(() => {
+        alert("Erro ao carregar os dados. Tente novamente mais tarde.");
+        setCarregando(false);
+      });
   }, []);
 
   const fazerLogin = () => {
@@ -59,67 +42,36 @@ export default function Admin() {
       senhaInput.trim() === conteudo.login.senha
     ) {
       setLogado(true);
-      setSalvoComSucesso(false);
-      setErroSalvar(false);
     } else {
       alert("Usuário ou senha incorretos");
     }
   };
 
-  const alterarModelo = (
-    index: number,
-    campo: keyof Modelo | "precoPromocional",
-    valor: string
-  ) => {
-    const novosModelos = [...modelos];
-    // @ts-ignore
-    novosModelos[index][campo] = valor;
-    setModelos(novosModelos);
-  };
-
-  const alterarServico = (
-    index: number,
-    campo: keyof Servico,
-    valor: string
-  ) => {
-    const novosServicos = [...servicos];
-    // @ts-ignore
-    novosServicos[index][campo] = valor;
-    setServicos(novosServicos);
-  };
-
-  const togglePromocao = () => {
-    setPromocaoAtiva(!promocaoAtiva);
-  };
-
-  const salvarTudo = async () => {
+  const salvarAlteracoes = async () => {
     setSalvando(true);
     setSalvoComSucesso(false);
     setErroSalvar(false);
-
-    const dadosSalvar = {
-      promocaoAtiva,
-      modelos,
-      servicosAdicionais: servicos,
-    };
-
     try {
-      const res = await fetch(`${URL_API}/api/salvar`, {
+      const response = await fetch(`${URL_API}/api/salvar`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dadosSalvar),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          promocaoAtiva,
+          modelos,
+          servicosAdicionais: servicos,
+        }),
       });
-
-      if (res.ok) {
+      if (response.ok) {
         setSalvoComSucesso(true);
       } else {
-        setErroSalvar(true);
+        throw new Error();
       }
     } catch {
       setErroSalvar(true);
     } finally {
       setSalvando(false);
-      setTimeout(() => setSalvoComSucesso(false), 3000);
     }
   };
 
@@ -146,9 +98,14 @@ export default function Admin() {
           />
           <button
             onClick={fazerLogin}
-            className="w-full bg-pink-600 text-white py-4 rounded-xl hover:bg-pink-700 transition text-xl font-semibold"
+            disabled={carregando}
+            className={`w-full py-4 rounded-xl text-white text-xl font-semibold transition ${
+              carregando
+                ? "bg-pink-400 cursor-not-allowed"
+                : "bg-pink-600 hover:bg-pink-700"
+            }`}
           >
-            Entrar
+            {carregando ? "Carregando..." : "Entrar"}
           </button>
         </div>
       </div>
@@ -156,183 +113,112 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100 p-6 overflow-auto">
-      <header className="flex justify-between items-center mb-6 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-pink-700">Painel Admin</h1>
+    <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-300 p-4 space-y-6">
+      <h2 className="text-3xl text-center font-bold text-pink-700 mb-4">
+        Painel de Edição
+      </h2>
+
+      <div className="bg-white p-4 rounded-2xl shadow-md">
+        <h3 className="text-xl font-bold mb-2">Promoção Ativa</h3>
         <button
-          onClick={() => {
-            setLogado(false);
-            setUsuarioInput("");
-            setSenhaInput("");
-            setSalvoComSucesso(false);
-            setErroSalvar(false);
-          }}
-          className="text-pink-600 hover:text-pink-800 font-semibold text-lg rounded-full p-2 border border-pink-300 hover:border-pink-600 transition"
-          aria-label="Sair"
+          onClick={() => setPromocaoAtiva(!promocaoAtiva)}
+          className={`w-full py-3 rounded-xl text-white text-lg font-semibold transition ${
+            promocaoAtiva ? "bg-green-500" : "bg-red-500"
+          }`}
         >
-          ✕
+          {promocaoAtiva ? "Ativada" : "Desativada"}
         </button>
-      </header>
+      </div>
 
-      <main className="max-w-3xl mx-auto space-y-8">
-        {/* Promoção */}
-        <section className="bg-white rounded-3xl shadow p-6">
-          <h2 className="text-xl font-semibold mb-4 text-pink-700">
-            Promoção Ativa
-          </h2>
-          <button
-            onClick={togglePromocao}
-            className={`relative inline-flex items-center h-10 rounded-full w-20 transition-colors duration-300 ${
-              promocaoAtiva ? "bg-green-500" : "bg-red-500"
-            }`}
-          >
-            <span
-              className={`inline-block w-9 h-9 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                promocaoAtiva ? "translate-x-10" : "translate-x-0"
-              }`}
+      <div className="bg-white p-4 rounded-2xl shadow-md">
+        <h3 className="text-xl font-bold mb-4">Modelos</h3>
+        {modelos.map((m, i) => (
+          <div key={i} className="mb-6">
+            <input
+              className="w-full mb-2 p-2 rounded-lg border border-pink-400"
+              value={m.nome}
+              onChange={(e) => {
+                const novos = [...modelos];
+                novos[i].nome = e.target.value;
+                setModelos(novos);
+              }}
+              placeholder="Nome"
             />
-          </button>
-        </section>
+            <input
+              className="w-full mb-2 p-2 rounded-lg border border-pink-400"
+              value={m.preco}
+              onChange={(e) => {
+                const novos = [...modelos];
+                novos[i].preco = e.target.value;
+                setModelos(novos);
+              }}
+              placeholder="Preço"
+            />
+            <textarea
+              className="w-full p-2 rounded-lg border border-pink-400"
+              value={m.descricao}
+              onChange={(e) => {
+                const novos = [...modelos];
+                novos[i].descricao = e.target.value;
+                setModelos(novos);
+              }}
+              placeholder="Descrição"
+            />
+          </div>
+        ))}
+      </div>
 
-        {/* Modelos */}
-        <section className="bg-white rounded-3xl shadow p-6 space-y-6">
-          <h2 className="text-xl font-semibold mb-4 text-pink-700">
-            Modelos de Cílios
-          </h2>
-          {modelos.map((modelo, i) => (
-            <div
-              key={i}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center border border-pink-300 rounded-2xl p-4"
-            >
-              <img
-                src={modelo.img}
-                alt={modelo.nome}
-                className="w-24 h-24 rounded-2xl object-cover border border-pink-400 shadow"
-              />
-              <div className="flex-1">
-                <label className="block font-semibold text-pink-700 mb-1">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  value={modelo.nome}
-                  onChange={(e) => alterarModelo(i, "nome", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
+      <div className="bg-white p-4 rounded-2xl shadow-md">
+        <h3 className="text-xl font-bold mb-4">Serviços Adicionais</h3>
+        {servicos.map((s, i) => (
+          <div key={i} className="mb-6">
+            <input
+              className="w-full mb-2 p-2 rounded-lg border border-pink-400"
+              value={s.nome}
+              onChange={(e) => {
+                const novos = [...servicos];
+                novos[i].nome = e.target.value;
+                setServicos(novos);
+              }}
+              placeholder="Nome"
+            />
+            <input
+              className="w-full mb-2 p-2 rounded-lg border border-pink-400"
+              value={s.preco}
+              onChange={(e) => {
+                const novos = [...servicos];
+                novos[i].preco = e.target.value;
+                setServicos(novos);
+              }}
+              placeholder="Preço"
+            />
+            <textarea
+              className="w-full p-2 rounded-lg border border-pink-400"
+              value={s.descricao}
+              onChange={(e) => {
+                const novos = [...servicos];
+                novos[i].descricao = e.target.value;
+                setServicos(novos);
+              }}
+              placeholder="Descrição"
+            />
+          </div>
+        ))}
+      </div>
 
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Preço Normal
-                </label>
-                <input
-                  type="text"
-                  value={modelo.preco}
-                  onChange={(e) => alterarModelo(i, "preco", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
+      <button
+        onClick={salvarAlteracoes}
+        disabled={salvando}
+        className="w-full py-4 mt-6 rounded-xl text-white text-xl font-bold transition bg-black hover:bg-gray-800"
+      >
+        {salvando ? "Salvando..." : salvoComSucesso ? "Salvo com sucesso!" : "Salvar Alterações"}
+      </button>
 
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Preço Promocional (Opcional)
-                </label>
-                <input
-                  type="text"
-                  value={modelo.precoPromocional ?? ""}
-                  onChange={(e) =>
-                    alterarModelo(i, "precoPromocional", e.target.value)
-                  }
-                  placeholder="Ex: R$75,00"
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
-
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Descrição
-                </label>
-                <textarea
-                  value={modelo.descricao}
-                  onChange={(e) => alterarModelo(i, "descricao", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600 resize-none"
-                  rows={3}
-                />
-              </div>
-            </div>
-          ))}
-        </section>
-
-        {/* Serviços */}
-        <section className="bg-white rounded-3xl shadow p-6 space-y-6">
-          <h2 className="text-xl font-semibold mb-4 text-pink-700">
-            Serviços Adicionais
-          </h2>
-          {servicos.map((servico, i) => (
-            <div
-              key={i}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center border border-pink-300 rounded-2xl p-4"
-            >
-              <img
-                src={servico.img}
-                alt={servico.nome}
-                className="w-24 h-24 rounded-2xl object-cover border border-pink-400 shadow"
-              />
-              <div className="flex-1">
-                <label className="block font-semibold text-pink-700 mb-1">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  value={servico.nome}
-                  onChange={(e) => alterarServico(i, "nome", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
-
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Preço
-                </label>
-                <input
-                  type="text"
-                  value={servico.preco}
-                  onChange={(e) => alterarServico(i, "preco", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
-
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Descrição
-                </label>
-                <textarea
-                  value={servico.descricao}
-                  onChange={(e) => alterarServico(i, "descricao", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600 resize-none"
-                  rows={3}
-                />
-              </div>
-            </div>
-          ))}
-        </section>
-
-        {/* Botão salvar */}
-        <div className="max-w-3xl mx-auto">
-          <button
-            disabled={salvando}
-            onClick={salvarTudo}
-            className={`w-full py-4 rounded-xl text-white font-semibold text-xl transition ${
-              salvando
-                ? "bg-pink-400 cursor-not-allowed"
-                : "bg-pink-600 hover:bg-pink-700"
-            }`}
-          >
-            {salvando ? "Salvando..." : "Salvar Alterações"}
-          </button>
-
-          {salvoComSucesso && (
-            <p className="text-green-700 mt-4 font-semibold text-center">
-              Salvo com sucesso!
-            </p>
-          )}
-          {erroSalvar && (
-            <p className="text-red-600 mt-4 font-semibold text-center">
-              Erro ao salvar. Tente novamente.
-            </p>
-          )}
-        </div>
-      </main>
+      {erroSalvar && (
+        <p className="text-red-600 text-center mt-2 font-medium">
+          Erro ao salvar. Tente novamente.
+        </p>
+      )}
     </div>
   );
 }

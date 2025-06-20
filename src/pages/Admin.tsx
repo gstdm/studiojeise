@@ -14,7 +14,7 @@ const handleModeloChange = (index, campo, valor) => { const novos = [...conteudo
 
 const handleServicoChange = (index, campo, valor) => { const novos = [...conteudo.servicosAdicionais]; novos[index][campo] = valor; setConteudo({ ...conteudo, servicosAdicionais: novos }); };
 
-const salvar = async () => { setSalvando(true); const res = await fetch(${URL_API}/api/conteudo, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(conteudo), }); if (res.ok) setMensagem("Alterações salvas com sucesso!"); else setMensagem("Erro ao salvar"); setTimeout(() => setMensagem(""), 3000); setSalvando(false); };
+const salvar = async () => { setSalvando(true); const res = await fetch(`${URL_API}/api/conteudo`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(conteudo), }); if (res.ok) setMensagem("Alterações salvas com sucesso!"); else setMensagem("Erro ao salvar"); setTimeout(() => setMensagem(""), 3000); setSalvando(false); };
 
 if (!logado) { return ( <div className="flex flex-col items-center justify-center min-h-screen bg-pink-100 px-4"> <h1 className="text-3xl font-bold mb-6">Painel Administrativo</h1> <input type="text" placeholder="Usuário" value={usuarioInput} onChange={(e) => setUsuarioInput(e.target.value)} className="p-3 mb-4 border rounded w-full max-w-sm" /> <input type="password" placeholder="Senha" value={senhaInput} onChange={(e) => setSenhaInput(e.target.value)} className="p-3 mb-4 border rounded w-full max-w-sm" /> <button
 onClick={fazerLogin}

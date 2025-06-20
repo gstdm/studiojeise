@@ -32,6 +32,7 @@ export default function Admin() {
   const [salvando, setSalvando] = useState(false);
   const [salvoComSucesso, setSalvoComSucesso] = useState(false);
   const [erroSalvar, setErroSalvar] = useState(false);
+
   const [promocaoAtiva, setPromocaoAtiva] = useState(false);
   const [modelos, setModelos] = useState<Modelo[]>([]);
   const [servicos, setServicos] = useState<Servico[]>([]);
@@ -71,6 +72,7 @@ export default function Admin() {
     valor: string
   ) => {
     const novosModelos = [...modelos];
+    // @ts-ignore
     novosModelos[index][campo] = valor;
     setModelos(novosModelos);
   };
@@ -81,6 +83,7 @@ export default function Admin() {
     valor: string
   ) => {
     const novosServicos = [...servicos];
+    // @ts-ignore
     novosServicos[index][campo] = valor;
     setServicos(novosServicos);
   };
@@ -122,35 +125,30 @@ export default function Admin() {
 
   if (!logado) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-pink-100 to-pink-300 p-6">
-        <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-md">
-          <h1 className="text-3xl font-bold mb-6 text-center text-pink-700">
-            Painel Admin Studio Jeise
+      <div className="min-h-screen flex items-center justify-center bg-pink-100 p-6">
+        <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm">
+          <h1 className="text-2xl font-bold text-center text-pink-700 mb-6">
+            Painel Admin
           </h1>
           <input
             type="text"
             placeholder="Usuário"
             value={usuarioInput}
             onChange={(e) => setUsuarioInput(e.target.value)}
-            className="w-full p-4 rounded-xl border border-pink-400 mb-4 focus:outline-none focus:ring-2 focus:ring-pink-600 text-lg"
+            className="w-full p-3 rounded-xl border border-pink-300 mb-4 focus:outline-none focus:ring-2 focus:ring-pink-600"
           />
           <input
             type="password"
             placeholder="Senha"
             value={senhaInput}
             onChange={(e) => setSenhaInput(e.target.value)}
-            className="w-full p-4 rounded-xl border border-pink-400 mb-6 focus:outline-none focus:ring-2 focus:ring-pink-600 text-lg"
+            className="w-full p-3 rounded-xl border border-pink-300 mb-6 focus:outline-none focus:ring-2 focus:ring-pink-600"
           />
           <button
             onClick={fazerLogin}
-            disabled={salvando}
-            className={`w-full py-4 rounded-xl text-white text-xl font-semibold transition ${
-              salvando
-                ? "bg-pink-400 cursor-not-allowed"
-                : "bg-pink-600 hover:bg-pink-700"
-            }`}
+            className="w-full bg-pink-600 text-white py-3 rounded-xl font-semibold hover:bg-pink-700 transition"
           >
-            {salvando ? "Carregando..." : "Entrar"}
+            Entrar
           </button>
         </div>
       </div>
@@ -158,183 +156,145 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100 p-6 overflow-auto">
-      <header className="flex justify-between items-center mb-6 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-pink-700">Painel Admin</h1>
-        <button
-          onClick={() => {
-            setLogado(false);
-            setUsuarioInput("");
-            setSenhaInput("");
-            setSalvoComSucesso(false);
-            setErroSalvar(false);
-          }}
-          className="text-pink-600 hover:text-pink-800 font-semibold text-lg rounded-full p-2 border border-pink-300 hover:border-pink-600 transition"
-          aria-label="Sair"
-        >
-          ✕
-        </button>
-      </header>
-
-      <main className="max-w-3xl mx-auto space-y-8">
-        {/* Promoção */}
-        <section className="bg-white rounded-3xl shadow p-6">
-          <h2 className="text-xl font-semibold mb-4 text-pink-700">
-            Promoção Ativa
-          </h2>
+    <div className="bg-gray-100 min-h-screen px-4 py-6">
+      <div className="max-w-xl mx-auto space-y-8">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-pink-700">Admin Studio Jeise</h1>
           <button
-            onClick={togglePromocao}
-            className={`relative inline-flex items-center h-10 rounded-full w-20 transition-colors duration-300 ${
-              promocaoAtiva ? "bg-green-500" : "bg-red-500"
-            }`}
+            onClick={() => {
+              setLogado(false);
+              setUsuarioInput("");
+              setSenhaInput("");
+            }}
+            className="text-sm text-pink-600 underline"
           >
-            <span
-              className={`inline-block w-9 h-9 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                promocaoAtiva ? "translate-x-10" : "translate-x-0"
-              }`}
-            />
+            Sair
           </button>
-        </section>
+        </div>
+
+        {/* Promoção */}
+        <div className="bg-white rounded-2xl shadow p-5">
+          <div className="flex justify-between items-center">
+            <h2 className="text-lg font-semibold text-pink-700">Promoção Ativa</h2>
+            <button
+              onClick={togglePromocao}
+              className={`w-14 h-7 rounded-full relative transition-all duration-300 ${
+                promocaoAtiva ? "bg-green-500" : "bg-red-500"
+              }`}
+            >
+              <div
+                className={`w-6 h-6 bg-white rounded-full absolute top-0.5 transition-transform ${
+                  promocaoAtiva ? "translate-x-7" : "translate-x-1"
+                }`}
+              />
+            </button>
+          </div>
+        </div>
 
         {/* Modelos */}
-        <section className="bg-white rounded-3xl shadow p-6 space-y-6">
-          <h2 className="text-xl font-semibold mb-4 text-pink-700">
-            Modelos de Cílios
-          </h2>
+        <div className="bg-white rounded-2xl shadow p-5">
+          <h2 className="text-lg font-semibold text-pink-700 mb-4">Modelos</h2>
           {modelos.map((modelo, i) => (
-            <div
-              key={i}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center border border-pink-300 rounded-2xl p-4"
-            >
+            <div key={i} className="mb-6 space-y-3">
               <img
                 src={modelo.img}
                 alt={modelo.nome}
-                className="w-24 h-24 rounded-2xl object-cover border border-pink-400 shadow"
+                className="w-full h-40 object-cover rounded-xl border border-pink-300"
               />
-              <div className="flex-1">
-                <label className="block font-semibold text-pink-700 mb-1">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  value={modelo.nome}
-                  onChange={(e) => alterarModelo(i, "nome", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
-
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Preço Normal
-                </label>
-                <input
-                  type="text"
-                  value={modelo.preco}
-                  onChange={(e) => alterarModelo(i, "preco", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
-
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Preço Promocional (Opcional)
-                </label>
-                <input
-                  type="text"
-                  value={modelo.precoPromocional ?? ""}
-                  onChange={(e) =>
-                    alterarModelo(i, "precoPromocional", e.target.value)
-                  }
-                  placeholder="Ex: R$75,00"
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
-
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Descrição
-                </label>
-                <textarea
-                  value={modelo.descricao}
-                  onChange={(e) => alterarModelo(i, "descricao", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600 resize-none"
-                  rows={3}
-                />
-              </div>
+              <input
+                type="text"
+                value={modelo.nome}
+                onChange={(e) => alterarModelo(i, "nome", e.target.value)}
+                className="w-full p-2 rounded-xl border border-pink-300"
+                placeholder="Nome"
+              />
+              <input
+                type="text"
+                value={modelo.preco}
+                onChange={(e) => alterarModelo(i, "preco", e.target.value)}
+                className="w-full p-2 rounded-xl border border-pink-300"
+                placeholder="Preço"
+              />
+              <input
+                type="text"
+                value={modelo.precoPromocional ?? ""}
+                onChange={(e) =>
+                  alterarModelo(i, "precoPromocional", e.target.value)
+                }
+                className="w-full p-2 rounded-xl border border-pink-300"
+                placeholder="Preço Promocional"
+              />
+              <textarea
+                rows={3}
+                value={modelo.descricao}
+                onChange={(e) => alterarModelo(i, "descricao", e.target.value)}
+                className="w-full p-2 rounded-xl border border-pink-300 resize-none"
+                placeholder="Descrição"
+              />
             </div>
           ))}
-        </section>
+        </div>
 
         {/* Serviços */}
-        <section className="bg-white rounded-3xl shadow p-6 space-y-6">
-          <h2 className="text-xl font-semibold mb-4 text-pink-700">
-            Serviços Adicionais
-          </h2>
+        <div className="bg-white rounded-2xl shadow p-5">
+          <h2 className="text-lg font-semibold text-pink-700 mb-4">Serviços</h2>
           {servicos.map((servico, i) => (
-            <div
-              key={i}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center border border-pink-300 rounded-2xl p-4"
-            >
+            <div key={i} className="mb-6 space-y-3">
               <img
                 src={servico.img}
                 alt={servico.nome}
-                className="w-24 h-24 rounded-2xl object-cover border border-pink-400 shadow"
+                className="w-full h-40 object-cover rounded-xl border border-pink-300"
               />
-              <div className="flex-1">
-                <label className="block font-semibold text-pink-700 mb-1">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  value={servico.nome}
-                  onChange={(e) => alterarServico(i, "nome", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
-
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Preço
-                </label>
-                <input
-                  type="text"
-                  value={servico.preco}
-                  onChange={(e) => alterarServico(i, "preco", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                />
-
-                <label className="block font-semibold text-pink-700 mt-3 mb-1">
-                  Descrição
-                </label>
-                <textarea
-                  value={servico.descricao}
-                  onChange={(e) => alterarServico(i, "descricao", e.target.value)}
-                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600 resize-none"
-                  rows={3}
-                />
-              </div>
+              <input
+                type="text"
+                value={servico.nome}
+                onChange={(e) => alterarServico(i, "nome", e.target.value)}
+                className="w-full p-2 rounded-xl border border-pink-300"
+                placeholder="Nome"
+              />
+              <input
+                type="text"
+                value={servico.preco}
+                onChange={(e) => alterarServico(i, "preco", e.target.value)}
+                className="w-full p-2 rounded-xl border border-pink-300"
+                placeholder="Preço"
+              />
+              <textarea
+                rows={3}
+                value={servico.descricao}
+                onChange={(e) => alterarServico(i, "descricao", e.target.value)}
+                className="w-full p-2 rounded-xl border border-pink-300 resize-none"
+                placeholder="Descrição"
+              />
             </div>
           ))}
-        </section>
+        </div>
 
-        {/* Botão salvar */}
-        <div className="max-w-3xl mx-auto">
+        {/* Salvar */}
+        <div>
           <button
             disabled={salvando}
             onClick={salvarTudo}
-            className={`w-full py-4 rounded-xl text-white font-semibold text-xl transition ${
+            className={`w-full py-3 rounded-xl text-white font-semibold text-lg transition ${
               salvando
-                ? "bg-pink-400 cursor-not-allowed"
+                ? "bg-pink-300 cursor-not-allowed"
                 : "bg-pink-600 hover:bg-pink-700"
             }`}
           >
             {salvando ? "Salvando..." : "Salvar Alterações"}
           </button>
-
           {salvoComSucesso && (
-            <p className="text-green-700 mt-4 font-semibold text-center">
+            <p className="text-green-700 mt-2 text-center font-medium">
               Salvo com sucesso!
             </p>
           )}
           {erroSalvar && (
-            <p className="text-red-600 mt-4 font-semibold text-center">
+            <p className="text-red-600 mt-2 text-center font-medium">
               Erro ao salvar. Tente novamente.
             </p>
           )}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

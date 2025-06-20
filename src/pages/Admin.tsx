@@ -26,6 +26,7 @@ type Conteudo = {
 
 export default function Admin() {
   const [conteudo, setConteudo] = useState<Conteudo | null>(null);
+  const [dadosCarregados, setDadosCarregados] = useState(false);
   const [logado, setLogado] = useState(false);
   const [usuarioInput, setUsuarioInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
@@ -45,18 +46,15 @@ export default function Admin() {
         setPromocaoAtiva(data.promocaoAtiva);
         setModelos(data.modelos);
         setServicos(data.servicosAdicionais);
+        setDadosCarregados(true);
       })
       .catch(() => alert("Erro ao carregar os dados. Tente recarregar."));
   }, []);
 
   const fazerLogin = () => {
-    if (!conteudo?.login) {
-      alert("Aguarde os dados carregarem");
-      return;
-    }
     if (
-      usuarioInput.trim() === conteudo.login.usuario &&
-      senhaInput.trim() === conteudo.login.senha
+      usuarioInput.trim() === conteudo?.login.usuario &&
+      senhaInput.trim() === conteudo?.login.senha
     ) {
       setLogado(true);
       setSalvoComSucesso(false);
@@ -146,9 +144,14 @@ export default function Admin() {
           />
           <button
             onClick={fazerLogin}
-            className="w-full bg-pink-600 text-white py-3 rounded-xl font-semibold hover:bg-pink-700 transition"
+            disabled={!dadosCarregados}
+            className={`w-full text-white py-3 rounded-xl font-semibold transition ${
+              dadosCarregados
+                ? "bg-pink-600 hover:bg-pink-700"
+                : "bg-pink-300 cursor-not-allowed"
+            }`}
           >
-            Entrar
+            {dadosCarregados ? "Entrar" : "Carregando..."}
           </button>
         </div>
       </div>
@@ -172,7 +175,6 @@ export default function Admin() {
           </button>
         </div>
 
-        {/* Promoção */}
         <div className="bg-white rounded-2xl shadow p-5">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold text-pink-700">Promoção Ativa</h2>
@@ -191,7 +193,6 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* Modelos */}
         <div className="bg-white rounded-2xl shadow p-5">
           <h2 className="text-lg font-semibold text-pink-700 mb-4">Modelos</h2>
           {modelos.map((modelo, i) => (
@@ -235,7 +236,6 @@ export default function Admin() {
           ))}
         </div>
 
-        {/* Serviços */}
         <div className="bg-white rounded-2xl shadow p-5">
           <h2 className="text-lg font-semibold text-pink-700 mb-4">Serviços</h2>
           {servicos.map((servico, i) => (
@@ -270,7 +270,6 @@ export default function Admin() {
           ))}
         </div>
 
-        {/* Salvar */}
         <div>
           <button
             disabled={salvando}

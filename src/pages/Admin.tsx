@@ -4,8 +4,11 @@ const URL_API = "https://jeiselashes.squareweb.app";
 
 export default function Admin() { const [conteudo, setConteudo] = useState(null); const [logado, setLogado] = useState(false); const [usuarioInput, setUsuarioInput] = useState(""); const [senhaInput, setSenhaInput] = useState(""); const [salvando, setSalvando] = useState(false); const [mensagem, setMensagem] = useState("");
 
-useEffect(() => { fetch(${URL_API}/api/conteudo) .then((res) => res.json()) .then(setConteudo); }, []);
-
+useEffect(() => {
+  fetch(`${URL_API}/api/conteudo`)
+    .then((res) => res.json())
+    .then(setConteudo);
+}, []);
 const fazerLogin = () => { if (usuarioInput.trim() === conteudo?.login?.usuario && senhaInput.trim() === conteudo?.login?.senha) { setLogado(true); } else { alert("Usuário ou senha incorretos"); } };
 
 const atualizarCampo = (tipo, index, campo, valor) => { const atualizado = { ...conteudo }; if (tipo === "modelos") atualizado.modelos[index][campo] = valor; else if (tipo === "servicos") atualizado.servicosAdicionais[index][campo] = valor; setConteudo(atualizado); };

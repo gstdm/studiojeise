@@ -4,7 +4,7 @@ function Admin() { const [conteudo, setConteudo] = useState(null); const [logado
 
 const URL_API = "https://jeiselashes.squareweb.app";
 
-useEffect(() => { fetch(${URL_API}/api/conteudo) .then((res) => res.json()) .then(setConteudo); }, []);
+useEffect(() => { fetch(`${URL_API}/api/conteudo`) .then((res) => res.json()) .then(setConteudo); }, []);
 
 const fazerLogin = () => { if (!conteudo || !conteudo.login) return alert("Aguarde os dados carregarem"); if ( usuarioInput.trim() === conteudo.login.usuario && senhaInput.trim() === conteudo.login.senha ) { setLogado(true); } else { alert("Usuário ou senha incorretos"); } };
 

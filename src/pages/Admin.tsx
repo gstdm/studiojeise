@@ -10,6 +10,14 @@ type Modelo = {
   img: string;
 };
 
+type Servico = {
+  nome: string;
+  preco: string;
+  precoPromocional?: string;
+  descricao: string;
+  img: string;
+};
+
 export default function Admin() {
   const [dadosCarregados, setDadosCarregados] = useState(false);
   const [logado, setLogado] = useState(false);
@@ -21,6 +29,7 @@ export default function Admin() {
 
   const [promocaoAtiva, setPromocaoAtiva] = useState(false);
   const [modelos, setModelos] = useState<Modelo[]>([]);
+  const [servicos, setServicos] = useState<Servico[]>([]);
 
   useEffect(() => {
     fetch(`${URL_API}/api/conteudo`)
@@ -28,6 +37,7 @@ export default function Admin() {
       .then((data) => {
         setPromocaoAtiva(data.promocaoAtiva);
         setModelos(data.modelos || []);
+        setServicos(data.servicosAdicionais || []);
         setDadosCarregados(true);
       })
       .catch(() => alert("Erro ao carregar os dados. Tente recarregar."));
@@ -54,6 +64,17 @@ export default function Admin() {
     setModelos(novosModelos);
   };
 
+  const alterarServico = (
+    index: number,
+    campo: keyof Servico | "precoPromocional",
+    valor: string
+  ) => {
+    const novosServicos = [...servicos];
+    // @ts-ignore
+    novosServicos[index][campo] = valor;
+    setServicos(novosServicos);
+  };
+
   const togglePromocao = () => {
     setPromocaoAtiva(!promocaoAtiva);
   };
@@ -66,7 +87,7 @@ export default function Admin() {
     const dadosSalvar = {
       promocaoAtiva,
       modelos,
-      servicosAdicionais: [], // você pode adicionar serviços depois
+      servicosAdicionais: servicos,
     };
 
     try {
@@ -165,11 +186,14 @@ export default function Admin() {
         </section>
 
         {/* Modelos */}
-        <section className="space-y-10">
+        <section className="mb-16 space-y-10">
+          <h2 className="text-2xl font-bold text-pink-700 mb-6">
+            Modelos de Cílios
+          </h2>
           {modelos.map((modelo, i) => (
             <div
               key={i}
-              className={`flex flex-col md:flex-row md:items-center gap-6 bg-white rounded-3xl shadow-lg p-6`}
+              className="flex flex-col md:flex-row md:items-center gap-6 bg-white rounded-3xl shadow-lg p-6"
             >
               {/* Imagem arredondada */}
               <div className="relative flex-shrink-0 w-36 h-36 rounded-full overflow-hidden border-4 border-pink-400 shadow-lg">
@@ -236,31 +260,91 @@ export default function Admin() {
                   placeholder="Descrição do modelo"
                 />
               </div>
+            </div>
+          ))}
+        </section>
 
-              {/* Preço / Nome em bloco destacado */}
-              <div className="relative flex-shrink-0 w-44 h-44 rounded-3xl bg-pink-600 text-white flex flex-col items-center justify-center shadow-lg">
-                <div className="text-center">
-                  <p className="text-xl font-semibold">
-                    {promocaoAtiva && modelo.precoPromocional
-                      ? modelo.precoPromocional
-                      : modelo.preco}
-                  </p>
-                  <p className="text-sm mt-1 font-medium uppercase tracking-widest">
-                    {modelo.nome}
-                  </p>
-                </div>
-                {promocaoAtiva && modelo.precoPromocional && (
-                  <span className="absolute top-3 left-3 text-red-400 line-through font-semibold text-sm">
-                    {modelo.preco}
-                  </span>
-                )}
+        {/* Serviços */}
+        <section className="mb-12 space-y-10">
+          <h2 className="text-2xl font-bold text-pink-700 mb-6">
+            Serviços Adicionais
+          </h2>
+          {servicos.map((servico, i) => (
+            <div
+              key={i}
+              className="flex flex-col md:flex-row md:items-center gap-6 bg-white rounded-3xl shadow-lg p-6"
+            >
+              {/* Imagem arredondada */}
+              <div className="relative flex-shrink-0 w-36 h-36 rounded-full overflow-hidden border-4 border-pink-400 shadow-lg">
+                <img
+                  src={servico.img}
+                  alt={servico.nome}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+
+              {/* Dados do serviço */}
+              <div className="flex-1">
+                <label className="block font-semibold text-pink-700 mb-2">
+                  Nome do Serviço
+                </label>
+                <input
+                  type="text"
+                  value={servico.nome}
+                  onChange={(e) => alterarServico(i, "nome", e.target.value)}
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-4 focus:outline-none focus:ring-4 focus:ring-pink-500"
+                />
+
+                <label className="block font-semibold text-pink-700 mb-2">
+                  Link da Foto
+                </label>
+                <input
+                  type="text"
+                  value={servico.img}
+                  onChange={(e) => alterarServico(i, "img", e.target.value)}
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-6 focus:outline-none focus:ring-4 focus:ring-pink-500"
+                />
+
+                <label className="block font-semibold text-pink-700 mb-2">
+                  Preço Normal
+                </label>
+                <input
+                  type="text"
+                  value={servico.preco}
+                  onChange={(e) => alterarServico(i, "preco", e.target.value)}
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-2 focus:outline-none focus:ring-4 focus:ring-pink-500"
+                />
+
+                <label className="block font-semibold text-pink-700 mb-2">
+                  Preço Promocional (Opcional)
+                </label>
+                <input
+                  type="text"
+                  value={servico.precoPromocional ?? ""}
+                  onChange={(e) =>
+                    alterarServico(i, "precoPromocional", e.target.value)
+                  }
+                  placeholder="Ex: R$75,00"
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 mb-4 focus:outline-none focus:ring-4 focus:ring-pink-500"
+                />
+
+                <label className="block font-semibold text-pink-700 mb-2">
+                  Descrição
+                </label>
+                <textarea
+                  value={servico.descricao}
+                  onChange={(e) => alterarServico(i, "descricao", e.target.value)}
+                  rows={4}
+                  className="w-full rounded-xl border border-pink-300 px-4 py-2 resize-none focus:outline-none focus:ring-4 focus:ring-pink-500"
+                  placeholder="Descrição do serviço"
+                />
               </div>
             </div>
           ))}
         </section>
 
         {/* Botão salvar */}
-        <div className="mt-12 max-w-sm mx-auto">
+        <div className="max-w-sm mx-auto">
           <button
             onClick={salvarTudo}
             disabled={salvando}

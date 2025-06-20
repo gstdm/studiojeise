@@ -17,15 +17,7 @@ type Servico = {
   img: string;
 };
 
-type Conteudo = {
-  login: { usuario: string; senha: string };
-  promocaoAtiva: boolean;
-  modelos: Modelo[];
-  servicosAdicionais: Servico[];
-};
-
 export default function Admin() {
-  const [conteudo, setConteudo] = useState<Conteudo | null>(null);
   const [dadosCarregados, setDadosCarregados] = useState(false);
   const [logado, setLogado] = useState(false);
   const [usuarioInput, setUsuarioInput] = useState("");
@@ -42,7 +34,6 @@ export default function Admin() {
     fetch(`${URL_API}/api/conteudo`)
       .then((res) => res.json())
       .then((data) => {
-        setConteudo(data);
         setPromocaoAtiva(data.promocaoAtiva);
         setModelos(data.modelos);
         setServicos(data.servicosAdicionais);
@@ -52,10 +43,7 @@ export default function Admin() {
   }, []);
 
   const fazerLogin = () => {
-    if (
-      usuarioInput.trim() === conteudo?.login.usuario &&
-      senhaInput.trim() === conteudo?.login.senha
-    ) {
+    if (usuarioInput.trim() === "jeise" && senhaInput.trim() === "123456") {
       setLogado(true);
       setSalvoComSucesso(false);
       setErroSalvar(false);

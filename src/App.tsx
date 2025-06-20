@@ -23,18 +23,43 @@ function App() {
       </div>
 
       {/* Menu Lateral */}
-      {isMenuOpen && (
-        <div className={`fixed top-0 right-0 w-64 h-full shadow-lg z-50 flex flex-col items-center bg-opacity-95 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
-          <button onClick={toggleMenu} className="absolute top-4 right-6 text-3xl">
-            ✖
-          </button>
-          <ul className="space-y-6 text-center text-2xl mt-16">
-            <li><a href="/#/modelos">Ver Modelos</a></li>
-            <li><a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer">Agendar Horário</a></li>
-            <li><a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          </ul>
-        </div>
-      )}
+{isMenuOpen && (
+  <div
+    className={`fixed top-0 right-0 w-64 h-full shadow-lg z-50 flex flex-col items-center bg-opacity-95 ${
+      isDarkMode ? "bg-gray-900" : "bg-white"
+    }`}
+  >
+    <button
+      onClick={toggleMenu}
+      className="absolute top-4 right-6 text-3xl"
+      aria-label="Fechar menu"
+    >
+      ✖
+    </button>
+    <ul className="space-y-6 text-center text-2xl mt-16">
+      <li>
+        <a href="/modelos" onClick={toggleMenu}>
+          Ver Modelos
+        </a>
+      </li>
+      <li>
+        <a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>
+          Agendar Horário
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>
+          Instagram
+        </a>
+      </li>
+      <li>
+        <a href="/admin" onClick={toggleMenu}>
+          Admin
+        </a>
+      </li>
+    </ul>
+  </div>
+)}
 
       {/* Hero Section */}
       <div className="text-center py-16 px-4">

@@ -33,7 +33,6 @@ export default function Admin() {
   const [salvoComSucesso, setSalvoComSucesso] = useState(false);
   const [erroSalvar, setErroSalvar] = useState(false);
 
-  // Dados locais para edição
   const [promocaoAtiva, setPromocaoAtiva] = useState(false);
   const [modelos, setModelos] = useState<Modelo[]>([]);
   const [servicos, setServicos] = useState<Servico[]>([]);
@@ -67,7 +66,6 @@ export default function Admin() {
     }
   };
 
-  // Atualiza campos dos modelos
   const alterarModelo = (
     index: number,
     campo: keyof Modelo | "precoPromocional",
@@ -79,7 +77,6 @@ export default function Admin() {
     setModelos(novosModelos);
   };
 
-  // Atualiza campos dos serviços
   const alterarServico = (
     index: number,
     campo: keyof Servico,
@@ -122,7 +119,6 @@ export default function Admin() {
       setErroSalvar(true);
     } finally {
       setSalvando(false);
-      // esconde mensagem sucesso em 3s
       setTimeout(() => setSalvoComSucesso(false), 3000);
     }
   };
@@ -130,7 +126,7 @@ export default function Admin() {
   if (!logado) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-pink-100 to-pink-300 p-6">
-        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+        <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-md">
           <h1 className="text-3xl font-bold mb-6 text-center text-pink-700">
             Painel Admin Studio Jeise
           </h1>
@@ -139,18 +135,18 @@ export default function Admin() {
             placeholder="Usuário"
             value={usuarioInput}
             onChange={(e) => setUsuarioInput(e.target.value)}
-            className="w-full p-3 rounded border border-pink-400 mb-4 focus:outline-none focus:ring-2 focus:ring-pink-600"
+            className="w-full p-4 rounded-xl border border-pink-400 mb-4 focus:outline-none focus:ring-2 focus:ring-pink-600 text-lg"
           />
           <input
             type="password"
             placeholder="Senha"
             value={senhaInput}
             onChange={(e) => setSenhaInput(e.target.value)}
-            className="w-full p-3 rounded border border-pink-400 mb-6 focus:outline-none focus:ring-2 focus:ring-pink-600"
+            className="w-full p-4 rounded-xl border border-pink-400 mb-6 focus:outline-none focus:ring-2 focus:ring-pink-600 text-lg"
           />
           <button
             onClick={fazerLogin}
-            className="w-full bg-pink-600 text-white py-3 rounded hover:bg-pink-700 transition"
+            className="w-full bg-pink-600 text-white py-4 rounded-xl hover:bg-pink-700 transition text-xl font-semibold"
           >
             Entrar
           </button>
@@ -160,73 +156,68 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
-        <div className="p-6 border-b border-gray-200">
-          <h2 className="text-2xl font-bold text-pink-700">Studio Jeise</h2>
-        </div>
-        <nav className="flex-1 p-4 space-y-2">
-          <button
-            onClick={() => {
-              setLogado(false);
-              setUsuarioInput("");
-              setSenhaInput("");
-              setSalvoComSucesso(false);
-              setErroSalvar(false);
-            }}
-            className="w-full text-left text-pink-600 hover:text-pink-800 font-semibold"
-          >
-            Sair
-          </button>
-        </nav>
-      </aside>
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100 p-6 overflow-auto">
+      <header className="flex justify-between items-center mb-6 max-w-3xl mx-auto">
+        <h1 className="text-3xl font-bold text-pink-700">Painel Admin</h1>
+        <button
+          onClick={() => {
+            setLogado(false);
+            setUsuarioInput("");
+            setSenhaInput("");
+            setSalvoComSucesso(false);
+            setErroSalvar(false);
+          }}
+          className="text-pink-600 hover:text-pink-800 font-semibold text-lg rounded-full p-2 border border-pink-300 hover:border-pink-600 transition"
+          aria-label="Sair"
+        >
+          ✕
+        </button>
+      </header>
 
-      {/* Main Content */}
-      <main className="flex-1 p-8 overflow-auto max-h-screen">
-        <h1 className="text-3xl font-bold text-pink-700 mb-6">Painel Admin</h1>
-
+      <main className="max-w-3xl mx-auto space-y-8">
         {/* Promoção */}
-        <section className="mb-10 bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">Promoção Ativa</h2>
+        <section className="bg-white rounded-3xl shadow p-6">
+          <h2 className="text-xl font-semibold mb-4 text-pink-700">
+            Promoção Ativa
+          </h2>
           <button
             onClick={togglePromocao}
-            className={`relative inline-flex items-center h-8 rounded-full w-16 transition-colors duration-300 ${
+            className={`relative inline-flex items-center h-10 rounded-full w-20 transition-colors duration-300 ${
               promocaoAtiva ? "bg-green-500" : "bg-red-500"
             }`}
           >
             <span
-              className={`inline-block w-7 h-7 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                promocaoAtiva ? "translate-x-8" : "translate-x-0"
+              className={`inline-block w-9 h-9 bg-white rounded-full shadow transform transition-transform duration-300 ${
+                promocaoAtiva ? "translate-x-10" : "translate-x-0"
               }`}
             />
           </button>
         </section>
 
         {/* Modelos */}
-        <section className="mb-10 bg-white rounded-lg shadow p-6 max-w-5xl">
-          <h2 className="text-xl font-semibold mb-4">Modelos de Cílios</h2>
+        <section className="bg-white rounded-3xl shadow p-6 space-y-6">
+          <h2 className="text-xl font-semibold mb-4 text-pink-700">
+            Modelos de Cílios
+          </h2>
           {modelos.map((modelo, i) => (
             <div
               key={i}
-              className="border border-pink-300 rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:gap-6"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center border border-pink-300 rounded-2xl p-4"
             >
               <img
                 src={modelo.img}
                 alt={modelo.nome}
-                className="w-28 h-28 rounded-lg object-cover border border-pink-400 shadow"
+                className="w-24 h-24 rounded-2xl object-cover border border-pink-400 shadow"
               />
-              <div className="flex-1 mt-3 md:mt-0">
+              <div className="flex-1">
                 <label className="block font-semibold text-pink-700 mb-1">
                   Nome
                 </label>
                 <input
                   type="text"
                   value={modelo.nome}
-                  onChange={(e) =>
-                    alterarModelo(i, "nome", e.target.value)
-                  }
-                  className="w-full border border-pink-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-600"
+                  onChange={(e) => alterarModelo(i, "nome", e.target.value)}
+                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
                 />
 
                 <label className="block font-semibold text-pink-700 mt-3 mb-1">
@@ -235,10 +226,8 @@ export default function Admin() {
                 <input
                   type="text"
                   value={modelo.preco}
-                  onChange={(e) =>
-                    alterarModelo(i, "preco", e.target.value)
-                  }
-                  className="w-full border border-pink-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-600"
+                  onChange={(e) => alterarModelo(i, "preco", e.target.value)}
+                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
                 />
 
                 <label className="block font-semibold text-pink-700 mt-3 mb-1">
@@ -251,7 +240,7 @@ export default function Admin() {
                     alterarModelo(i, "precoPromocional", e.target.value)
                   }
                   placeholder="Ex: R$75,00"
-                  className="w-full border border-pink-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-600"
+                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
                 />
 
                 <label className="block font-semibold text-pink-700 mt-3 mb-1">
@@ -259,10 +248,8 @@ export default function Admin() {
                 </label>
                 <textarea
                   value={modelo.descricao}
-                  onChange={(e) =>
-                    alterarModelo(i, "descricao", e.target.value)
-                  }
-                  className="w-full border border-pink-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-600 resize-none"
+                  onChange={(e) => alterarModelo(i, "descricao", e.target.value)}
+                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600 resize-none"
                   rows={3}
                 />
               </div>
@@ -271,29 +258,29 @@ export default function Admin() {
         </section>
 
         {/* Serviços */}
-        <section className="mb-10 bg-white rounded-lg shadow p-6 max-w-5xl">
-          <h2 className="text-xl font-semibold mb-4">Serviços Adicionais</h2>
+        <section className="bg-white rounded-3xl shadow p-6 space-y-6">
+          <h2 className="text-xl font-semibold mb-4 text-pink-700">
+            Serviços Adicionais
+          </h2>
           {servicos.map((servico, i) => (
             <div
               key={i}
-              className="border border-pink-300 rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:gap-6"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center border border-pink-300 rounded-2xl p-4"
             >
               <img
                 src={servico.img}
                 alt={servico.nome}
-                className="w-28 h-28 rounded-lg object-cover border border-pink-400 shadow"
+                className="w-24 h-24 rounded-2xl object-cover border border-pink-400 shadow"
               />
-              <div className="flex-1 mt-3 md:mt-0">
+              <div className="flex-1">
                 <label className="block font-semibold text-pink-700 mb-1">
                   Nome
                 </label>
                 <input
                   type="text"
                   value={servico.nome}
-                  onChange={(e) =>
-                    alterarServico(i, "nome", e.target.value)
-                  }
-                  className="w-full border border-pink-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-600"
+                  onChange={(e) => alterarServico(i, "nome", e.target.value)}
+                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
                 />
 
                 <label className="block font-semibold text-pink-700 mt-3 mb-1">
@@ -302,10 +289,8 @@ export default function Admin() {
                 <input
                   type="text"
                   value={servico.preco}
-                  onChange={(e) =>
-                    alterarServico(i, "preco", e.target.value)
-                  }
-                  className="w-full border border-pink-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-600"
+                  onChange={(e) => alterarServico(i, "preco", e.target.value)}
+                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600"
                 />
 
                 <label className="block font-semibold text-pink-700 mt-3 mb-1">
@@ -313,10 +298,8 @@ export default function Admin() {
                 </label>
                 <textarea
                   value={servico.descricao}
-                  onChange={(e) =>
-                    alterarServico(i, "descricao", e.target.value)
-                  }
-                  className="w-full border border-pink-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-600 resize-none"
+                  onChange={(e) => alterarServico(i, "descricao", e.target.value)}
+                  className="w-full border border-pink-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600 resize-none"
                   rows={3}
                 />
               </div>
@@ -325,11 +308,11 @@ export default function Admin() {
         </section>
 
         {/* Botão salvar */}
-        <div className="max-w-5xl">
+        <div className="max-w-3xl mx-auto">
           <button
             disabled={salvando}
             onClick={salvarTudo}
-            className={`w-full py-3 rounded text-white font-semibold text-lg transition ${
+            className={`w-full py-4 rounded-xl text-white font-semibold text-xl transition ${
               salvando
                 ? "bg-pink-400 cursor-not-allowed"
                 : "bg-pink-600 hover:bg-pink-700"
@@ -339,17 +322,16 @@ export default function Admin() {
           </button>
 
           {salvoComSucesso && (
-            <p className="text-green-700 mt-2 font-semibold">
+            <p className="text-green-700 mt-4 font-semibold text-center">
               Salvo com sucesso!
             </p>
           )}
           {erroSalvar && (
-            <p className="text-red-600 mt-2 font-semibold">
+            <p className="text-red-600 mt-4 font-semibold text-center">
               Erro ao salvar. Tente novamente.
             </p>
           )}
         </div>
-      </main>
-    </div>
+      </div>
   );
 }

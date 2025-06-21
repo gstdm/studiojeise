@@ -1,93 +1,66 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import EdicaoModelos from "../components/EdicaoModelos";
+import EdicaoHome from "../components/EdicaoHome";
+import Cookies from "js-cookie";
 
-const URL_API = "https://jeiselashes.squareweb.app";
-
-// Tipagens
-// (já incluídas, não repetidas aqui)
+const COOKIE_LOGADO = "admin_logado_jeise";
 
 export default function Admin() {
-  const [dadosCarregados, setDadosCarregados] = useState(false);
   const [logado, setLogado] = useState(false);
   const [usuarioInput, setUsuarioInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
+  const [abaSelecionada, setAbaSelecionada] = useState<"modelos" | "home" | null>(null);
   const [salvando, setSalvando] = useState(false);
   const [salvoComSucesso, setSalvoComSucesso] = useState(false);
   const [erroSalvar, setErroSalvar] = useState(false);
 
-  const [promocaoAtiva, setPromocaoAtiva] = useState(false);
-  const [modelos, setModelos] = useState([]);
-  const [servicos, setServicos] = useState([]);
-
-  const originalData = useRef(null);
+  // refs para chamar as funções salvar e verificar alteração nos filhos
+  const modelosRef = useRef<{ salvar: () => Promise<boolean>; houveAlteracoes: () => boolean } | null>(null);
+  const homeRef = useRef<{ salvar: () => Promise<boolean>; houveAlteracoes: () => boolean } | null>(null);
 
   useEffect(() => {
-    fetch(`${URL_API}/api/conteudo`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPromocaoAtiva(data.promocaoAtiva);
-        setModelos(data.modelos || []);
-        setServicos(data.servicosAdicionais || []);
-        originalData.current = {
-          promocaoAtiva: data.promocaoAtiva,
-          modelos: data.modelos || [],
-          servicos: data.servicosAdicionais || [],
-        };
-        setDadosCarregados(true);
-      })
-      .catch(() => alert("Erro ao carregar os dados. Tente recarregar."));
+    // Verifica cookie de login ao montar componente
+    const logadoCookie = Cookies.get(COOKIE_LOGADO);
+    if (logadoCookie === "true") {
+      setLogado(true);
+    }
   }, []);
 
   const fazerLogin = () => {
     if (usuarioInput.trim() === "Jeise" && senhaInput.trim() === "123456") {
       setLogado(true);
-      setSalvoComSucesso(false);
+      Cookies.set(COOKIE_LOGADO, "true", { expires: 7 }); // cookie por 7 dias
       setErroSalvar(false);
+      setSalvoComSucesso(false);
     } else {
       alert("Usuário ou senha incorretos");
     }
   };
 
-  const alterarModelo = (index, campo, valor) => {
-    const novos = [...modelos];
-    novos[index][campo] = valor;
-    setModelos(novos);
+  const fazerLogout = () => {
+    setLogado(false);
+    Cookies.remove(COOKIE_LOGADO);
+    setAbaSelecionada(null);
+    setUsuarioInput("");
+    setSenhaInput("");
   };
 
-  const alterarServico = (index, campo, valor) => {
-    const novos = [...servicos];
-    novos[index][campo] = valor;
-    setServicos(novos);
-  };
-
-  const togglePromocao = () => {
-    setPromocaoAtiva(!promocaoAtiva);
-  };
-
-  const salvarTudo = async () => {
+  // Função salvar geral que chama a função salvar da aba ativa
+  const salvarAlteracoes = async () => {
     setSalvando(true);
     setSalvoComSucesso(false);
     setErroSalvar(false);
 
-    const dadosSalvar = {
-      promocaoAtiva,
-      modelos,
-      servicosAdicionais: servicos,
-    };
-
     try {
-      const res = await fetch(`${URL_API}/api/salvar`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dadosSalvar),
-      });
-
-      if (res.ok) {
+      let sucesso = false;
+      if (abaSelecionada === "modelos" && modelosRef.current) {
+        sucesso = await modelosRef.current.salvar();
+      } else if (abaSelecionada === "home" && homeRef.current) {
+        sucesso = await homeRef.current.salvar();
+      }
+      if (sucesso) {
         setSalvoComSucesso(true);
-        originalData.current = {
-          promocaoAtiva,
-          modelos: [...modelos],
-          servicos: [...servicos],
-        };
+        setTimeout(() => setSalvoComSucesso(false), 3000);
       } else {
         setErroSalvar(true);
       }
@@ -95,17 +68,25 @@ export default function Admin() {
       setErroSalvar(true);
     } finally {
       setSalvando(false);
-      setTimeout(() => setSalvoComSucesso(false), 3000);
     }
   };
 
-  const houveAlteracoes = () => {
-    if (!originalData.current) return false;
-    return (
-      promocaoAtiva !== originalData.current.promocaoAtiva ||
-      JSON.stringify(modelos) !== JSON.stringify(originalData.current.modelos) ||
-      JSON.stringify(servicos) !== JSON.stringify(originalData.current.servicos)
-    );
+  // Função para alternar abas e resetar mensagens
+  const trocarAba = () => {
+    setSalvoComSucesso(false);
+    setErroSalvar(false);
+    if (abaSelecionada === "modelos") setAbaSelecionada("home");
+    else if (abaSelecionada === "home") setAbaSelecionada("modelos");
+  };
+
+  // Função para verificar se há alterações na aba ativa
+  const houveAlteracoesAtivas = () => {
+    if (abaSelecionada === "modelos" && modelosRef.current) {
+      return modelosRef.current.houveAlteracoes();
+    } else if (abaSelecionada === "home" && homeRef.current) {
+      return homeRef.current.houveAlteracoes();
+    }
+    return false;
   };
 
   if (!logado) {
@@ -115,6 +96,7 @@ export default function Admin() {
           <h1 className="text-3xl font-bold text-center text-pink-700 mb-8">
             Painel Admin Studio Jeise
           </h1>
+
           <input
             type="text"
             placeholder="Usuário"
@@ -131,12 +113,9 @@ export default function Admin() {
           />
           <button
             onClick={fazerLogin}
-            disabled={!dadosCarregados}
-            className={`w-full py-4 rounded-xl font-semibold text-white text-lg transition ${
-              dadosCarregados ? "bg-pink-600 hover:bg-pink-700" : "bg-pink-300 cursor-not-allowed"
-            }`}
+            className="w-full py-4 rounded-xl font-semibold text-white text-lg bg-pink-600 hover:bg-pink-700 transition"
           >
-            {dadosCarregados ? "Entrar" : "Carregando..."}
+            Entrar
           </button>
         </div>
       </div>
@@ -144,71 +123,74 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-300 p-6 overflow-auto">
-      <div className="max-w-4xl mx-auto">
-        <header className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-extrabold text-pink-700">
-            Painel Admin Studio Jeise
-          </h1>
+    <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-300 p-6 flex flex-col">
+      {/* Navbar fixa */}
+      <nav className="flex justify-between items-center bg-white rounded-xl shadow-md px-6 py-3 mb-6 sticky top-0 z-50">
+        <h1 className="text-xl font-bold text-pink-700 select-none">
+          Painel Admin Studio Jeise
+        </h1>
+
+        <div className="flex items-center gap-4">
           <button
-            onClick={() => {
-              setLogado(false);
-              setUsuarioInput("");
-              setSenhaInput("");
-            }}
-            className="text-pink-700 font-semibold underline hover:text-pink-900"
+            onClick={salvarAlteracoes}
+            disabled={!houveAlteracoesAtivas() || salvando}
+            className={`px-5 py-2 rounded-2xl font-semibold text-white transition ${
+              houveAlteracoesAtivas() && !salvando
+                ? "bg-pink-700 hover:bg-pink-800"
+                : "bg-pink-300 cursor-not-allowed"
+            }`}
+          >
+            {salvando ? "Salvando..." : "Salvar alterações"}
+          </button>
+
+          <button
+            onClick={trocarAba}
+            className="px-5 py-2 rounded-2xl font-semibold bg-pink-400 hover:bg-pink-500 text-white transition"
+            title={`Ir para a aba ${abaSelecionada === "modelos" ? "Página Inicial" : "Modelos"}`}
+          >
+            {abaSelecionada === "modelos" ? "Editar Página Inicial" : "Editar Modelos"}
+          </button>
+
+          <button
+            onClick={fazerLogout}
+            className="px-5 py-2 rounded-2xl font-semibold bg-red-500 hover:bg-red-600 text-white transition"
+            title="Sair do painel"
           >
             Sair
           </button>
-        </header>
-        <section className="mb-10 bg-white rounded-3xl shadow p-6 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-pink-700">Promoção Ativa</h2>
-          <button
-            onClick={togglePromocao}
-            className={`relative w-16 h-8 rounded-full transition-colors duration-300 ${
-              promocaoAtiva ? "bg-green-500" : "bg-red-500"
-            }`}
-          >
-            <span
-              className={`absolute top-0.5 left-1 w-7 h-7 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                promocaoAtiva ? "translate-x-8" : ""
-              }`}
-            />
-          </button>
-        </section>
-
-        {/* AQUI VEM OS COMPONENTES (ex: <EdicaoModelos /> ou <EdicaoHome />) */}
-
-        <div className="max-w-sm mx-auto flex flex-col gap-4">
-          <button
-            onClick={salvarTudo}
-            disabled={salvando}
-            className={`w-full py-4 rounded-3xl font-bold text-white text-lg transition ${
-              salvando ? "bg-pink-300 cursor-not-allowed" : "bg-pink-700 hover:bg-pink-800"
-            }`}
-          >
-            {salvando ? "Salvando..." : "Salvar Alterações"}
-          </button>
-          {salvoComSucesso && (
-            <p className="text-green-700 text-center font-semibold">Salvo com sucesso!</p>
-          )}
-          {!houveAlteracoes() && salvoComSucesso && (
-            <button
-              onClick={() => {
-                window.location.href = "/modelos";
-              }}
-              className="w-full py-4 mt-4 rounded-3xl font-bold bg-green-600 hover:bg-green-700 text-white text-lg transition"
-            >
-              Ir para página de Modelos
-            </button>
-          )}
-          {erroSalvar && (
-            <p className="text-red-600 text-center font-semibold mt-2">
-              Erro ao salvar. Tente novamente.
-            </p>
-          )}
         </div>
-      </div>
+      </nav>
+
+      {!abaSelecionada && (
+        <div className="max-w-sm mx-auto flex flex-col gap-6">
+          <button
+            onClick={() => setAbaSelecionada("modelos")}
+            className="bg-pink-600 hover:bg-pink-700 text-white rounded-3xl py-4 font-semibold text-xl transition"
+          >
+            Editar página de modelos
+          </button>
+          <button
+            onClick={() => setAbaSelecionada("home")}
+            className="bg-pink-600 hover:bg-pink-700 text-white rounded-3xl py-4 font-semibold text-xl transition"
+          >
+            Editar página inicial
+          </button>
+        </div>
+      )}
+
+      {abaSelecionada === "modelos" && <EdicaoModelos ref={modelosRef} />}
+      {abaSelecionada === "home" && <EdicaoHome ref={homeRef} />}
+      
+      {salvoComSucesso && (
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-3xl shadow-lg font-semibold select-none">
+          Salvo com sucesso!
+        </div>
+      )}
+      {erroSalvar && (
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-3xl shadow-lg font-semibold select-none">
+          Erro ao salvar. Tente novamente.
+        </div>
+      )}
     </div>
   );
 }

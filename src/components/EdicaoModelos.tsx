@@ -44,7 +44,9 @@ export default function EdicaoModelos(): JSX.Element {
   //
   const [modelos, setModelos] = useState<Modelo[]>([]);
   const [servicos, setServicos] = useState<Servico[]>([]);
-
+  const [sucesso, setSucesso] = useState(false);
+  const [erro, setErro] = useState(false);
+  
   //
   // Estado de salvamento
   //
@@ -527,7 +529,7 @@ export default function EdicaoModelos(): JSX.Element {
           {salvando ? "Salvando..." : "Salvar Alterações"}
         </button>
 
-        {salvoComSucesso && (
+        {sucesso && (
           <p className="text-green-700 font-semibold">Alterações salvas com sucesso!</p>
         )}
 

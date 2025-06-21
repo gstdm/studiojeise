@@ -515,28 +515,28 @@ export default function EdicaoModelos(): JSX.Element {
         </div>
       </section>
 
-      {/* Botão salvar */}
-      <div className="text-center space-y-4">
-        <button
-          onClick={salvarAlteracoes}
-          disabled={salvando}
-          className={`w-full max-w-md py-4 rounded-3xl font-bold text-white text-lg transition ${
-            salvando
-              ? "bg-pink-300 cursor-not-allowed"
-              : "bg-pink-700 hover:bg-pink-800"
-          }`}
-        >
-          {salvando ? "Salvando..." : "Salvar Alterações"}
-        </button>
+     {/* Botão salvar */}
+  <div className="text-center space-y-4">
+    <button
+      onClick={salvarTudo}
+      disabled={salvando}
+      className={`w-full max-w-md py-4 rounded-3xl font-bold text-white text-lg transition ${
+        salvando
+          ? "bg-pink-300 cursor-not-allowed"
+          : "bg-pink-700 hover:bg-pink-800"
+      }`}
+    >
+      {salvando ? "Salvando..." : "Salvar Alterações"}
+    </button>
 
-        {sucesso && (
-          <p className="text-green-700 font-semibold">Alterações salvas com sucesso!</p>
-        )}
+    {salvoComSucesso && (
+      <p className="text-green-700 font-semibold">Alterações salvas com sucesso!</p>
+    )}
 
-        {erro && (
-          <p className="text-red-600 font-semibold">Erro ao salvar. Tente novamente.</p>
-        )}
-      </div>
-    </div>
-  );
+    {erroSalvar && (
+      <p className="text-red-600 font-semibold">Erro ao salvar. Tente novamente.</p>
+    )}
+  </div>
+</div> {/* fim do conteúdo principal */}
+);
 }

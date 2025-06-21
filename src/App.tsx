@@ -1,30 +1,27 @@
-import React, { useState, useEffect } from "react";
-
-const URL_API = "https://jeiselashes.squareweb.app";
-
-type Vantagem = {
-  img: string;
-  texto: string;
-};
+import React, { useEffect, useState } from "react";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [fotoDona, setFotoDona] = useState("");
-  const [vantagens, setVantagens] = useState<Vantagem[]>([]);
+  const [vantagens, setVantagens] = useState<
+    { img: string; texto: string }[]
+  >([]);
 
   useEffect(() => {
-    fetch(`${URL_API}/api/conteudo`)
+    fetch("https://jeiselashes.squareweb.app/api/home")
       .then((res) => res.json())
       .then((data) => {
         setFotoDona(data.fotoDona || "");
         setVantagens(data.vantagens || []);
       })
-      .catch((err) => {
-        console.error("Erro ao carregar dados:", err);
+      .catch(() => {
+        console.error("Erro ao carregar dados da home");
       });
   }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-pink-100 to-pink-300 text-gray-800">
@@ -82,7 +79,7 @@ function App() {
 
       {/* Hero Section */}
       <div className="text-center py-16 px-4">
-        <h1 className="text-4xl font-bold inline-block px-6 py-2 border-4 rounded-lg border-pink-400">
+        <h1 className="text-4xl font-bold relative inline-block px-6 py-2 border-4 rounded-lg border-pink-400">
           Studio Jeise Lashes
         </h1>
         <p className="text-lg mt-4">
@@ -95,7 +92,7 @@ function App() {
         <div className="flex justify-center gap-8">
           <a
             href="/modelos"
-            className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-pink-500 hover:bg-pink-600 text-white"
+            className="px-8 py-3 rounded-lg text-xl font-medium bg-pink-500 hover:bg-pink-600 text-white transition duration-300"
           >
             Ver Modelos
           </a>
@@ -103,7 +100,7 @@ function App() {
             href="https://wa.me/558988023208"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-red-500 hover:bg-red-600 text-white"
+            className="px-8 py-3 rounded-lg text-xl font-medium bg-red-500 hover:bg-red-600 text-white transition duration-300"
           >
             Agendar Horário
           </a>
@@ -115,70 +112,68 @@ function App() {
             href="https://maps.app.goo.gl/oSHoRZthvCkxMGuS8"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-green-500 hover:bg-green-600 text-white"
+            className="px-8 py-3 rounded-lg text-xl font-medium bg-green-500 hover:bg-green-600 text-white transition duration-300"
           >
             Ver Localização
           </a>
           <a
             href="/agendamento"
-            className="px-8 py-3 rounded-lg text-xl font-medium transition duration-300 bg-black text-white hover:bg-gray-800"
+            className="px-8 py-3 rounded-lg text-xl font-medium bg-black text-white hover:bg-gray-800 transition duration-300"
           >
             Leia o Pré e o Pós Agendamento
           </a>
         </div>
       </div>
 
-      {/* Foto da dona */}
-      <div className="flex flex-col items-center py-8">
-        {fotoDona && (
-          <div className="w-full max-w-xs sm:max-w-md overflow-hidden rounded-2xl border-4 border-pink-400 shadow-lg">
-            <img
-              src={fotoDona}
-              alt="Foto da dona do Studio"
-              className="w-full h-auto object-cover"
-            />
+      {/* Foto da Dona */}
+      {fotoDona && (
+        <div className="flex flex-col items-center py-8">
+          <img
+            src={fotoDona}
+            alt="Foto da dona do Studio"
+            className="w-72 h-[400px] object-cover rounded-lg border-4 border-pink-400 shadow-lg"
+          />
+          <div className="mt-4 text-center">
+            <p
+              className="text-5xl font-bold text-pink-800"
+              style={{
+                fontFamily: "'Dancing Script', cursive",
+                textShadow:
+                  "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white",
+              }}
+            >
+              Jeusilayne
+            </p>
+            <p
+              className="text-lg uppercase tracking-widest text-pink-800 -mt-2"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                textShadow:
+                  "-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white",
+              }}
+            >
+              Lash Designer
+            </p>
           </div>
-        )}
-        <div className="mt-4 text-center">
-          <p
-            className="text-5xl font-bold text-pink-800"
-            style={{
-              fontFamily: "'Dancing Script', cursive",
-              textShadow:
-                "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white",
-            }}
-          >
-            Jeusilayne
-          </p>
-          <p
-            className="text-lg uppercase tracking-widest text-pink-800 -mt-2"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              textShadow:
-                "-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white",
-            }}
-          >
-            Lash Designer
-          </p>
         </div>
-      </div>
+      )}
 
       {/* Seção de Vantagens */}
-      <div className="py-12 px-4 sm:px-8">
+      <div className="py-12">
         <h2 className="text-3xl font-bold text-center mb-6">
           Vantagens de Fazer Extensão de Cílios
         </h2>
-        <div className="space-y-12 max-w-4xl mx-auto">
-          {vantagens.map((vant, idx) => (
+        <div className="max-w-7xl mx-auto space-y-10 px-6 sm:px-8">
+          {vantagens.map((vant, index) => (
             <div
-              key={idx}
-              className={`flex items-center gap-6 ${
-                idx % 2 === 1 ? "flex-row-reverse" : ""
+              key={index}
+              className={`flex items-start gap-6 ${
+                index % 2 === 1 ? "flex-row-reverse" : ""
               }`}
             >
               <img
                 src={vant.img}
-                alt={`Vantagem ${idx + 1}`}
+                alt={`Imagem ${index + 1}`}
                 className="w-32 h-32 rounded-md shadow-md border-2 border-pink-400"
               />
               <p className="text-lg">{vant.texto}</p>
@@ -187,7 +182,7 @@ function App() {
         </div>
       </div>
 
-      {/* Frase sobre as fotos */}
+      {/* Frase final */}
       <div className="text-center py-4">
         <p className="text-sm text-gray-500">
           *As fotos exibidas no site foram tiradas pela própria dona do Studio,

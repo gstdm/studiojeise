@@ -20,7 +20,7 @@ export default function EdicaoHome(): JSX.Element { // -------------------------
 
 // -------------------------------------------------------------------------------- // Hook de efeito para carregar dados iniciais da API // --------------------------------------------------------------------------------
 
-useEffect(() => { fetch(${URL_API}/api/conteudo) .then((res) => res.json()) .then((data) => { setFotoDona(data.fotoDona || ""); setFotosInferiores(data.fotosInferiores || ["", "", "", ""]); setTextosVantagens(data.vantagens.map((v: any) => v.texto) || ["", "", "", ""]);
+useEffect(() => { fetch(`${URL_API}/api/conteudo`) .then((res) => res.json()) .then((data) => { setFotoDona(data.fotoDona || ""); setFotosInferiores(data.fotosInferiores || ["", "", "", ""]); setTextosVantagens(data.vantagens.map((v: any) => v.texto) || ["", "", "", ""]);
 
 originalData.current = {
       fotoDona: data.fotoDona || "",

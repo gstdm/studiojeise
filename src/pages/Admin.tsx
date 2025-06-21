@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import EdicaoModelos from "../components/EdicaoModelos";
 import EdicaoHome from "../components/EdicaoHome";
-import Cookies from "js-cookie";
-
-const COOKIE_LOGADO = "admin_logado_jeise";
 
 export default function Admin() {
   const [logado, setLogado] = useState(false);
@@ -14,22 +11,12 @@ export default function Admin() {
   const [salvoComSucesso, setSalvoComSucesso] = useState(false);
   const [erroSalvar, setErroSalvar] = useState(false);
 
-  // refs para chamar as funções salvar e verificar alteração nos filhos
   const modelosRef = useRef<{ salvar: () => Promise<boolean>; houveAlteracoes: () => boolean } | null>(null);
   const homeRef = useRef<{ salvar: () => Promise<boolean>; houveAlteracoes: () => boolean } | null>(null);
-
-  useEffect(() => {
-    // Verifica cookie de login ao montar componente
-    const logadoCookie = Cookies.get(COOKIE_LOGADO);
-    if (logadoCookie === "true") {
-      setLogado(true);
-    }
-  }, []);
 
   const fazerLogin = () => {
     if (usuarioInput.trim() === "Jeise" && senhaInput.trim() === "123456") {
       setLogado(true);
-      Cookies.set(COOKIE_LOGADO, "true", { expires: 7 }); // cookie por 7 dias
       setErroSalvar(false);
       setSalvoComSucesso(false);
     } else {
@@ -39,13 +26,11 @@ export default function Admin() {
 
   const fazerLogout = () => {
     setLogado(false);
-    Cookies.remove(COOKIE_LOGADO);
     setAbaSelecionada(null);
     setUsuarioInput("");
     setSenhaInput("");
   };
 
-  // Função salvar geral que chama a função salvar da aba ativa
   const salvarAlteracoes = async () => {
     setSalvando(true);
     setSalvoComSucesso(false);
@@ -71,7 +56,6 @@ export default function Admin() {
     }
   };
 
-  // Função para alternar abas e resetar mensagens
   const trocarAba = () => {
     setSalvoComSucesso(false);
     setErroSalvar(false);
@@ -79,7 +63,6 @@ export default function Admin() {
     else if (abaSelecionada === "home") setAbaSelecionada("modelos");
   };
 
-  // Função para verificar se há alterações na aba ativa
   const houveAlteracoesAtivas = () => {
     if (abaSelecionada === "modelos" && modelosRef.current) {
       return modelosRef.current.houveAlteracoes();
@@ -180,7 +163,7 @@ export default function Admin() {
 
       {abaSelecionada === "modelos" && <EdicaoModelos ref={modelosRef} />}
       {abaSelecionada === "home" && <EdicaoHome ref={homeRef} />}
-      
+
       {salvoComSucesso && (
         <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-3xl shadow-lg font-semibold select-none">
           Salvo com sucesso!

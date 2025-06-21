@@ -513,30 +513,22 @@ export default function EdicaoModelos(): JSX.Element {
         </div>
       </section>
 
-      {/* Ações finais de salvar */}
-      <div className="flex flex-col items-center mt-12 space-y-4">
-        <button
-          onClick={salvarTudo}
-          disabled={salvando || !houveAlteracoes()}
-          className={`w-full max-w-md py-4 rounded-2xl font-bold text-white transition ${
-            salvando || !houveAlteracoes()
-              ? "bg-pink-300 cursor-not-allowed"
-              : "bg-pink-700 hover:bg-pink-800"
-          }`}
-        >
-          {salvando ? "Salvando..." : "Salvar Alterações"}
-        </button>
+      {/* Botão simples de salvar */}
+<div className="flex justify-center mt-10">
+  <button
+    onClick={salvarTudo}
+    className="bg-pink-600 hover:bg-pink-700 text-white font-semibold px-8 py-3 rounded-2xl shadow-md"
+  >
+    Salvar Alterações
+  </button>
+</div>
 
-        {salvoComSucesso && (
-          <p className="text-green-600 font-semibold">Salvo com sucesso!</p>
-        )}
-
-        {erroSalvar && (
-          <p className="text-red-600 font-semibold">
-            Erro ao salvar. Tente novamente.
-          </p>
-        )}
-      </div>
-    </div>
-  );
-                      }
+{/* Mensagens de feedback */}
+<div className="text-center mt-4">
+  {salvoComSucesso && (
+    <p className="text-green-600 font-semibold">Salvo com sucesso!</p>
+  )}
+  {erroSalvar && (
+    <p className="text-red-600 font-semibold">Erro ao salvar. Tente novamente.</p>
+  )}
+</div>

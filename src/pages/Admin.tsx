@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import EdicaoModelos from "../components/EdicaoModelos";
+import EdicaoHome from "../components/EdicaoHome";
 export default function Admin() {
   const [logado, setLogado] = useState(false);
   const [usuarioInput, setUsuarioInput] = useState("");
@@ -106,29 +107,29 @@ export default function Admin() {
           </>
         )}
 
-        {abaSelecionada === "modelos" && (
-          <div className="w-full">
-            <p className="mb-4 font-semibold text-pink-700">Aqui vai o componente <code>EdicaoModelos</code></p>
-            <button
-              onClick={() => setAbaSelecionada(null)}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-xl py-2 px-4"
-            >
-              Voltar
-            </button>
-          </div>
-        )}
+{abaSelecionada === "modelos" && (
+  <div className="w-full">
+    <EdicaoModelos />
+    <button
+      onClick={() => setAbaSelecionada(null)}
+      className="mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-xl py-2 px-4"
+    >
+      Voltar
+    </button>
+  </div>
+)}
 
-        {abaSelecionada === "home" && (
-          <div className="w-full">
-            <p className="mb-4 font-semibold text-pink-700">Aqui vai o componente <code>EdicaoHome</code></p>
-            <button
-              onClick={() => setAbaSelecionada(null)}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-xl py-2 px-4"
-            >
-              Voltar
-            </button>
-          </div>
-        )}
+{abaSelecionada === "home" && (
+  <div className="w-full">
+    <EdicaoHome />
+    <button
+      onClick={() => setAbaSelecionada(null)}
+      className="mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-xl py-2 px-4"
+    >
+      Voltar
+    </button>
+  </div>
+)}
       </div>
 
       {salvoComSucesso && (

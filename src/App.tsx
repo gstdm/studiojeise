@@ -44,7 +44,7 @@ function App() {
           </button>
           <ul className="space-y-6 text-center text-2xl mt-16">
             <li>
-              <a href="/modelos" onClick={toggleMenu}>
+              <a href="/#/modelos" onClick={toggleMenu}>
                 Ver Modelos
               </a>
             </li>
@@ -69,7 +69,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="/admin" onClick={toggleMenu}>
+              <a href="/#/admin" onClick={toggleMenu}>
                 Admin
               </a>
             </li>
@@ -91,7 +91,7 @@ function App() {
       <div className="flex flex-col items-center py-12">
         <div className="flex justify-center gap-8">
           <a
-            href="/modelos"
+            href="/#/modelos"
             className="px-8 py-3 rounded-lg text-xl font-medium bg-pink-500 hover:bg-pink-600 text-white transition duration-300"
           >
             Ver Modelos
@@ -117,7 +117,7 @@ function App() {
             Ver Localização
           </a>
           <a
-            href="/agendamento"
+            href="/#/agendamento"
             className="px-8 py-3 rounded-lg text-xl font-medium bg-black text-white hover:bg-gray-800 transition duration-300"
           >
             Leia o Pré e o Pós Agendamento

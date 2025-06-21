@@ -30,7 +30,7 @@ function Agendamento() {
             <li><a href="https://wa.me/558988023208" target="_blank" rel="noopener noreferrer">Agendar Horário</a></li>
             <li><a href="https://www.instagram.com/jeuusilayne.s" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             <li><a href="/">Tela Inicial</a></li>
-            <li><a href="/modelos">Ver Modelos</a></li>
+            <li><a href="/#/modelos">Ver Modelos</a></li>
           </ul>
         </div>
       )}

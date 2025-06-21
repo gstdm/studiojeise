@@ -1,135 +1,197 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const URL_API = "https://jeiselashes.squareweb.app";
 
-export default function EdicaoHome() { const [fotoDona, setFotoDona] = useState(""); const [vantagens, setVantagens] = useState<{ img: string; texto: string }[]>([]); const [salvando, setSalvando] = useState(false); const [salvo, setSalvo] = useState(false); const [erro, setErro] = useState(false);
+// ------------------------------------------------------------------------------------------------------------------ // EdicaoHome.tsx // Componente de edição da página inicial do Studio Jeise // Permite alterar imagem da dona, quatro fotos inferiores e textos de vantagens // Layout: tela cheia para mobile, estilizado com Tailwind // ------------------------------------------------------------------------------------------------------------------
 
-useEffect(() => { fetch(${URL_API}/api/conteudo) .then((res) => res.json()) .then((data) => { setFotoDona(data.fotoDona || ""); setVantagens(data.vantagens || []); }) .catch(() => alert("Erro ao carregar os dados da página inicial.")); }, []);
+export default function EdicaoHome(): JSX.Element { // -------------------------------------------------------------------------------- // Estados principais // --------------------------------------------------------------------------------
 
-const atualizarVantagem = (index: number, campo: "img" | "texto", valor: string) => { const novas = [...vantagens]; novas[index][campo] = valor; setVantagens(novas); };
+// Indica se os dados foram carregados da API const [dadosCarregados, setDadosCarregados] = useState<boolean>(false);
 
-const adicionarVantagem = () => { setVantagens([...vantagens, { img: "", texto: "" }]); };
+// Imagem principal (dona do studio) const [fotoDona, setFotoDona] = useState<string>("");
 
-const removerVantagem = (index: number) => { const novas = [...vantagens]; novas.splice(index, 1); setVantagens(novas); };
+// Array de URLs das imagens inferiores (4 posições) const [fotosInferiores, setFotosInferiores] = useState<string[]>(["", "", "", ""]);
 
-const salvar = async () => { setSalvando(true); setSalvo(false); setErro(false);
+// Array de textos correspondentes às vantagens (4 posições) const [textosVantagens, setTextosVantagens] = useState<string[]>(["", "", "", ""]);
 
-const dadosSalvar = {
+// Estados de salvamento const [salvando, setSalvando] = useState<boolean>(false); const [salvoComSucesso, setSalvoComSucesso] = useState<boolean>(false); const [erroSalvar, setErroSalvar] = useState<boolean>(false);
+
+// Armazena snapshot original para detectar alterações const originalData = useRef<{ fotoDona: string; fotosInferiores: string[]; textosVantagens: string[]; } | null>(null);
+
+// -------------------------------------------------------------------------------- // Hook de efeito para carregar dados iniciais da API // --------------------------------------------------------------------------------
+
+useEffect(() => { fetch(${URL_API}/api/conteudo) .then((res) => res.json()) .then((data) => { setFotoDona(data.fotoDona || ""); setFotosInferiores(data.fotosInferiores || ["", "", "", ""]); setTextosVantagens(data.vantagens.map((v: any) => v.texto) || ["", "", "", ""]);
+
+originalData.current = {
+      fotoDona: data.fotoDona || "",
+      fotosInferiores: data.fotosInferiores || ["", "", "", ""],
+      textosVantagens: data.vantagens.map((v: any) => v.texto) || ["", "", "", ""],
+    };
+    setDadosCarregados(true);
+  })
+  .catch(() => {
+    alert("Erro ao carregar os dados. Tente recarregar a página.");
+  });
+
+}, []);
+
+// -------------------------------------------------------------------------------- // Função para checar se houve alterações // --------------------------------------------------------------------------------
+
+function houveAlteracoes(): boolean { if (!originalData.current) return false;
+
+if (fotoDona !== originalData.current.fotoDona) return true;
+if (JSON.stringify(fotosInferiores) !== JSON.stringify(originalData.current.fotosInferiores)) return true;
+if (JSON.stringify(textosVantagens) !== JSON.stringify(originalData.current.textosVantagens)) return true;
+
+return false;
+
+}
+
+// -------------------------------------------------------------------------------- // Função de salvamento // --------------------------------------------------------------------------------
+
+async function salvarAlteracoes(): Promise<void> { setSalvando(true); setSalvoComSucesso(false); setErroSalvar(false);
+
+const payload = {
   fotoDona,
-  vantagens,
+  fotosInferiores,
+  textosVantagens,
 };
 
 try {
   const res = await fetch(`${URL_API}/api/salvar`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dadosSalvar),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
   });
 
   if (res.ok) {
-    setSalvo(true);
+    setSalvoComSucesso(true);
+    originalData.current = payload;
   } else {
-    setErro(true);
+    setErroSalvar(true);
   }
-} catch {
-  setErro(true);
+} catch (error) {
+  console.error(error);
+  setErroSalvar(true);
 } finally {
   setSalvando(false);
-  setTimeout(() => setSalvo(false), 3000);
+  setTimeout(() => setSalvoComSucesso(false), 3000);
 }
 
-};
+}
 
-return ( <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-300 p-4 sm:p-6"> <div className="w-full max-w-6xl mx-auto space-y-12"> <h1 className="text-3xl font-bold text-pink-700 text-center"> Edição da Página Inicial </h1>
+// -------------------------------------------------------------------------------- // Renderização enquanto carrega dados // --------------------------------------------------------------------------------
 
-{/* Foto da Dona */}
-    <section>
-      <h2 className="text-2xl font-semibold text-pink-700 mb-4">Foto da Dona</h2>
-      <div className="w-full max-w-sm mx-auto overflow-hidden rounded-2xl border-4 border-pink-400 shadow-lg">
-        <img src={fotoDona} alt="Foto da dona" className="object-cover w-full h-full" />
-      </div>
-      <label className="block mt-6 font-semibold text-pink-700 mb-2">Link da Foto</label>
-      <input
-        type="text"
-        value={fotoDona}
-        onChange={(e) => setFotoDona(e.target.value)}
-        className="w-full rounded-xl border border-pink-300 px-4 py-2 focus:outline-none focus:ring-4 focus:ring-pink-500"
+if (!dadosCarregados) { return ( <div className="w-full h-screen flex items-center justify-center bg-gradient-to-b from-pink-100 to-pink-300"> <p className="text-xl font-semibold text-pink-700">Carregando dados...</p> </div> ); }
+
+// -------------------------------------------------------------------------------- // JSX principal (tela cheia mobile) // --------------------------------------------------------------------------------
+
+return ( <div className="w-full min-h-screen bg-gradient-to-b from-pink-100 to-pink-300 px-4 py-6"> {/* Título */} <h1 className="text-3xl font-bold text-center text-pink-700 mb-8"> Edição Página Inicial </h1>
+
+{/* Seção: Foto da Dona */}
+  <section className="bg-white rounded-3xl shadow-lg p-6 mb-8 w-full">
+    <h2 className="text-2xl font-semibold text-pink-700 mb-4">Foto da Dona</h2>
+    <div className="w-full h-60 max-w-md mx-auto overflow-hidden rounded-2xl border-4 border-pink-400 shadow-md mb-4">
+      <img
+        src={fotoDona}
+        alt="Foto da dona"
+        className="object-cover w-full h-full"
       />
-    </section>
-
-    {/* Vantagens */}
-    <section>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-pink-700">Vantagens</h2>
-        <button
-          onClick={adicionarVantagem}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl font-semibold"
-        >
-          + Adicionar Vantagem
-        </button>
-      </div>
-
-      {vantagens.map((vantagem, i) => (
-        <div key={i} className="bg-white rounded-3xl shadow-lg p-6 mb-8 space-y-4">
-          <div className="w-full h-48 rounded-xl overflow-hidden border-4 border-pink-300 shadow-md">
-            <img
-              src={vantagem.img}
-              alt={`Vantagem ${i + 1}`}
-              className="object-cover w-full h-full"
-            />
-          </div>
-
-          <label className="block font-semibold text-pink-700 mb-1">Link da Imagem</label>
-          <input
-            type="text"
-            value={vantagem.img}
-            onChange={(e) => atualizarVantagem(i, "img", e.target.value)}
-            className="w-full rounded-xl border border-pink-300 px-4 py-2 focus:outline-none focus:ring-4 focus:ring-pink-500"
-          />
-
-          <label className="block font-semibold text-pink-700 mb-1">Texto da Vantagem</label>
-          <textarea
-            value={vantagem.texto}
-            onChange={(e) => atualizarVantagem(i, "texto", e.target.value)}
-            rows={4}
-            className="w-full rounded-xl border border-pink-300 px-4 py-2 resize-y focus:outline-none focus:ring-4 focus:ring-pink-500"
-          />
-
-          <button
-            onClick={() => removerVantagem(i)}
-            className="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-xl"
-          >
-            Remover Vantagem
-          </button>
-        </div>
-      ))}
-    </section>
-
-    {/* Botão de salvar */}
-    <div className="max-w-sm mx-auto flex flex-col gap-4">
-      <button
-        onClick={salvar}
-        disabled={salvando}
-        className={`w-full py-4 rounded-3xl font-bold text-white text-lg transition ${
-          salvando ? "bg-pink-300 cursor-not-allowed" : "bg-pink-700 hover:bg-pink-800"
-        }`}
-      >
-        {salvando ? "Salvando..." : "Salvar Alterações"}
-      </button>
-
-      {salvo && (
-        <p className="text-green-700 text-center font-semibold">
-          Alterações salvas com sucesso!
-        </p>
-      )}
-
-      {erro && (
-        <p className="text-red-600 text-center font-semibold">
-          Erro ao salvar. Tente novamente.
-        </p>
-      )}
     </div>
+    <label className="block font-semibold text-pink-700 mb-2">
+      Link da Foto
+    </label>
+    <input
+      type="text"
+      value={fotoDona}
+      onChange={(e) => setFotoDona(e.target.value)}
+      className="w-full rounded-xl border border-pink-300 px-4 py-2 focus:outline-none focus:ring-4 focus:ring-pink-500"
+    />
+  </section>
+
+  {/* Seção: Fotos Inferiores */}
+  <section className="bg-white rounded-3xl shadow-lg p-6 mb-8 w-full">
+    <h2 className="text-2xl font-semibold text-pink-700 mb-4">
+      Fotos Inferiores
+    </h2>
+    {fotosInferiores.map((url, idx) => (
+      <div key={idx} className="mb-6">
+        <label className="block font-semibold text-pink-700 mb-2">
+          Foto Inferior {idx + 1}
+        </label>
+        <div className="w-full h-40 overflow-hidden rounded-xl border-4 border-pink-300 shadow-md mb-2">
+          <img
+            src={url}
+            alt={`Foto inferior ${idx + 1}`}
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <input
+          type="text"
+          value={url}
+          onChange={(e) => {
+            const novas = [...fotosInferiores];
+            novas[idx] = e.target.value;
+            setFotosInferiores(novas);
+          }}
+          className="w-full rounded-xl border border-pink-300 px-4 py-2 focus:outline-none focus:ring-4 focus:ring-pink-500"
+        />
+      </div>
+    ))}
+  </section>
+
+  {/* Seção: Textos das Vantagens */}
+  <section className="bg-white rounded-3xl shadow-lg p-6 mb-8 w-full">
+    <h2 className="text-2xl font-semibold text-pink-700 mb-4">
+      Textos das Vantagens
+    </h2>
+    {textosVantagens.map((texto, idx) => (
+      <div key={idx} className="mb-6">
+        <label className="block font-semibold text-pink-700 mb-2">
+          Vantagem {idx + 1}
+        </label>
+        <textarea
+          rows={4}
+          value={texto}
+          onChange={(e) => {
+            const novos = [...textosVantagens];
+            novos[idx] = e.target.value;
+            setTextosVantagens(novos);
+          }}
+          className="w-full rounded-xl border border-pink-300 px-4 py-2 focus:outline-none focus:ring-4 focus:ring-pink-500 resize-y"
+        ></textarea>
+      </div>
+    ))}
+  </section>
+
+  {/* Botão de Salvar */}
+  <div className="w-full flex justify-center mb-12">
+    <button
+      onClick={salvarAlteracoes}
+      disabled={salvando || !houveAlteracoes()}
+      className={`w-full max-w-sm py-4 rounded-3xl font-bold text-white transition ${
+        salvando || !houveAlteracoes()
+          ? "bg-pink-300 cursor-not-allowed"
+          : "bg-pink-700 hover:bg-pink-800"
+      }`}
+    >
+      {salvando ? "Salvando..." : "Salvar Alterações"}
+    </button>
   </div>
+
+  {/* Mensagens de status */}
+  {salvoComSucesso && (
+    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-3xl shadow-lg">
+      Alterações salvas com sucesso!
+    </div>
+  )}
+  {erroSalvar && (
+    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-3xl shadow-lg">
+      Erro ao salvar. Tente novamente.
+    </div>
+  )}
 </div>
 
 ); }

@@ -6,7 +6,7 @@ export default function EdicaoModelos() { const [promocaoAtiva, setPromocaoAtiva
 
 const originalData = useRef(null);
 
-useEffect(() => { fetch(${URL_API}/api/conteudo) .then((res) => res.json()) .then((data) => { setPromocaoAtiva(data.promocaoAtiva); setModelos(data.modelos || []); setServicos(data.servicosAdicionais || []); originalData.current = { promocaoAtiva: data.promocaoAtiva, modelos: data.modelos || [], servicos: data.servicosAdicionais || [], }; }); }, []);
+useEffect(() => { fetch(`${URL_API}/api/conteudo`) .then((res) => res.json()) .then((data) => { setPromocaoAtiva(data.promocaoAtiva); setModelos(data.modelos || []); setServicos(data.servicosAdicionais || []); originalData.current = { promocaoAtiva: data.promocaoAtiva, modelos: data.modelos || [], servicos: data.servicosAdicionais || [], }; }); }, []);
 
 const alterarItem = (lista, setLista, index, campo, valor) => { const novaLista = [...lista]; novaLista[index][campo] = valor; setLista(novaLista); };
 

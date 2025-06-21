@@ -15,7 +15,7 @@ export default function EdicaoHome() {
   const [erro, setErro] = useState(false);
 
   useEffect(() => {
-    fetch(`${URL_API}/api/conteudo`)
+    fetch(`${URL_API}/api/home`)
       .then((res) => res.json())
       .then((data) => {
         setFotoDona(data.fotoDona || "");

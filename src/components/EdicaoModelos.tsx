@@ -534,6 +534,5 @@ export default function EdicaoModelos(): JSX.Element {
           </p>
         )}
       </div>
-    </div> {/* Fim do conteúdo principal */}
-  );
+    );
 }

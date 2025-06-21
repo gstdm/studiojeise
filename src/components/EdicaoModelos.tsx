@@ -1,209 +1,151 @@
-import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import React, { useEffect, useState, useRef } from "react";
 
-interface Modelo {
-  nome: string;
-  preco: string;
-  precoPromocional?: string;
-  descricao: string;
-  img: string;
+const URL_API = "https://jeiselashes.squareweb.app";
+
+type Modelo = { nome: string; preco: string; precoPromocional?: string; descricao: string; img: string; };
+
+type Servico = { nome: string; preco: string; precoPromocional?: string; descricao: string; img: string; };
+
+export default function EdicaoModelos() { const [dadosCarregados, setDadosCarregados] = useState(false); const [promocaoAtiva, setPromocaoAtiva] = useState(false); const [modelos, setModelos] = useState<Modelo[]>([]); const [servicos, setServicos] = useState<Servico[]>([]); const [salvando, setSalvando] = useState(false); const [salvoComSucesso, setSalvoComSucesso] = useState(false); const [erroSalvar, setErroSalvar] = useState(false);
+
+const originalData = useRef<{ promocaoAtiva: boolean; modelos: Modelo[]; servicos: Servico[]; } | null>(null);
+
+useEffect(() => { fetch(`${URL_API}/api/conteudo`) .then((res) => res.json()) .then((data) => { setPromocaoAtiva(data.promocaoAtiva); setModelos(data.modelos || []); setServicos(data.servicosAdicionais || []); originalData.current = { promocaoAtiva: data.promocaoAtiva, modelos: data.modelos || [], servicos: data.servicosAdicionais || [], }; setDadosCarregados(true); }) .catch(() => alert("Erro ao carregar os dados. Tente recarregar.")); }, []);
+
+const alterarModelo = (index: number, campo: keyof Modelo | "precoPromocional", valor: string) => { const novos = [...modelos]; // @ts-ignore novos[index][campo] = valor; setModelos(novos); };
+
+const alterarServico = (index: number, campo: keyof Servico | "precoPromocional", valor: string) => { const novos = [...servicos]; // @ts-ignore novos[index][campo] = valor; setServicos(novos); };
+
+const togglePromocao = () => setPromocaoAtiva(!promocaoAtiva);
+
+const salvarTudo = async () => { setSalvando(true); setSalvoComSucesso(false); setErroSalvar(false);
+
+const dadosSalvar = {
+  promocaoAtiva,
+  modelos,
+  servicosAdicionais: servicos,
+};
+
+try {
+  const res = await fetch(`${URL_API}/api/salvar`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dadosSalvar),
+  });
+
+  if (res.ok) {
+    setSalvoComSucesso(true);
+    originalData.current = {
+      promocaoAtiva,
+      modelos: [...modelos],
+      servicos: [...servicos],
+    };
+  } else {
+    setErroSalvar(true);
+  }
+} catch {
+  setErroSalvar(true);
+} finally {
+  setSalvando(false);
+  setTimeout(() => setSalvoComSucesso(false), 3000);
 }
 
-interface Servico {
-  nome: string;
-  preco: string;
-  descricao: string;
-  img: string;
-}
+};
 
-interface Props {
-  conteudo: any;
-  setConteudo: (c: any) => void;
-  setHouveAlteracao: (b: boolean) => void;
-}
+const adicionarModelo = () => { setModelos((prev) => [ ...prev, { nome: "", preco: "", descricao: "", img: "", precoPromocional: "" }, ]); };
 
-export default function EdicaoModelos({ conteudo, setConteudo, setHouveAlteracao }: Props) {
-  const [modelos, setModelos] = useState<Modelo[]>([]);
-  const [servicos, setServicos] = useState<Servico[]>([]);
-  const [promocaoAtiva, setPromocaoAtiva] = useState(false);
+const houveAlteracoes = () => { if (!originalData.current) return false; return ( promocaoAtiva !== originalData.current.promocaoAtiva || JSON.stringify(modelos) !== JSON.stringify(originalData.current.modelos) || JSON.stringify(servicos) !== JSON.stringify(originalData.current.servicos) ); };
 
-  useEffect(() => {
-    setModelos(conteudo.modelos || []);
-    setServicos(conteudo.servicosAdicionais || []);
-    setPromocaoAtiva(conteudo.promocaoAtiva || false);
-  }, [conteudo]);
+if (!dadosCarregados) return <p className="text-center">Carregando...</p>;
 
-  const atualizar = () => {
-    setConteudo({ ...conteudo, modelos, servicosAdicionais: servicos, promocaoAtiva });
-    setHouveAlteracao(true);
-  };
+return ( <div className="w-full max-w-4xl mx-auto space-y-10"> <section className="bg-white rounded-3xl shadow p-6 flex items-center justify-between"> <h2 className="text-xl font-semibold text-pink-700">Promoção Ativa</h2> <button onClick={togglePromocao} className={relative w-16 h-8 rounded-full transition-colors duration-300 ${promocaoAtiva ? "bg-green-500" : "bg-red-500"}} > <span className={absolute top-0.5 left-1 w-7 h-7 bg-white rounded-full shadow transform transition-transform duration-300 ${promocaoAtiva ? "translate-x-8" : ""}} /> </button> </section>
 
-  const alterarCampo = (lista: any[], setLista: any, index: number, campo: string, valor: string) => {
-    const nova = [...lista];
-    // @ts-ignore
-    nova[index][campo] = valor;
-    setLista(nova);
-    atualizar();
-  };
+<section className="space-y-10">
+    <div className="flex justify-between items-center">
+      <h2 className="text-2xl font-bold text-pink-700">Modelos de Cílios</h2>
+      <button
+        onClick={adicionarModelo}
+        className="bg-pink-600 hover:bg-pink-700 text-white font-semibold rounded-2xl px-4 py-2"
+      >
+        + Adicionar Modelo
+      </button>
+    </div>
 
-  const adicionarModelo = () => {
-    setModelos([
-      ...modelos,
-      { nome: "", preco: "", descricao: "", img: "", precoPromocional: "" },
-    ]);
-    setHouveAlteracao(true);
-  };
-
-  const adicionarServico = () => {
-    setServicos([
-      ...servicos,
-      { nome: "", preco: "", descricao: "", img: "" },
-    ]);
-    setHouveAlteracao(true);
-  };
-
-  const removerModelo = (i: number) => {
-    const nova = [...modelos];
-    nova.splice(i, 1);
-    setModelos(nova);
-    atualizar();
-  };
-
-  const removerServico = (i: number) => {
-    const nova = [...servicos];
-    nova.splice(i, 1);
-    setServicos(nova);
-    atualizar();
-  };
-
-  return (
-    <div className="space-y-10">
-      {/* Promoção */}
-      <div className="bg-white rounded-xl p-6 shadow">
-        <h2 className="text-xl font-bold text-pink-700 mb-2">Promoção Ativa</h2>
-        <label className="flex items-center gap-3 cursor-pointer">
+    {modelos.map((modelo, i) => (
+      <div key={i} className="bg-white rounded-3xl shadow-lg p-6">
+        <div className="mb-4">
+          <label className="block text-pink-700 font-semibold mb-1">Nome</label>
           <input
-            type="checkbox"
-            checked={promocaoAtiva}
-            onChange={(e) => {
-              setPromocaoAtiva(e.target.checked);
-              atualizar();
-            }}
-            className="w-5 h-5 text-pink-600"
+            type="text"
+            value={modelo.nome}
+            onChange={(e) => alterarModelo(i, "nome", e.target.value)}
+            className="w-full border border-pink-300 rounded-xl px-4 py-2"
           />
-          <span>{promocaoAtiva ? "Ativada" : "Desativada"}</span>
-        </label>
-      </div>
-
-      {/* Modelos */}
-      <div className="bg-white rounded-xl p-6 shadow">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-pink-700">Modelos</h2>
-          <button
-            onClick={adicionarModelo}
-            className="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600"
-          >
-            + Adicionar Modelo
-          </button>
         </div>
-        <div className="space-y-6">
-          {modelos.map((m, i) => (
-            <div key={i} className="border rounded-xl p-4 space-y-2">
-              <div className="flex justify-between">
-                <span className="font-semibold">Modelo #{i + 1}</span>
-                <button onClick={() => removerModelo(i)} className="text-red-500 font-bold">Excluir</button>
-              </div>
-              <input
-                type="text"
-                placeholder="Nome"
-                value={m.nome}
-                onChange={(e) => alterarCampo(modelos, setModelos, i, "nome", e.target.value)}
-                className="w-full p-2 border rounded"
-              />
-              <input
-                type="text"
-                placeholder="Preço"
-                value={m.preco}
-                onChange={(e) => alterarCampo(modelos, setModelos, i, "preco", e.target.value)}
-                className="w-full p-2 border rounded"
-              />
-              <input
-                type="text"
-                placeholder="Preço Promocional"
-                value={m.precoPromocional || ""}
-                onChange={(e) => alterarCampo(modelos, setModelos, i, "precoPromocional", e.target.value)}
-                className="w-full p-2 border rounded"
-              />
-              <textarea
-                placeholder="Descrição"
-                value={m.descricao}
-                onChange={(e) => alterarCampo(modelos, setModelos, i, "descricao", e.target.value)}
-                className="w-full p-2 border rounded resize-none"
-                rows={3}
-              />
-              <input
-                type="text"
-                placeholder="Link da Imagem"
-                value={m.img}
-                onChange={(e) => alterarCampo(modelos, setModelos, i, "img", e.target.value)}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-          ))}
+
+        <div className="mb-4">
+          <label className="block text-pink-700 font-semibold mb-1">Imagem (URL)</label>
+          <input
+            type="text"
+            value={modelo.img}
+            onChange={(e) => alterarModelo(i, "img", e.target.value)}
+            className="w-full border border-pink-300 rounded-xl px-4 py-2"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-pink-700 font-semibold mb-1">Preço Normal</label>
+            <input
+              type="text"
+              value={modelo.preco}
+              onChange={(e) => alterarModelo(i, "preco", e.target.value)}
+              className="w-full border border-pink-300 rounded-xl px-4 py-2"
+            />
+          </div>
+          <div>
+            <label className="block text-pink-700 font-semibold mb-1">Preço Promocional</label>
+            <input
+              type="text"
+              value={modelo.precoPromocional || ""}
+              onChange={(e) => alterarModelo(i, "precoPromocional", e.target.value)}
+              className="w-full border border-pink-300 rounded-xl px-4 py-2"
+            />
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <label className="block text-pink-700 font-semibold mb-1">Descrição</label>
+          <textarea
+            value={modelo.descricao}
+            onChange={(e) => alterarModelo(i, "descricao", e.target.value)}
+            className="w-full border border-pink-300 rounded-xl px-4 py-2 resize-y"
+          />
         </div>
       </div>
+    ))}
+  </section>
 
-      {/* Serviços */}
-      <div className="bg-white rounded-xl p-6 shadow">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-pink-700">Serviços Adicionais</h2>
-          <button
-            onClick={adicionarServico}
-            className="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600"
-          >
-            + Adicionar Serviço
-          </button>
-        </div>
-        <div className="space-y-6">
-          {servicos.map((s, i) => (
-            <div key={i} className="border rounded-xl p-4 space-y-2">
-              <div className="flex justify-between">
-                <span className="font-semibold">Serviço #{i + 1}</span>
-                <button onClick={() => removerServico(i)} className="text-red-500 font-bold">Excluir</button>
-              </div>
-              <input
-                type="text"
-                placeholder="Nome"
-                value={s.nome}
-                onChange={(e) => alterarCampo(servicos, setServicos, i, "nome", e.target.value)}
-                className="w-full p-2 border rounded"
-              />
-              <textarea
-                placeholder="Preço (pode ter quebra de linha)"
-                value={s.preco}
-                onChange={(e) => alterarCampo(servicos, setServicos, i, "preco", e.target.value)}
-                className="w-full p-2 border rounded resize-none"
-                rows={2}
-              />
-              <textarea
-                placeholder="Descrição"
-                value={s.descricao}
-                onChange={(e) => alterarCampo(servicos, setServicos, i, "descricao", e.target.value)}
-                className="w-full p-2 border rounded resize-none"
-                rows={3}
-              />
-              <input
-                type="text"
-                placeholder="Link da Imagem"
-                value={s.img}
-                onChange={(e) => alterarCampo(servicos, setServicos, i, "img", e.target.value)}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-          ))}
+  <div className="max-w-sm mx-auto flex flex-col gap-4">
+    <button
+      onClick={salvarTudo}
+      disabled={salvando}
+      className={`w-full py-4 rounded-3xl font-bold text-white text-lg transition ${salvando ? "bg-pink-300 cursor-not-allowed" : "bg-pink-700 hover:bg-pink-800"}`}
+    >
+      {salvando ? "Salvando..." : "Salvar Alterações"}
+    </button>
+
+    {salvoComSucesso && (
+      <p className="text-green-700 text-center font-semibold">Salvo com sucesso!</p>
+    )}
+
+    {erroSalvar && (
+            <p className="text-red-600 text-center font-semibold">
+              Erro ao salvar. Tente novamente.
+            </p>
+          )}
         </div>
       </div>
     </div>
   );
-      }
-                                              
+}

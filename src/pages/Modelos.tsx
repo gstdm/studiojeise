@@ -129,10 +129,10 @@ function Modelos() {
           Agendar Horário
         </a>
         <a
-          href="/agendamento"
+          href="/#/agendamento"
           onClick={(e) => {
             e.preventDefault();
-            location.href = "/agendamento";
+            location.href = "/#/agendamento";
             setTimeout(() => {
               window.scrollTo(0, 0);
             }, 100);

@@ -10,7 +10,7 @@ export default function EdicaoModelos() { const [dadosCarregados, setDadosCarreg
 
 const originalData = useRef<{ promocaoAtiva: boolean; modelos: Modelo[]; servicos: Servico[] } | null>(null);
 
-useEffect(() => { fetch(${URL_API}/api/conteudo) .then((res) => res.json()) .then((data) => { setPromocaoAtiva(data.promocaoAtiva); setModelos(data.modelos || []); setServicos(data.servicosAdicionais || []); originalData.current = { promocaoAtiva: data.promocaoAtiva, modelos: data.modelos || [], servicos: data.servicosAdicionais || [], }; setDadosCarregados(true); }) .catch(() => alert("Erro ao carregar os dados. Tente recarregar.")); }, []);
+useEffect(() => { fetch(`${URL_API}/api/conteudo`) .then((res) => res.json()) .then((data) => { setPromocaoAtiva(data.promocaoAtiva); setModelos(data.modelos || []); setServicos(data.servicosAdicionais || []); originalData.current = { promocaoAtiva: data.promocaoAtiva, modelos: data.modelos || [], servicos: data.servicosAdicionais || [], }; setDadosCarregados(true); }) .catch(() => alert("Erro ao carregar os dados. Tente recarregar.")); }, []);
 
 function alterarModelo(index: number, campo: keyof Modelo, valor: string) { const novos = [...modelos]; novos[index][campo] = valor; setModelos(novos); } function alterarServico(index: number, campo: keyof Servico, valor: string) { const novos = [...servicos]; novos[index][campo] = valor; setServicos(novos); }
 
@@ -20,7 +20,7 @@ function adicionarServico() { setServicos([ ...servicos, { nome: "", preco: "", 
 
 function togglePromocao() { setPromocaoAtiva((prev) => !prev); }
 
-async function salvarTudo() { setSalvando(true); setSalvoComSucesso(false); setErroSalvar(false); try { const res = await fetch(${URL_API}/api/salvar, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ promocaoAtiva, modelos, servicosAdicionais: servicos }), }); if (res.ok) { setSalvoComSucesso(true); originalData.current = { promocaoAtiva, modelos: [...modelos], servicos: [...servicos] }; } else { setErroSalvar(true); } } catch { setErroSalvar(true); } finally { setSalvando(false); setTimeout(() => setSalvoComSucesso(false), 3000); } }
+async function salvarTudo() { setSalvando(true); setSalvoComSucesso(false); setErroSalvar(false); try { const res = await fetch(`${URL_API}/api/salvar`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ promocaoAtiva, modelos, servicosAdicionais: servicos }), }); if (res.ok) { setSalvoComSucesso(true); originalData.current = { promocaoAtiva, modelos: [...modelos], servicos: [...servicos] }; } else { setErroSalvar(true); } } catch { setErroSalvar(true); } finally { setSalvando(false); setTimeout(() => setSalvoComSucesso(false), 3000); } }
 
 function houveAlteracoes() { if (!originalData.current) return false; if (promocaoAtiva !== originalData.current.promocaoAtiva) return true; if (JSON.stringify(modelos) !== JSON.stringify(originalData.current.modelos)) return true; if (JSON.stringify(servicos) !== JSON.stringify(originalData.current.servicos)) return true; return false; }
 
